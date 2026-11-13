@@ -2,8 +2,20 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="theme-color" content="#0f172a" />
+
+  <!-- PWA Multiplataforma (Android, Windows, Mac, Linux) -->
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+
+  <!-- Soporte Nativo iPhone / iPad (iOS) -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Taller POS" />
+  <link rel="apple-touch-icon" id="appleTouchIcon" sizes="180x180" href="./icon.svg" />
+
   <title>POS Premium — Taller y Accesorios</title>
   <style>
     :root {
@@ -43,7 +55,7 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.45;
-      padding-bottom: 40px;
+      padding-bottom: calc(40px + env(safe-area-inset-bottom));
     }
 
     /* ====== HEADER PREMIUM ====== */
@@ -53,7 +65,7 @@
       z-index: 100;
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
       color: #fff;
-      padding: 12px 16px;
+      padding: calc(12px + env(safe-area-inset-top)) 16px 12px 16px;
       box-shadow: 0 4px 20px rgba(15, 23, 42, 0.2);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -132,7 +144,6 @@
       border: 1px solid var(--border);
       box-shadow: var(--shadow-sm);
       margin-bottom: 16px;
-      transition: box-shadow 0.2s ease;
     }
 
     .card-header {
@@ -191,16 +202,14 @@
       padding: 10px 12px;
       border: 1.5px solid var(--border);
       border-radius: var(--radius-sm);
-      font-size: 0.94rem;
+      font-size: 16px; /* Evita zoom automático en iPhone */
       font-family: inherit;
       background: var(--surface-soft);
       color: var(--text);
       transition: all 0.18s ease;
     }
 
-    input::placeholder, textarea::placeholder {
-      color: var(--muted);
-    }
+    input::placeholder, textarea::placeholder { color: var(--muted); }
 
     input:focus, select:focus, textarea:focus {
       outline: none;
@@ -247,7 +256,12 @@
       color: #fff;
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
     }
-    .btn-primary:hover { box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35); }
+
+    .btn-install {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
 
     .btn-success {
       background: linear-gradient(135deg, #10b981, #059669);
@@ -261,21 +275,9 @@
       box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
     }
 
-    .btn-danger {
-      background: #fee2e2;
-      color: #dc2626;
-    }
-    .btn-danger:hover { background: #fecaca; }
-
-    .btn-danger-solid {
-      background: #ef4444;
-      color: #fff;
-    }
-
-    .btn-dark {
-      background: #1e293b;
-      color: #fff;
-    }
+    .btn-danger { background: #fee2e2; color: #dc2626; }
+    .btn-danger-solid { background: #ef4444; color: #fff; }
+    .btn-dark { background: #1e293b; color: #fff; }
 
     .btn-glass {
       background: rgba(255, 255, 255, 0.12);
@@ -290,7 +292,6 @@
       color: var(--text);
       border: 1.5px solid var(--border);
     }
-    .btn-outline:hover { background: var(--surface-soft); }
 
     .btn-sm { padding: 7px 11px; font-size: 0.8rem; border-radius: 8px; }
     .btn-block { width: 100%; padding: 12px 16px; font-size: 0.92rem; }
@@ -335,14 +336,8 @@
       transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .switch-wrap input:checked {
-      background: var(--primary);
-      box-shadow: none;
-    }
-
-    .switch-wrap input:checked::after {
-      transform: translateX(18px);
-    }
+    .switch-wrap input:checked { background: var(--primary); box-shadow: none; }
+    .switch-wrap input:checked::after { transform: translateX(18px); }
 
     /* ====== PÍLDORAS RÁPIDAS ====== */
     .quick-pills {
@@ -371,17 +366,10 @@
       background: var(--primary-soft);
       border-color: #93c5fd;
       color: var(--primary);
-      transform: translateY(-1px);
     }
-    .pill:active { transform: scale(0.96); }
 
-    /* ====== LISTA DE ÍTEMS PREMIUM (TARJETAS EN MÓVIL Y PC) ====== */
-    .items-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 14px;
-    }
+    /* ====== LISTA DE ÍTEMS ====== */
+    .items-list { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
 
     .empty-items {
       text-align: center;
@@ -402,19 +390,9 @@
       border: 1px solid var(--border);
       background: var(--surface-soft);
       align-items: center;
-      animation: fadeInUp 0.2s ease;
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .item-info strong {
-      display: block;
-      font-size: 0.92rem;
-      color: var(--text);
-    }
+    .item-info strong { display: block; font-size: 0.92rem; color: var(--text); }
 
     .item-tag {
       display: inline-block;
@@ -448,40 +426,28 @@
     .qty-stepper button {
       border: none;
       background: transparent;
-      width: 28px;
-      height: 30px;
+      width: 30px;
+      height: 32px;
       font-weight: 700;
       font-size: 1rem;
       cursor: pointer;
       color: var(--text-secondary);
     }
-    .qty-stepper button:hover { background: var(--bg); }
 
-    .qty-stepper span {
-      min-width: 26px;
-      text-align: center;
-      font-size: 0.86rem;
-      font-weight: 700;
-    }
+    .qty-stepper span { min-width: 26px; text-align: center; font-size: 0.86rem; font-weight: 700; }
 
     .inline-price {
-      width: 88px;
-      padding: 5px 8px;
-      font-size: 0.86rem;
+      width: 92px;
+      padding: 6px 8px;
+      font-size: 0.9rem;
       font-weight: 600;
       text-align: right;
       background: #fff;
     }
 
-    .item-sub {
-      min-width: 78px;
-      text-align: right;
-      font-weight: 700;
-      font-size: 0.92rem;
-      color: var(--text);
-    }
+    .item-sub { min-width: 78px; text-align: right; font-weight: 700; font-size: 0.92rem; }
 
-    /* ====== RESUMEN RÁPIDO DE TOTALES ====== */
+    /* ====== RESUMEN RÁPIDO ====== */
     .summary-bar {
       margin-top: 14px;
       padding: 12px 14px;
@@ -493,23 +459,13 @@
       align-items: center;
     }
     .summary-bar span { font-size: 0.85rem; color: #cbd5e1; }
-    .summary-bar strong { font-size: 1.25rem; letter-spacing: -0.02em; }
+    .summary-bar strong { font-size: 1.25rem; }
 
-    /* ====== TICKET TÉRMICO REALISTA ====== */
-    .preview-card {
-      position: sticky;
-      top: 76px;
-    }
+    /* ====== TICKET TÉRMICO ====== */
+    .preview-card { position: sticky; top: 76px; }
+    @media (max-width: 920px) { .preview-card { position: static; } }
 
-    @media (max-width: 920px) {
-      .preview-card { position: static; }
-    }
-
-    .preview-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    .preview-wrapper { display: flex; flex-direction: column; align-items: center; }
 
     .ticket-stage {
       width: 100%;
@@ -532,7 +488,6 @@
       padding: 14px 10px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.14);
       word-wrap: break-word;
-      position: relative;
     }
 
     .ticket.w80 { font-size: 13px; }
@@ -546,13 +501,7 @@
     .t-item-desc { font-weight: bold; margin-top: 3px; }
     .t-small { font-size: 0.85em; }
 
-    .print-actions {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 9px;
-      width: 100%;
-      margin-top: 16px;
-    }
+    .print-actions { display: grid; grid-template-columns: 1fr; gap: 9px; width: 100%; margin-top: 16px; }
 
     .bt-status {
       font-size: 0.8rem;
@@ -570,20 +519,14 @@
       gap: 8px;
     }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--muted);
-      display: inline-block;
-    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); display: inline-block; }
     .dot.connected { background: var(--success); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25); }
     .dot.error { background: var(--danger); }
 
-    /* ====== TOAST NOTIFICATIONS PREMIUM ====== */
+    /* ====== TOAST NOTIFICATIONS ====== */
     #toastContainer {
       position: fixed;
-      top: 16px;
+      top: calc(16px + env(safe-area-inset-top));
       right: 16px;
       z-index: 2000;
       display: flex;
@@ -596,7 +539,7 @@
 
     @media (max-width: 600px) {
       #toastContainer {
-        top: 12px;
+        top: calc(12px + env(safe-area-inset-top));
         left: 50%;
         right: auto;
         transform: translateX(-50%);
@@ -622,9 +565,7 @@
       cursor: pointer;
     }
 
-    .toast.out {
-      animation: toastOut 0.22s ease forwards;
-    }
+    .toast.out { animation: toastOut 0.22s ease forwards; }
 
     .toast-icon {
       width: 28px;
@@ -651,7 +592,7 @@
       to { opacity: 0; transform: translateY(-10px) scale(0.95); }
     }
 
-    /* ====== MODALES PREMIUM ====== */
+    /* ====== MODALES ====== */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -665,15 +606,7 @@
       z-index: 1500;
     }
 
-    .modal-backdrop.open {
-      display: flex;
-      animation: fadeBg 0.18s ease;
-    }
-
-    @keyframes fadeBg {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+    .modal-backdrop.open { display: flex; }
 
     .modal {
       background: #fff;
@@ -685,22 +618,10 @@
       padding: 20px;
       box-shadow: var(--shadow-lg);
       border: 1px solid var(--border);
-      animation: modalScale 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .modal-sm { max-width: 400px; }
-
-    @keyframes modalScale {
-      from { opacity: 0; transform: scale(0.94); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .modal-title {
-      margin: 0 0 14px 0;
-      font-size: 1.08rem;
-      font-weight: 700;
-      color: var(--text);
-    }
+    .modal-sm { max-width: 420px; }
+    .modal-title { margin: 0 0 14px 0; font-size: 1.08rem; font-weight: 700; }
 
     .history-item {
       border: 1px solid var(--border);
@@ -714,7 +635,37 @@
       background: var(--surface-soft);
     }
 
-    /* ====== IMPRESIÓN TÉRMICA LIMPIA ====== */
+    .install-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 12px 0 18px 0;
+    }
+    .install-step {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.88rem;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ====== IMPRESIÓN ====== */
     @media print {
       @page { margin: 0; size: auto; }
       body { background: #fff; margin: 0; padding: 0; }
@@ -725,13 +676,7 @@
       .card.preview-card { box-shadow: none; padding: 0; margin: 0; border: none; position: static; }
       .preview-card .card-header { display: none; }
       .ticket-stage { background: #fff; padding: 0; box-shadow: none; display: block; }
-      .ticket {
-        border: none;
-        box-shadow: none;
-        margin: 0;
-        padding: 4px;
-        width: var(--ticket-width);
-      }
+      .ticket { border: none; box-shadow: none; margin: 0; padding: 4px; width: var(--ticket-width); }
     }
   </style>
 </head>
@@ -754,6 +699,7 @@
       </div>
     </div>
     <div class="header-actions">
+      <button class="btn btn-install btn-sm" id="installAppBtn" style="display:none;" onclick="handleInstallClick()">📲 Instalar App</button>
       <button class="btn btn-glass btn-sm" onclick="openSettings()">⚙️ Negocio</button>
       <button class="btn btn-glass btn-sm" onclick="openHistory()">📋 Historial</button>
       <button class="btn btn-primary btn-sm" onclick="confirmNewInvoice()">➕ Nueva</button>
@@ -930,22 +876,18 @@
       </div>
 
       <div class="print-actions no-print">
-        <button class="btn btn-primary btn-block" onclick="printWebBluetooth()">
+        <button class="btn btn-primary btn-block" id="btnBle" onclick="printWebBluetooth()">
           🔵 Imprimir Bluetooth Directo (BLE)
         </button>
-        <button class="btn btn-warning btn-block" onclick="printRawBT()">
+        <button class="btn btn-warning btn-block" id="btnRawbt" onclick="printRawBT()">
           📱 Imprimir con RawBT (Android)
         </button>
         <button class="btn btn-dark btn-block" onclick="printSystem()">
           🖨️ Imprimir Sistema / Guardar PDF
         </button>
         <div class="grid-2">
-          <button class="btn btn-success" onclick="sendWhatsApp()">
-            💬 WhatsApp
-          </button>
-          <button class="btn btn-outline" onclick="saveCurrentInvoice()">
-            💾 Guardar
-          </button>
+          <button class="btn btn-success" onclick="sendWhatsApp()">💬 WhatsApp</button>
+          <button class="btn btn-outline" onclick="saveCurrentInvoice()">💾 Guardar</button>
         </div>
       </div>
 
@@ -1026,7 +968,7 @@
   </div>
 </div>
 
-<!-- MODAL DE CONFIRMACIÓN PREMIUM (REEMPLAZA CONFIRM DE CHROME) -->
+<!-- MODAL CONFIRMACIÓN -->
 <div class="modal-backdrop" id="confirmModal">
   <div class="modal modal-sm">
     <h2 class="modal-title" id="confirmTitle">Confirmar acción</h2>
@@ -1038,16 +980,138 @@
   </div>
 </div>
 
+<!-- MODAL INSTRUCCIONES INSTALACIÓN (iPHONE / MANUAL) -->
+<div class="modal-backdrop" id="installModal">
+  <div class="modal modal-sm">
+    <h2 class="modal-title" id="installModalTitle">📲 Instalar Aplicación</h2>
+    <div class="install-steps" id="installModalBody"></div>
+    <div style="display:flex; justify-content:flex-end;">
+      <button class="btn btn-primary" onclick="closeInstallModal()">Entendido</button>
+    </div>
+  </div>
+</div>
+
 <script>
-  // ====== SISTEMA DE NOTIFICACIONES TOAST ======
+  // ====== DETECCIÓN DE PLATAFORMA Y PWA ======
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+  let deferredInstallPrompt = null;
+
+  // Genera un ícono PNG 180x180 nítido para iPhone/iPad (Apple requiere PNG para apple-touch-icon)
+  function generateAppleTouchIcon() {
+    try {
+      const c = document.createElement("canvas");
+      c.width = 180; c.height = 180;
+      const ctx = c.getContext("2d");
+      const grad = ctx.createLinearGradient(0, 0, 180, 180);
+      grad.addColorStop(0, "#0f172a");
+      grad.addColorStop(0.55, "#1e3a8a");
+      grad.addColorStop(1, "#4f46e5");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 180, 180);
+
+      // Cuerpo del teléfono
+      ctx.strokeStyle = "#ffffff";
+      ctx.lineWidth = 7;
+      ctx.fillStyle = "rgba(255,255,255,0.12)";
+      ctx.beginPath();
+      ctx.roundRect(54, 34, 72, 112, 14);
+      ctx.fill();
+      ctx.stroke();
+
+      // Líneas del ticket
+      ctx.fillStyle = "#38bdf8";
+      ctx.beginPath();
+      ctx.roundRect(68, 56, 44, 8, 4);
+      ctx.fill();
+
+      ctx.fillStyle = "#cbd5e1";
+      ctx.beginPath();
+      ctx.roundRect(68, 72, 34, 6, 3);
+      ctx.roundRect(68, 84, 40, 6, 3);
+      ctx.fill();
+
+      // Sello verde
+      ctx.fillStyle = "#10b981";
+      ctx.beginPath();
+      ctx.arc(108, 108, 14, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.strokeStyle = "#ffffff";
+      ctx.lineWidth = 3.5;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.beginPath();
+      ctx.moveTo(102, 108);
+      ctx.lineTo(106, 112);
+      ctx.lineTo(115, 103);
+      ctx.stroke();
+
+      const link = document.getElementById("appleTouchIcon");
+      if (link) link.href = c.toDataURL("image/png");
+    } catch (e) {}
+  }
+
+  // Registrar Service Worker para funcionamiento offline y PWA
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js").catch(() => {});
+    });
+  }
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    if (!isStandalone) {
+      document.getElementById("installAppBtn").style.display = "inline-flex";
+    }
+  });
+
+  window.addEventListener("appinstalled", () => {
+    deferredInstallPrompt = null;
+    document.getElementById("installAppBtn").style.display = "none";
+    showToast("¡App instalada correctamente en tu dispositivo!", "success");
+  });
+
+  function handleInstallClick() {
+    if (deferredInstallPrompt) {
+      deferredInstallPrompt.prompt();
+      deferredInstallPrompt.userChoice.then((choice) => {
+        if (choice.outcome === "accepted") {
+          document.getElementById("installAppBtn").style.display = "none";
+        }
+        deferredInstallPrompt = null;
+      });
+      return;
+    }
+
+    const body = document.getElementById("installModalBody");
+    const title = document.getElementById("installModalTitle");
+    if (isIOS) {
+      title.textContent = "📲 Instalar en iPhone / iPad";
+      body.innerHTML = `
+        <div class="install-step"><div class="step-num">1</div><div>Abre esta página en <strong>Safari</strong> y toca el botón <strong>Compartir</strong> (el cuadro con flecha hacia arriba ⬆️).</div></div>
+        <div class="install-step"><div class="step-num">2</div><div>Desliza hacia abajo y selecciona <strong>"Agregar a inicio"</strong> (o <em>Add to Home Screen</em>).</div></div>
+        <div class="install-step"><div class="step-num">3</div><div>Asegúrate de activar <strong>"Abrir como app web"</strong> y toca <strong>Agregar</strong>.</div></div>
+      `;
+    } else {
+      title.textContent = "📲 Instalar Aplicación";
+      body.innerHTML = `
+        <div class="install-step"><div class="step-num">1</div><div>En <strong>Chrome o Edge</strong>, toca el menú de los 3 puntos (⋮) o el ícono de computadora con flecha en la barra de dirección.</div></div>
+        <div class="install-step"><div class="step-num">2</div><div>Elige <strong>"Instalar aplicación"</strong> o <strong>"Agregar a la pantalla principal"</strong>.</div></div>
+      `;
+    }
+    document.getElementById("installModal").classList.add("open");
+  }
+
+  function closeInstallModal() {
+    document.getElementById("installModal").classList.remove("open");
+  }
+
+  // ====== NOTIFICACIONES TOAST ======
   function showToast(message, type = "info") {
     const container = document.getElementById("toastContainer");
-    const icons = {
-      success: "✓",
-      error: "!",
-      warning: "⚠",
-      info: "i"
-    };
+    const icons = { success: "✓", error: "!", warning: "⚠", info: "i" };
 
     const toast = document.createElement("div");
     toast.className = `toast ${type}`;
@@ -1108,6 +1172,15 @@
   let bleDevice = null;
 
   window.addEventListener("DOMContentLoaded", () => {
+    generateAppleTouchIcon();
+    if (isIOS && !isStandalone) {
+      document.getElementById("installAppBtn").style.display = "inline-flex";
+    }
+    if (isIOS) {
+      document.getElementById("btnRawbt").style.display = "none";
+      setBtStatus("En iPhone usa 'Imprimir Sistema / PDF' o WhatsApp", "");
+    }
+
     const lastNum = parseInt(localStorage.getItem("cel_pos_last_num") || "0", 10) + 1;
     document.getElementById("invNumber").value = String(lastNum).padStart(4, "0");
     document.getElementById("paperWidthSelect").value = config.paperWidth;
@@ -1147,11 +1220,8 @@
   // ====== GESTIÓN DE ARTÍCULOS ======
   function quickAdd(type, desc, price) {
     const existing = items.find(i => i.desc === desc && i.price === price);
-    if (existing) {
-      existing.qty += 1;
-    } else {
-      items.push({ type, desc, qty: 1, price });
-    }
+    if (existing) existing.qty += 1;
+    else items.push({ type, desc, qty: 1, price });
     renderItemsList();
     renderTicket();
     showToast(`Agregado: ${desc}`, "success");
@@ -1469,8 +1539,7 @@
   // ====== IMPRESIÓN ======
   function setBtStatus(text, state = "") {
     document.getElementById("btStatusText").textContent = text;
-    const dot = document.getElementById("btDot");
-    dot.className = "dot " + state;
+    document.getElementById("btDot").className = "dot " + state;
   }
 
   async function printWebBluetooth() {
@@ -1478,8 +1547,12 @@
       showToast("Agrega al menos un servicio o producto antes de imprimir", "warning");
       return;
     }
+    if (isIOS) {
+      showToast("Apple iPhone bloquea Bluetooth en web. Usa 'Imprimir Sistema / PDF' o WhatsApp.", "info");
+      return;
+    }
     if (!navigator.bluetooth) {
-      showToast("Usa el botón naranja RawBT en Android o abre en Chrome compatible", "warning");
+      showToast("Usa el botón naranja RawBT en Android o abre en Chrome", "warning");
       setBtStatus("Web Bluetooth no disponible en este navegador", "error");
       return;
     }
