@@ -73,50 +73,25 @@
       box-shadow: 0 2px 12px rgba(15, 23, 42, 0.2);
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 0;
-      flex: 1;
-    }
+    .brand { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1; }
 
     .brand-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+      width: 32px; height: 32px; border-radius: 8px;
       background: linear-gradient(135deg, #3b82f6, #6366f1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
 
     .brand-title { min-width: 0; }
-
     .brand-title h1 {
-      margin: 0;
-      font-size: 0.9rem;
-      font-weight: 700;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      margin: 0; font-size: 0.9rem; font-weight: 700;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-
-    .brand-title small {
-      display: block;
-      font-size: 0.68rem;
-      color: #94a3b8;
-    }
+    .brand-title small { display: block; font-size: 0.68rem; color: #94a3b8; }
 
     .top-actions { display: flex; gap: 6px; flex-shrink: 0; }
 
     /* ====== CONTENEDOR PRINCIPAL ====== */
-    .app-main {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 10px 10px 16px 10px;
-    }
+    .app-main { max-width: 860px; margin: 0 auto; padding: 10px 10px 16px 10px; }
 
     .view-section { display: none; }
     .view-section.active { display: block; animation: fadeIn 0.16s ease; }
@@ -124,94 +99,48 @@
 
     /* ====== TARJETAS COMPACTAS ====== */
     .card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      padding: 12px;
-      border: 1px solid var(--border);
-      margin-bottom: 10px;
+      background: var(--surface); border-radius: var(--radius);
+      padding: 12px; border: 1px solid var(--border); margin-bottom: 10px;
     }
 
     .card-row-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 8px; margin-bottom: 8px;
     }
 
-    .card-title {
-      margin: 0;
-      font-size: 0.88rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+    .card-title { margin: 0; font-size: 0.88rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
 
     /* ====== GRILLAS COMPACTAS ====== */
     .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-
     .field { min-width: 0; }
 
     label {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      margin-bottom: 3px;
-      color: var(--text-sec);
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      display: block; font-size: 0.68rem; font-weight: 700; margin-bottom: 3px;
+      color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.02em;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
 
     input, select, textarea {
-      width: 100%;
-      min-width: 0;
-      padding: 8px 10px;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-size: 15px;
-      font-family: inherit;
-      background: var(--surface-soft);
-      color: var(--text);
+      width: 100%; min-width: 0; padding: 8px 10px;
+      border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      font-size: 15px; font-family: inherit; background: var(--surface-soft); color: var(--text);
     }
 
     input:focus, select:focus, textarea:focus {
-      outline: none;
-      background: #fff;
-      border-color: var(--primary);
+      outline: none; background: #fff; border-color: var(--primary);
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
     }
 
-    .input-error {
-      border-color: var(--danger) !important;
-      background: var(--danger-soft) !important;
-      animation: shake 0.3s ease;
-    }
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-4px); }
-      75% { transform: translateX(4px); }
-    }
+    .input-error { border-color: var(--danger) !important; background: var(--danger-soft) !important; animation: shake 0.3s ease; }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
 
     /* ====== BOTONES ====== */
     .btn {
-      border: none;
-      border-radius: var(--radius-sm);
-      padding: 9px 12px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      font-family: inherit;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      white-space: nowrap;
-      user-select: none;
+      border: none; border-radius: var(--radius-sm); padding: 9px 12px;
+      font-size: 0.82rem; font-weight: 700; font-family: inherit; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 5px; white-space: nowrap; user-select: none;
     }
     .btn:active { transform: scale(0.97); }
     .btn-primary { background: linear-gradient(135deg, #2563eb, #4f46e5); color: #fff; }
@@ -228,13 +157,8 @@
 
     /* ====== SWITCH ====== */
     .switch-wrap {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-sec);
+      display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+      font-size: 0.78rem; font-weight: 600; color: var(--text-sec);
     }
     .switch-wrap input {
       appearance: none; -webkit-appearance: none; width: 36px; height: 20px;
@@ -252,81 +176,44 @@
     .search-bar-row { display: flex; gap: 8px; margin-bottom: 8px; }
 
     .cat-pills {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      margin-bottom: 8px;
-      scrollbar-width: none;
+      display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px;
+      margin-bottom: 8px; scrollbar-width: none;
     }
     .cat-pills::-webkit-scrollbar { display: none; }
 
     .cat-pill {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text-sec);
-      border-radius: 999px;
-      padding: 5px 11px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      white-space: nowrap;
-      cursor: pointer;
+      background: var(--surface); border: 1px solid var(--border); color: var(--text-sec);
+      border-radius: 999px; padding: 5px 11px; font-size: 0.75rem; font-weight: 600;
+      white-space: nowrap; cursor: pointer;
     }
     .cat-pill.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
-    .catalog-grid-mobile {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-    }
-    @media (min-width: 640px) {
-      .catalog-grid-mobile { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
+    .catalog-grid-mobile { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    @media (min-width: 640px) { .catalog-grid-mobile { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
     .prod-tile {
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 11px;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 6px;
-      text-align: left;
-      cursor: pointer;
-      position: relative;
-      min-width: 0;
+      background: var(--surface); border: 1.5px solid var(--border); border-radius: 11px;
+      padding: 10px; display: flex; flex-direction: column; justify-content: space-between;
+      gap: 6px; text-align: left; cursor: pointer; position: relative; min-width: 0;
     }
     .prod-tile:active { transform: scale(0.97); background: var(--primary-soft); border-color: var(--primary); }
     .prod-tile.in-cart { border-color: var(--primary); background: #f8faff; }
     .prod-tile.out { border-color: #fecaca; background: #fff5f5; }
 
     .prod-tile-cat {
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: var(--muted);
-      text-transform: uppercase;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 0.65rem; font-weight: 700; color: var(--muted); text-transform: uppercase;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 12px;
     }
     .prod-tile-name {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1.22;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      font-size: 0.82rem; font-weight: 700; color: var(--text); line-height: 1.22;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
     .prod-tile-foot { display: flex; justify-content: space-between; align-items: center; gap: 4px; margin-top: 2px; }
     .prod-tile-price { font-size: 0.84rem; font-weight: 800; color: var(--primary); }
 
     .cart-qty-badge {
-      position: absolute; top: -6px; right: -4px;
-      background: var(--primary); color: #fff; font-size: 0.7rem; font-weight: 800;
-      min-width: 20px; height: 20px; border-radius: 999px;
+      position: absolute; top: -6px; right: -4px; background: var(--primary); color: #fff;
+      font-size: 0.7rem; font-weight: 800; min-width: 20px; height: 20px; border-radius: 999px;
       display: flex; align-items: center; justify-content: center; padding: 0 5px;
       box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
     }
@@ -339,22 +226,13 @@
 
     /* ====== BARRA FLOTANTE DE COBRO ====== */
     .floating-checkout {
-      position: fixed;
-      left: 10px;
-      right: 10px;
+      position: fixed; left: 10px; right: 10px;
       bottom: calc(var(--nav-h) + 8px + env(safe-area-inset-bottom));
-      z-index: 95;
-      max-width: 840px;
-      margin: 0 auto;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #fff;
-      border-radius: 12px;
-      padding: 10px 14px;
-      display: none;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.35);
-      border: 1px solid rgba(255,255,255,0.12);
+      z-index: 95; max-width: 840px; margin: 0 auto;
+      background: linear-gradient(135deg, #0f172a, #1e293b); color: #fff;
+      border-radius: 12px; padding: 10px 14px; display: none;
+      justify-content: space-between; align-items: center;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.35); border: 1px solid rgba(255,255,255,0.12);
     }
     .floating-checkout.show { display: flex; }
 
@@ -383,13 +261,12 @@
       font-weight: 700; font-size: 0.95rem; cursor: pointer; color: var(--text);
     }
     .qty-stepper span { min-width: 20px; text-align: center; font-size: 0.8rem; font-weight: 700; }
-
     .mini-price { width: 74px; padding: 4px 6px; font-size: 0.84rem; font-weight: 700; text-align: right; }
 
     .total-strip {
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #fff; border-radius: 10px; padding: 10px 12px;
-      display: flex; justify-content: space-between; align-items: center; margin: 8px 0;
+      background: linear-gradient(135deg, #0f172a, #1e293b); color: #fff;
+      border-radius: 10px; padding: 10px 12px; display: flex;
+      justify-content: space-between; align-items: center; margin: 8px 0;
     }
     .total-strip small { color: #cbd5e1; font-size: 0.75rem; display: block; }
     .total-strip strong { font-size: 1.25rem; }
@@ -451,44 +328,22 @@
       display: flex; justify-content: center; overflow-x: auto;
     }
     .ticket {
-      position: relative;
-      overflow: hidden;
-      width: var(--ticket-width);
-      background: #fff;
-      color: #000;
-      font-family: "Courier New", Courier, monospace;
-      font-size: 12px;
-      line-height: 1.26;
-      padding: 12px 8px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
-      word-wrap: break-word;
+      position: relative; overflow: hidden; width: var(--ticket-width);
+      background: #fff; color: #000; font-family: "Courier New", Courier, monospace;
+      font-size: 12px; line-height: 1.26; padding: 12px 8px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14); word-wrap: break-word;
     }
     .ticket.w80 { font-size: 13px; }
 
     .ticket-watermark {
-      position: absolute;
-      top: 50%;
-      left: 50%;
+      position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%) rotate(-32deg);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 27px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      color: rgba(15, 23, 42, 0.09);
-      white-space: nowrap;
-      pointer-events: none;
-      user-select: none;
-      z-index: 0;
-      text-transform: uppercase;
+      font-family: Arial, Helvetica, sans-serif; font-size: 27px; font-weight: 900;
+      letter-spacing: 3px; color: rgba(15, 23, 42, 0.09); white-space: nowrap;
+      pointer-events: none; user-select: none; z-index: 0; text-transform: uppercase;
     }
-    .ticket.w80 .ticket-watermark {
-      font-size: 38px;
-      letter-spacing: 5px;
-    }
-    .ticket-content {
-      position: relative;
-      z-index: 1;
-    }
+    .ticket.w80 .ticket-watermark { font-size: 38px; letter-spacing: 5px; }
+    .ticket-content { position: relative; z-index: 1; }
 
     .t-center { text-align: center; }
     .t-bold { font-weight: bold; }
@@ -550,10 +405,7 @@
     /* ====== IMPRESIÓN TÉRMICA PURA CON MARCA DE AGUA ====== */
     @media print {
       @page { margin: 0; size: auto; }
-      * {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       body { background: #fff !important; margin: 0 !important; padding: 0 !important; }
       body > *:not(#ticketModal) { display: none !important; }
       #ticketModal {
@@ -574,6 +426,7 @@
 <body>
 
 <div id="toastContainer" class="no-print"></div>
+<datalist id="catDatalist"></datalist>
 
 <!-- HEADER SUPERIOR COMPACTO -->
 <header class="topbar no-print">
@@ -736,7 +589,7 @@
         <select id="invCatFilter" onchange="renderInventory()"></select>
       </div>
 
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:6px;">
         <label class="switch-wrap">
           <input type="checkbox" id="invLowOnly" onchange="renderInventory()" />
           <span>Ver solo stock bajo</span>
@@ -836,8 +689,14 @@
       <span>✏️ Agregar Ítem Manual</span>
       <button class="btn btn-outline btn-sm" onclick="closeManualModal()">✕</button>
     </div>
-    <div class="field" style="margin-bottom:8px;"><label>Categoría / Tipo</label><select id="itemType"></select></div>
-    <div class="field" style="margin-bottom:8px;"><label>Descripción</label><input type="text" id="itemDesc" placeholder="Ej: Cambio de cristal / Reparación placa" /></div>
+    <div class="field" style="margin-bottom:8px;">
+      <label>Categoría (Opcional)</label>
+      <input type="text" id="itemType" list="catDatalist" placeholder="Escribe o elige categoría (opcional)" />
+    </div>
+    <div class="field" style="margin-bottom:8px;">
+      <label>Descripción</label>
+      <input type="text" id="itemDesc" placeholder="Ej: Cambio de cristal / Reparación placa" />
+    </div>
     <div class="grid-2">
       <div class="field"><label>Cantidad</label><input type="number" id="itemQty" value="1" min="1" /></div>
       <div class="field"><label>Precio Unit. (<span class="curr-label">C$</span>)</label><input type="number" id="itemPrice" placeholder="0.00" min="0" step="0.01" /></div>
@@ -849,7 +708,7 @@
   </div>
 </div>
 
-<!-- MODAL PRODUCTO -->
+<!-- MODAL PRODUCTO (CAMPO LIBRE DE CATEGORÍA) -->
 <div class="modal-backdrop" id="productModal">
   <div class="modal">
     <div class="modal-title">
@@ -858,7 +717,10 @@
     </div>
     <input type="hidden" id="prodEditId" />
     <div class="grid-2">
-      <div class="field"><label>Categoría</label><select id="prodCategory"></select></div>
+      <div class="field">
+        <label>Categoría (escribe o elige)</label>
+        <input type="text" id="prodCategory" list="catDatalist" placeholder="Ej: Pantallas, Fundas..." />
+      </div>
       <div class="field" style="display:flex; align-items:flex-end; padding-bottom:6px;">
         <label class="switch-wrap"><input type="checkbox" id="prodTrackStock" checked onchange="toggleProdStockFields()" /><span>Controlar Stock</span></label>
       </div>
@@ -885,9 +747,9 @@
 <!-- MODAL CATEGORÍAS -->
 <div class="modal-backdrop" id="categoriesModal">
   <div class="modal">
-    <div class="modal-title"><span>🏷️ Categorías</span><button class="btn btn-outline btn-sm" onclick="closeCategoriesModal()">✕</button></div>
+    <div class="modal-title"><span>🏷️ Mis Categorías</span><button class="btn btn-outline btn-sm" onclick="closeCategoriesModal()">✕</button></div>
     <div style="display:flex; gap:8px; margin-bottom:10px;">
-      <input type="text" id="newCatName" placeholder="Nueva categoría..." />
+      <input type="text" id="newCatName" placeholder="Escribe el nombre de la categoría..." />
       <button class="btn btn-primary" onclick="addCategory()">Agregar</button>
     </div>
     <div id="categoriesList" style="max-height:42vh; overflow-y:auto;"></div>
@@ -1047,7 +909,7 @@
   function closeConfirm() { document.getElementById("confirmModal").classList.remove("open"); confirmCallback = null; }
   document.getElementById("confirmOkBtn").addEventListener("click", () => { if (confirmCallback) confirmCallback(); closeConfirm(); });
 
-  // ====== DATOS POR DEFECTO ======
+  // ====== CONFIGURACIÓN POR DEFECTO (CATÁLOGO E INVENTARIO EN BLANCO) ======
   const DEFAULT_CONFIG = {
     name: "DIAZCELL",
     watermark: "DIAZCELL",
@@ -1061,32 +923,26 @@
     stripAccents: false
   };
 
-  const DEFAULT_CATEGORIES = [
-    "Reparaciones", "Pantallas", "Baterías", "Pines y Repuestos",
-    "Vidrios Templados", "Fundas y Cases", "Cargadores y Cables", "Audífonos"
-  ];
-
-  const DEFAULT_CATALOG = [
-    { id: "c1", category: "Reparaciones", name: "Cambio de Pantalla (M. Obra)", sku: "SRV-PAN", cost: 0, price: 450, trackStock: false, stock: 0, minStock: 0 },
-    { id: "c2", category: "Reparaciones", name: "Cambio Pin de Carga", sku: "SRV-PIN", cost: 50, price: 450, trackStock: false, stock: 0, minStock: 0 },
-    { id: "c3", category: "Reparaciones", name: "Mantenimiento y Limpieza", sku: "SRV-MANT", cost: 20, price: 350, trackStock: false, stock: 0, minStock: 0 },
-    { id: "c4", category: "Pantallas", name: "Pantalla Samsung A54 Orig.", sku: "PAN-A54", cost: 1100, price: 1850, trackStock: true, stock: 4, minStock: 2 },
-    { id: "c5", category: "Baterías", name: "Batería iPhone 11", sku: "BAT-IP11", cost: 420, price: 850, trackStock: true, stock: 5, minStock: 2 },
-    { id: "c6", category: "Vidrios Templados", name: "Vidrio Templado 9D", sku: "VID-9D", cost: 35, price: 150, trackStock: true, stock: 25, minStock: 5 },
-    { id: "c7", category: "Fundas y Cases", name: "Case Antigolpes", sku: "CAS-01", cost: 75, price: 250, trackStock: true, stock: 12, minStock: 3 },
-    { id: "c8", category: "Cargadores y Cables", name: "Cargador 20W Tipo-C", sku: "CRG-20W", cost: 160, price: 380, trackStock: true, stock: 8, minStock: 2 },
-    { id: "c9", category: "Audífonos", name: "Audífonos Bluetooth TWS", sku: "AUD-TWS", cost: 260, price: 550, trackStock: true, stock: 2, minStock: 2 }
-  ];
-
-  // ====== ESTADO ======
   const savedCfg = JSON.parse(localStorage.getItem("cel_pos_config")) || {};
   if (savedCfg.name === "TECNO-CEL REPARACIONES") savedCfg.name = "DIAZCELL";
   let config = { ...DEFAULT_CONFIG, ...savedCfg };
   if (config.watermark === undefined) config.watermark = "DIAZCELL";
 
-  let categories = JSON.parse(localStorage.getItem("cel_pos_categories")) || [...DEFAULT_CATEGORIES];
-  let catalog = JSON.parse(localStorage.getItem("cel_pos_catalog")) || [...DEFAULT_CATALOG];
+  let categories = JSON.parse(localStorage.getItem("cel_pos_categories")) || [];
+  let catalog = JSON.parse(localStorage.getItem("cel_pos_catalog")) || [];
   let history = JSON.parse(localStorage.getItem("cel_pos_history")) || [];
+
+  // Limpieza automática única de los datos de ejemplo anteriores (mantiene tus productos propios si creaste alguno)
+  if (!localStorage.getItem("cel_pos_v4_clean_slate")) {
+    const oldSampleIds = new Set(["c1","c2","c3","c4","c5","c6","c7","c8","c9"]);
+    const oldSampleCats = new Set(["Reparaciones","Pantallas","Baterías","Pines y Repuestos","Vidrios Templados","Fundas y Cases","Cargadores y Cables","Audífonos"]);
+    catalog = catalog.filter(p => !oldSampleIds.has(p.id));
+    const usedCats = new Set(catalog.map(p => p.category).filter(Boolean));
+    categories = categories.filter(c => !oldSampleCats.has(c) || usedCats.has(c));
+    localStorage.setItem("cel_pos_catalog", JSON.stringify(catalog));
+    localStorage.setItem("cel_pos_categories", JSON.stringify(categories));
+    localStorage.setItem("cel_pos_v4_clean_slate", "1");
+  }
 
   let items = [];
   let activeTab = "sell";
@@ -1180,7 +1036,7 @@
     renderTicket();
   }
 
-  // ====== CATEGORÍAS ======
+  // ====== CATEGORÍAS LIBRES (CREAR Y BORRAR TODAS) ======
   function saveCategories() {
     localStorage.setItem("cel_pos_categories", JSON.stringify(categories));
     refreshCategorySelectors();
@@ -1190,27 +1046,43 @@
 
   function refreshCategorySelectors() {
     const opts = categories.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
-    document.getElementById("itemType").innerHTML = opts;
-    document.getElementById("prodCategory").innerHTML = opts;
-    document.getElementById("invCatFilter").innerHTML = `<option value="Todas">Todas</option>` + opts;
+    document.getElementById("catDatalist").innerHTML = opts;
+    document.getElementById("invCatFilter").innerHTML = `<option value="Todas">Todas las categorías</option>` + opts;
 
-    const pills = ["Todas", ...categories];
-    document.getElementById("posCatPills").innerHTML = pills.map(c => `
-      <button type="button" class="cat-pill ${activePosCategory === c ? "active" : ""}" onclick="setPosCategory('${escapeHtml(c).replace(/'/g, "\\'")}')">
-        ${escapeHtml(c)}
-      </button>
-    `).join("");
+    const pillsContainer = document.getElementById("posCatPills");
+    if (categories.length === 0) {
+      pillsContainer.style.display = "none";
+      pillsContainer.innerHTML = "";
+    } else {
+      pillsContainer.style.display = "flex";
+      const pills = ["Todas", ...categories];
+      pillsContainer.innerHTML = pills.map(c => `
+        <button type="button" class="cat-pill ${activePosCategory === c ? "active" : ""}" onclick="setPosCategory('${escapeHtml(c).replace(/'/g, "\\'")}')">
+          ${escapeHtml(c)}
+        </button>
+      `).join("");
+    }
   }
 
   function setPosCategory(cat) { activePosCategory = cat; refreshCategorySelectors(); renderPosCatalog(); }
-  function openCategoriesModal() { renderCategoriesList(); document.getElementById("categoriesModal").classList.add("open"); }
+
+  function openCategoriesModal() {
+    document.getElementById("newCatName").value = "";
+    renderCategoriesList();
+    document.getElementById("categoriesModal").classList.add("open");
+  }
   function closeCategoriesModal() { document.getElementById("categoriesModal").classList.remove("open"); }
 
   function renderCategoriesList() {
-    document.getElementById("categoriesList").innerHTML = categories.map((c, i) => `
+    const el = document.getElementById("categoriesList");
+    if (categories.length === 0) {
+      el.innerHTML = `<div class="empty-box">No tienes categorías aún. Escribe arriba el nombre que desees y toca <strong>Agregar</strong>.</div>`;
+      return;
+    }
+    el.innerHTML = categories.map((c, i) => `
       <div class="inv-card" style="display:flex; justify-content:space-between; align-items:center; padding:8px 10px;">
         <strong style="font-size:0.86rem;">${escapeHtml(c)}</strong>
-        <button class="btn btn-danger btn-sm" onclick="deleteCategory(${i})">✕</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteCategory(${i})" title="Borrar categoría">🗑️ Borrar</button>
       </div>
     `).join("");
   }
@@ -1218,18 +1090,22 @@
   function addCategory() {
     const inp = document.getElementById("newCatName");
     const name = inp.value.trim();
-    if (!name) return showToast("Escribe el nombre", "warning");
-    if (categories.some(c => c.toLowerCase() === name.toLowerCase())) return showToast("Ya existe", "warning");
-    categories.push(name); inp.value = "";
-    saveCategories(); renderCategoriesList(); showToast("Categoría creada", "success");
+    if (!name) return showToast("Escribe el nombre de la categoría", "warning");
+    if (categories.some(c => c.toLowerCase() === name.toLowerCase())) return showToast("Esa categoría ya existe", "warning");
+    categories.push(name);
+    inp.value = "";
+    saveCategories();
+    renderCategoriesList();
+    showToast(`Categoría "${name}" agregada`, "success");
   }
 
   function deleteCategory(i) {
-    if (categories.length <= 1) return showToast("Debe quedar al menos 1", "warning");
     const name = categories[i];
     categories.splice(i, 1);
     if (activePosCategory === name) activePosCategory = "Todas";
-    saveCategories(); renderCategoriesList();
+    saveCategories();
+    renderCategoriesList();
+    showToast(`Categoría "${name}" eliminada`, "info");
   }
 
   // ====== CATÁLOGO EN VENDER ======
@@ -1237,14 +1113,22 @@
     const q = (document.getElementById("posCatalogSearch").value || "").trim().toLowerCase();
     const grid = document.getElementById("posCatalogGrid");
 
+    if (catalog.length === 0) {
+      grid.innerHTML = `<div class="empty-box" style="grid-column:1/-1;">
+        Tu catálogo está vacío.<br>
+        Toca <strong>📦 Stock</strong> abajo para crear tus categorías y productos, o usa <strong>✏️ Manual</strong> para cobrar directo.
+      </div>`;
+      return;
+    }
+
     const filtered = catalog.filter(p => {
       const mCat = activePosCategory === "Todas" || p.category === activePosCategory;
-      const mQ = !q || p.name.toLowerCase().includes(q) || (p.sku || "").toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
+      const mQ = !q || p.name.toLowerCase().includes(q) || (p.sku || "").toLowerCase().includes(q) || (p.category || "").toLowerCase().includes(q);
       return mCat && mQ;
     });
 
     if (filtered.length === 0) {
-      grid.innerHTML = `<div class="empty-box" style="grid-column:1/-1;">Sin resultados. Toca <strong>✏️ Manual</strong> o agrega productos en <strong>Stock</strong>.</div>`;
+      grid.innerHTML = `<div class="empty-box" style="grid-column:1/-1;">Sin resultados para esa búsqueda. Usa <strong>✏️ Manual</strong> o revisa <strong>📦 Stock</strong>.</div>`;
       return;
     }
 
@@ -1261,7 +1145,7 @@
         <button type="button" class="prod-tile ${inCart ? "in-cart" : ""} ${outCls}" onclick="addFromCatalog('${p.id}')">
           ${inCart ? `<span class="cart-qty-badge">${inCart.qty}</span>` : ""}
           <div>
-            <div class="prod-tile-cat">${escapeHtml(p.category)}</div>
+            <div class="prod-tile-cat">${escapeHtml(p.category || "")}</div>
             <div class="prod-tile-name">${escapeHtml(p.name)}</div>
           </div>
           <div class="prod-tile-foot">
@@ -1283,13 +1167,14 @@
     else if (prod.trackStock && nextQty > prod.stock) showToast(`Solo quedan ${prod.stock} uds.`, "warning");
 
     if (existing) existing.qty += 1;
-    else items.push({ catalogId: prod.id, type: prod.category, desc: prod.name, qty: 1, price: prod.price });
+    else items.push({ catalogId: prod.id, type: prod.category || "General", desc: prod.name, qty: 1, price: prod.price });
 
     renderPosCatalog(); renderItemsList(); renderTicket(); updateFloatingCart();
   }
 
   // ====== MODAL ÍTEM MANUAL ======
   function openManualModal() {
+    document.getElementById("itemType").value = "";
     document.getElementById("itemDesc").value = "";
     document.getElementById("itemQty").value = 1;
     document.getElementById("itemPrice").value = "";
@@ -1299,7 +1184,7 @@
   function closeManualModal() { document.getElementById("manualModal").classList.remove("open"); }
 
   function addManualItem() {
-    const type = document.getElementById("itemType").value;
+    const type = document.getElementById("itemType").value.trim();
     const descEl = document.getElementById("itemDesc");
     const desc = descEl.value.trim();
     const qty = Math.max(1, parseFloat(document.getElementById("itemQty").value) || 1);
@@ -1312,7 +1197,7 @@
       return;
     }
 
-    items.push({ catalogId: null, type, desc, qty, price });
+    items.push({ catalogId: null, type: type || "Servicio / Venta", desc, qty, price });
     closeManualModal(); renderItemsList(); renderTicket(); updateFloatingCart();
     showToast(`Agregado: ${desc}`, "success");
   }
@@ -1349,7 +1234,7 @@
       <div class="cart-item">
         <div class="cart-item-left">
           <div class="cart-item-name">${escapeHtml(item.desc)}</div>
-          <div class="cart-item-cat">${escapeHtml(item.type)}</div>
+          <div class="cart-item-cat">${escapeHtml(item.type || "")}</div>
         </div>
         <div class="cart-item-right">
           <div class="qty-stepper">
@@ -1391,14 +1276,19 @@
     document.getElementById("kpiInvValue").textContent = formatMoney(invValue);
     document.getElementById("kpiLowStock").textContent = lowCount;
 
+    const grid = document.getElementById("inventoryGrid");
+    if (catalog.length === 0) {
+      grid.innerHTML = `<div class="empty-box">Tu inventario está vacío.<br>Toca <strong>🏷️ Categorías</strong> para crear tus categorías o <strong>➕ Nuevo</strong> para agregar tu primer producto.</div>`;
+      return;
+    }
+
     const filtered = catalog.filter(p => {
       const mCat = cat === "Todas" || p.category === cat;
-      const mQ = !q || p.name.toLowerCase().includes(q) || (p.sku || "").toLowerCase().includes(q);
+      const mQ = !q || p.name.toLowerCase().includes(q) || (p.sku || "").toLowerCase().includes(q) || (p.category || "").toLowerCase().includes(q);
       const mLow = !lowOnly || (p.trackStock && p.stock <= p.minStock);
       return mCat && mQ && mLow;
     });
 
-    const grid = document.getElementById("inventoryGrid");
     if (filtered.length === 0) {
       grid.innerHTML = `<div class="empty-box">No hay productos con ese filtro.</div>`;
       return;
@@ -1418,7 +1308,7 @@
           <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
             <div style="min-width:0;">
               <div style="font-weight:700; font-size:0.88rem;">${escapeHtml(p.name)}</div>
-              <div style="font-size:0.72rem; color:var(--text-sec);">${escapeHtml(p.category)} ${p.sku ? "• " + escapeHtml(p.sku) : ""}</div>
+              <div style="font-size:0.72rem; color:var(--text-sec);">${escapeHtml(p.category || "Sin categoría")} ${p.sku ? "• " + escapeHtml(p.sku) : ""}</div>
             </div>
             ${badge}
           </div>
@@ -1458,7 +1348,7 @@
       const p = catalog.find(x => x.id === id);
       if (!p) return;
       document.getElementById("prodModalTitle").textContent = "✏️ Editar Producto";
-      document.getElementById("prodCategory").value = categories.includes(p.category) ? p.category : categories[0];
+      document.getElementById("prodCategory").value = p.category || "";
       document.getElementById("prodTrackStock").checked = p.trackStock;
       document.getElementById("prodName").value = p.name;
       document.getElementById("prodSku").value = p.sku || "";
@@ -1468,7 +1358,7 @@
       document.getElementById("prodMinStock").value = p.minStock;
     } else {
       document.getElementById("prodModalTitle").textContent = "➕ Nuevo Producto";
-      document.getElementById("prodCategory").value = categories[0];
+      document.getElementById("prodCategory").value = "";
       document.getElementById("prodTrackStock").checked = true;
       document.getElementById("prodName").value = "";
       document.getElementById("prodSku").value = "";
@@ -1491,13 +1381,21 @@
     const name = nameEl.value.trim();
     if (!name) {
       nameEl.classList.add("input-error"); nameEl.focus();
-      showToast("Escribe el nombre", "warning");
+      showToast("Escribe el nombre del producto", "warning");
       setTimeout(() => nameEl.classList.remove("input-error"), 1200);
       return;
     }
+
+    const catName = document.getElementById("prodCategory").value.trim();
+    if (catName && !categories.some(c => c.toLowerCase() === catName.toLowerCase())) {
+      categories.push(catName);
+      localStorage.setItem("cel_pos_categories", JSON.stringify(categories));
+      refreshCategorySelectors();
+    }
+
     const data = {
       id: editId || "p_" + Date.now(),
-      category: document.getElementById("prodCategory").value,
+      category: catName,
       trackStock: document.getElementById("prodTrackStock").checked,
       name,
       sku: document.getElementById("prodSku").value.trim(),
@@ -1509,10 +1407,10 @@
     if (editId) {
       const idx = catalog.findIndex(x => x.id === editId);
       if (idx !== -1) catalog[idx] = data;
-      showToast("Actualizado", "success");
+      showToast("Producto actualizado", "success");
     } else {
       catalog.unshift(data);
-      showToast("Agregado al catálogo", "success");
+      showToast("Agregado al inventario", "success");
     }
     saveCatalog(); closeProductModal();
   }
@@ -1645,10 +1543,7 @@
       ${config.watermark ? `<div class="t-center t-bold t-small" style="margin-top:4px;">— ${escapeHtml(config.watermark)} —</div>` : ""}
     `;
 
-    const wmHtml = config.watermark
-      ? `<div class="ticket-watermark">${escapeHtml(config.watermark)}</div>`
-      : "";
-
+    const wmHtml = config.watermark ? `<div class="ticket-watermark">${escapeHtml(config.watermark)}</div>` : "";
     document.getElementById("ticketPreview").innerHTML = `${wmHtml}<div class="ticket-content">${html}</div>`;
   }
 
@@ -1846,194 +1741,4 @@
 
   function confirmNewInvoice() {
     if (items.length === 0) return resetInvoiceFields();
-    showConfirm({ title: "Nueva Factura", message: "¿Limpiar factura actual y crear una nueva?", confirmText: "Sí, nueva", onConfirm: resetInvoiceFields });
-  }
-
-  function resetInvoiceFields() {
-    items = []; currentInvoiceStockDeducted = false;
-    const nextNum = parseInt(localStorage.getItem("cel_pos_last_num") || "0", 10) + 1;
-    document.getElementById("invNumber").value = String(nextNum).padStart(4, "0");
-    document.getElementById("clientName").value = "";
-    document.getElementById("clientPhone").value = "";
-    document.getElementById("clientId").value = "";
-    document.getElementById("devModel").value = "";
-    document.getElementById("devImei").value = "";
-    document.getElementById("devNotes").value = "";
-    document.getElementById("discount").value = "";
-    document.getElementById("amountPaid").value = "";
-    renderPosCatalog(); renderItemsList(); renderTicket(); updateFloatingCart();
-    switchTab("sell");
-    showToast(`Lista Factura #${String(nextNum).padStart(4, "0")}`, "info");
-  }
-
-  function renderHistoryView() {
-    const todayKey = new Date().toISOString().slice(0, 10);
-    const todayList = history.filter(h => (h.dayKey || "") === todayKey);
-    document.getElementById("kpiTodaySales").textContent = formatMoney(todayList.reduce((s, h) => s + (h.totals ? h.totals.total : 0), 0));
-    document.getElementById("kpiTodayCount").textContent = todayList.length;
-    document.getElementById("kpiTotalSales").textContent = formatMoney(history.reduce((s, h) => s + (h.totals ? h.totals.total : 0), 0));
-    document.getElementById("kpiTotalCount").textContent = history.length;
-
-    const q = (document.getElementById("histSearch").value || "").trim().toLowerCase();
-    const filtered = history.filter(h => !q || h.number.toLowerCase().includes(q) || h.clientName.toLowerCase().includes(q) || (h.devModel || "").toLowerCase().includes(q));
-    const list = document.getElementById("historyList");
-    if (filtered.length === 0) {
-      list.innerHTML = `<div class="empty-box">Sin facturas guardadas todavía.</div>`;
-      return;
-    }
-    list.innerHTML = filtered.map(h => {
-      const idx = history.indexOf(h);
-      return `
-        <div class="inv-card">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
-            <div style="min-width:0;">
-              <div style="font-weight:700; font-size:0.88rem;">#${escapeHtml(h.number)} — ${escapeHtml(h.clientName)}</div>
-              <div style="font-size:0.74rem; color:var(--text-sec);">${escapeHtml(h.date)} • ${escapeHtml(h.payMethod)}</div>
-            </div>
-            <strong style="color:var(--primary); font-size:0.9rem;">${formatMoney(h.totals.total)}</strong>
-          </div>
-          <div style="display:flex; gap:6px; justify-content:flex-end; margin-top:8px;">
-            <button class="btn btn-primary btn-sm" onclick="loadFromHistory(${idx})">Cargar</button>
-            <button class="btn btn-danger btn-sm" onclick="confirmVoidInvoice(${idx})">Anular</button>
-          </div>
-        </div>
-      `;
-    }).join("");
-  }
-
-  function loadFromHistory(idx) {
-    const h = history[idx];
-    if (!h) return;
-    document.getElementById("invNumber").value = h.number;
-    document.getElementById("payMethod").value = h.payMethod;
-    document.getElementById("technician").value = h.technician || "";
-    document.getElementById("clientName").value = h.clientName;
-    document.getElementById("clientPhone").value = h.clientPhone || "";
-    document.getElementById("clientId").value = h.clientId || "";
-    document.getElementById("includeDevice").checked = h.includeDevice;
-    document.getElementById("devModel").value = h.devModel || "";
-    document.getElementById("devImei").value = h.devImei || "";
-    document.getElementById("warrantyDays").value = h.warrantyDays || 30;
-    document.getElementById("devNotes").value = h.devNotes || "";
-    document.getElementById("discount").value = h.totals.discount || "";
-    document.getElementById("amountPaid").value = h.totals.paid || "";
-    document.getElementById("applyTax").checked = h.totals.applyTax;
-    items = h.items.map(i => ({ ...i }));
-    currentInvoiceStockDeducted = true;
-    toggleDeviceSection(); renderItemsList(); renderTicket(); updateFloatingCart();
-    switchTab("checkout");
-    showToast(`Factura #${h.number} cargada`, "info");
-  }
-
-  function confirmVoidInvoice(idx) {
-    const h = history[idx];
-    if (!h) return;
-    showConfirm({
-      title: `Anular #${h.number}`,
-      message: "Se eliminará la factura y los productos volverán al inventario.",
-      confirmText: "Anular",
-      danger: true,
-      onConfirm: () => {
-        h.items.forEach(item => {
-          if (item.catalogId) {
-            const p = catalog.find(x => x.id === item.catalogId);
-            if (p && p.trackStock) p.stock += item.qty;
-          }
-        });
-        history.splice(idx, 1);
-        localStorage.setItem("cel_pos_history", JSON.stringify(history));
-        saveCatalog(); renderHistoryView();
-        showToast("Anulada y stock restaurado", "success");
-      }
-    });
-  }
-
-  function confirmClearHistory() {
-    showConfirm({
-      title: "Limpiar historial",
-      message: "¿Borrar todas las facturas guardadas?",
-      confirmText: "Borrar todo",
-      danger: true,
-      onConfirm: () => { history = []; localStorage.setItem("cel_pos_history", "[]"); renderHistoryView(); }
-    });
-  }
-
-  // ====== RESPALDO & CONFIGURACIÓN ======
-  function exportBackup() {
-    const b = { version: 3, date: new Date().toISOString(), config, categories, catalog, history, lastNum: localStorage.getItem("cel_pos_last_num") || "0" };
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([JSON.stringify(b, null, 2)], { type: "application/json" }));
-    a.download = `respaldo-diazcell-${new Date().toISOString().slice(0,10)}.json`;
-    a.click();
-    showToast("Respaldo descargado", "success");
-  }
-
-  function importBackup(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const r = new FileReader();
-    r.onload = (ev) => {
-      try {
-        const d = JSON.parse(ev.target.result);
-        if (!d.catalog || !d.categories) throw new Error("Inválido");
-        showConfirm({
-          title: "Cargar Respaldo",
-          message: "Se reemplazará tu catálogo e historial actual.",
-          confirmText: "Restaurar",
-          onConfirm: () => {
-            if (d.config) config = d.config;
-            categories = d.categories; catalog = d.catalog; history = d.history || [];
-            localStorage.setItem("cel_pos_config", JSON.stringify(config));
-            localStorage.setItem("cel_pos_categories", JSON.stringify(categories));
-            localStorage.setItem("cel_pos_catalog", JSON.stringify(catalog));
-            localStorage.setItem("cel_pos_history", JSON.stringify(history));
-            if (d.lastNum) localStorage.setItem("cel_pos_last_num", d.lastNum);
-            refreshCategorySelectors(); renderPosCatalog(); renderInventory(); renderHistoryView(); updateLowStockBadge();
-            showToast("Respaldo cargado", "success");
-          }
-        });
-      } catch (err) { showToast("Archivo no válido", "error"); }
-      e.target.value = "";
-    };
-    r.readAsText(file);
-  }
-
-  function openSettings() {
-    document.getElementById("cfgName").value = config.name;
-    document.getElementById("cfgWatermark").value = config.watermark || "";
-    document.getElementById("cfgRuc").value = config.ruc;
-    document.getElementById("cfgPhone").value = config.phone;
-    document.getElementById("cfgAddress").value = config.address;
-    document.getElementById("cfgCurrency").value = config.currency;
-    document.getElementById("cfgTax").value = config.taxPct;
-    document.getElementById("cfgWidth").value = config.paperWidth;
-    document.getElementById("cfgFooter").value = config.footer;
-    document.getElementById("cfgStripAccents").checked = config.stripAccents;
-    document.getElementById("settingsModal").classList.add("open");
-  }
-  function closeSettings() { document.getElementById("settingsModal").classList.remove("open"); }
-
-  function saveSettings() {
-    config = {
-      name: document.getElementById("cfgName").value.trim() || "DIAZCELL",
-      watermark: document.getElementById("cfgWatermark").value.trim(),
-      ruc: document.getElementById("cfgRuc").value.trim(),
-      phone: document.getElementById("cfgPhone").value.trim(),
-      address: document.getElementById("cfgAddress").value.trim(),
-      currency: document.getElementById("cfgCurrency").value,
-      taxPct: parseFloat(document.getElementById("cfgTax").value) || 0,
-      paperWidth: document.getElementById("cfgWidth").value,
-      footer: document.getElementById("cfgFooter").value.trim(),
-      stripAccents: document.getElementById("cfgStripAccents").checked
-    };
-    localStorage.setItem("cel_pos_config", JSON.stringify(config));
-    document.getElementById("headerBizName").textContent = config.name;
-    document.getElementById("paperWidthSelect").value = config.paperWidth;
-    applyPaperWidthCSS(config.paperWidth); updateCurrencyLabels();
-    renderPosCatalog(); renderItemsList(); renderTicket(); renderInventory();
-    closeSettings();
-    showToast("Configuración guardada", "success");
-  }
-</script>
-</body>
-</html>
+    showConfirm({ title: "Nueva Factura", message: "¿Limpiar factura actual y crear una nueva?", co
