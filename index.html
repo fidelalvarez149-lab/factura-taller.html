@@ -3,34 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <meta name="theme-color" content="#facc15" />
+  <meta name="theme-color" content="#1d4ed8" />
 
   <link rel="manifest" href="./manifest.json" />
   <link rel="icon" type="image/svg+xml" href="./icon.svg" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="DIAZCELL" />
   <link rel="apple-touch-icon" id="appleTouchIcon" sizes="180x180" href="./icon.svg" />
 
   <title>DIAZCELL — Gestión y Facturación</title>
   <style>
     :root {
-      --yellow: #facc15;
-      --yellow-dark: #eab308;
-      --navy: #1b263b;
-      --navy-dark: #0f172a;
-      --bg: #f3f4f6;
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --blue-deep: #0f172a;
+      --blue-navy: #172554;
+      --sky: #38bdf8;
+      --blue-soft: #eff6ff;
+      --bg: #eef2f9;
       --surface: #ffffff;
       --surface-soft: #f8fafc;
-      --text: #111827;
-      --text-sec: #6b7280;
-      --border: #e5e7eb;
+      --text: #0f172a;
+      --text-sec: #64748b;
+      --border: #dbe4f0;
       --green: #059669;
-      --green-btn: #15803d;
+      --green-btn: #10b981;
       --green-soft: #ecfdf5;
       --red: #dc2626;
       --red-soft: #fef2f2;
+      --amber: #d97706;
+      --amber-soft: #fffbeb;
       --nav-h: 64px;
       --ticket-width: 58mm;
     }
@@ -43,16 +47,17 @@
       background: var(--bg); color: var(--text); line-height: 1.35;
     }
 
-    body { padding-bottom: calc(var(--nav-h) + 74px + env(safe-area-inset-bottom)); }
+    body { padding-bottom: calc(var(--nav-h) + 76px + env(safe-area-inset-bottom)); }
 
-    /* ====== HEADER AMARILLO ESTILO FOTO ====== */
-    .top-yellow {
-      background: var(--yellow);
-      color: var(--navy-dark);
-      padding: calc(10px + env(safe-area-inset-top)) 14px 20px 14px;
+    /* ====== HEADER AZUL VIBRANTE ====== */
+    .top-blue {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #0284c7 100%);
+      color: #fff;
+      padding: calc(10px + env(safe-area-inset-top)) 14px 22px 14px;
       position: sticky;
       top: 0;
       z-index: 90;
+      box-shadow: 0 4px 18px rgba(29, 78, 216, 0.28);
     }
 
     .top-row {
@@ -66,41 +71,37 @@
 
     .circle-btn {
       width: 38px; height: 38px; border-radius: 50%;
-      background: #fff; border: none; color: var(--navy-dark);
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #fff;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; cursor: pointer; position: relative;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08); flex-shrink: 0;
+      font-size: 1.08rem; cursor: pointer; position: relative; flex-shrink: 0;
     }
-    .circle-btn:active { transform: scale(0.95); }
+    .circle-btn:active { transform: scale(0.94); background: rgba(255, 255, 255, 0.28); }
 
     .bell-dot {
-      position: absolute; top: 2px; right: 2px;
-      background: var(--red); color: #fff; font-size: 0.62rem; font-weight: 800;
-      min-width: 15px; height: 15px; border-radius: 999px;
+      position: absolute; top: 1px; right: 1px;
+      background: #ef4444; color: #fff; font-size: 0.62rem; font-weight: 800;
+      min-width: 16px; height: 16px; border-radius: 999px;
       display: none; align-items: center; justify-content: center; padding: 0 3px;
+      border: 1.5px solid #1d4ed8;
     }
 
-    .store-head {
-      text-align: center;
-      flex: 1;
-      min-width: 0;
-      cursor: pointer;
-    }
+    .store-head { text-align: center; flex: 1; min-width: 0; cursor: pointer; }
     .store-head h1 {
-      margin: 0; font-size: 1.05rem; font-weight: 800;
-      display: inline-flex; align-items: center; gap: 4px;
+      margin: 0; font-size: 1.08rem; font-weight: 800; letter-spacing: 0.02em;
+      display: inline-flex; align-items: center; gap: 5px;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
     }
-    .store-head small {
-      display: block; font-size: 0.72rem; font-weight: 600; color: #475569;
-    }
+    .store-head small { display: block; font-size: 0.72rem; font-weight: 600; color: #bae6fd; }
 
-    /* ====== CONTENEDOR CURVO BLANCO/GRIS ====== */
+    /* ====== CONTENEDOR CURVO ====== */
     .sheet-container {
       max-width: 720px;
-      margin: -12px auto 0 auto;
+      margin: -14px auto 0 auto;
       background: var(--bg);
-      border-radius: 18px 18px 0 0;
+      border-radius: 20px 20px 0 0;
       padding: 14px 12px 16px 12px;
       position: relative;
       z-index: 95;
@@ -108,15 +109,19 @@
     }
 
     .view-section { display: none; }
-    .view-section.active { display: block; animation: fadeIn 0.16s ease; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .view-section.active { display: block; animation: fadeSlide 0.18s ease; }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-    /* ====== TARJETAS Y COMPONENTES ====== */
+    /* ====== TARJETAS Y CAMPOS CON VIDA ====== */
     .card {
       background: var(--surface);
       border-radius: 14px;
       padding: 13px;
-      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(30, 58, 138, 0.05);
       margin-bottom: 12px;
     }
 
@@ -126,17 +131,21 @@
     .field { min-width: 0; }
 
     label {
-      display: block; font-size: 0.7rem; font-weight: 700; margin-bottom: 4px;
-      color: var(--text-sec); text-transform: uppercase;
+      display: block; font-size: 0.68rem; font-weight: 700; margin-bottom: 4px;
+      color: var(--blue-dark); text-transform: uppercase; letter-spacing: 0.03em;
     }
 
     input, select, textarea {
       width: 100%; min-width: 0; padding: 9px 11px;
       border: 1.5px solid var(--border); border-radius: 10px;
-      font-size: 15px; font-family: inherit; background: var(--surface-soft); color: var(--text);
+      font-size: 15px; font-family: inherit;
+      background: #f8faff; color: var(--text);
+      transition: all 0.18s ease;
     }
+    input::placeholder, textarea::placeholder { color: #94a3b8; }
     input:focus, select:focus, textarea:focus {
-      outline: none; background: #fff; border-color: var(--navy);
+      outline: none; background: #fff; border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
     }
 
     .btn {
@@ -144,14 +153,16 @@
       font-size: 0.84rem; font-weight: 700; font-family: inherit;
       cursor: pointer; display: inline-flex; align-items: center;
       justify-content: center; gap: 6px; white-space: nowrap;
+      transition: transform 0.12s ease, box-shadow 0.15s ease;
     }
-    .btn:active { transform: scale(0.97); }
+    .btn:active { transform: scale(0.96); }
     .btn-pill { border-radius: 999px; }
-    .btn-green { background: var(--green-btn); color: #fff; }
-    .btn-red { background: var(--red); color: #fff; }
-    .btn-navy { background: var(--navy); color: #fff; }
-    .btn-yellow { background: var(--yellow); color: var(--navy-dark); }
-    .btn-outline { background: #fff; color: var(--text); border: 1.5px solid var(--border); }
+    .btn-blue { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28); }
+    .btn-sky { background: linear-gradient(135deg, #0ea5e9, #2563eb); color: #fff; }
+    .btn-green { background: linear-gradient(135deg, #10b981, #059669); color: #fff; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); }
+    .btn-red { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25); }
+    .btn-navy { background: linear-gradient(135deg, #1e3a8a, #0f172a); color: #fff; }
+    .btn-outline { background: #fff; color: var(--blue-dark); border: 1.5px solid #bfdbfe; }
     .btn-danger-soft { background: var(--red-soft); color: var(--red); }
     .btn-sm { padding: 6px 10px; font-size: 0.76rem; }
     .btn-block { width: 100%; }
@@ -162,110 +173,115 @@
       font-size: 0.78rem; font-weight: 600; color: var(--text-sec);
     }
     .switch-wrap input {
-      appearance: none; -webkit-appearance: none; width: 36px; height: 20px;
+      appearance: none; -webkit-appearance: none; width: 38px; height: 21px;
       background: #cbd5e1; border-radius: 999px; position: relative; padding: 0; border: none;
     }
     .switch-wrap input::after {
-      content: ""; position: absolute; width: 16px; height: 16px; border-radius: 50%;
-      background: #fff; top: 2px; left: 2px; transition: transform 0.2s;
+      content: ""; position: absolute; width: 17px; height: 17px; border-radius: 50%;
+      background: #fff; top: 2px; left: 2px; transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     }
-    .switch-wrap input:checked { background: var(--green-btn); }
-    .switch-wrap input:checked::after { transform: translateX(16px); }
+    .switch-wrap input:checked { background: var(--blue); }
+    .switch-wrap input:checked::after { transform: translateX(17px); }
 
-    /* ====== PANTALLA 1: INICIO ====== */
+    /* ====== PANTALLA 1: INICIO VIVO ====== */
     .hero-banner {
-      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #2563eb 100%);
+      color: #fff;
+      border-radius: 16px;
+      padding: 15px;
       margin-bottom: 14px;
+      box-shadow: 0 10px 24px rgba(30, 58, 138, 0.24);
+      position: relative;
+      overflow: hidden;
     }
+    .hero-banner::after {
+      content: "DIAZCELL";
+      position: absolute; right: -10px; top: 8px;
+      font-size: 2.2rem; font-weight: 900; color: rgba(255,255,255,0.06);
+      letter-spacing: 2px; pointer-events: none;
+    }
+    .hero-mini-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+      margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.14);
+    }
+    .hero-stat small { display: block; font-size: 0.66rem; color: #bae6fd; }
+    .hero-stat strong { font-size: 0.92rem; }
 
     .quick-action-tile {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 13px;
       padding: 10px 4px;
       text-align: center;
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
     }
-    .quick-action-tile:active { transform: scale(0.96); background: var(--surface-soft); }
+    .quick-action-tile:active { transform: scale(0.95); }
     .quick-action-ico {
-      width: 36px; height: 36px; border-radius: 10px; background: #fef9c3;
-      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+      width: 38px; height: 38px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.15rem;
     }
+    .ico-b { background: #dbeafe; }
+    .ico-p { background: #ede9fe; }
+    .ico-t { background: #ccfbf1; }
+    .ico-a { background: #fef3c7; }
     .quick-action-lbl { font-size: 0.7rem; font-weight: 700; color: var(--text); }
 
     .feature-row {
       background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 12px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      display: flex; align-items: center; gap: 12px; margin-bottom: 9px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
       cursor: pointer;
     }
+    .feature-row:active { background: var(--blue-soft); border-color: #93c5fd; }
     .feature-ico {
       width: 44px; height: 44px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center; font-size: 1.35rem; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;
     }
 
-    /* ====== PANTALLA 2: BALANCE (IGUAL A LA FOTO CENTRAL) ====== */
+    /* ====== PANTALLA 2: BALANCE ====== */
     .period-tabs {
-      background: #fff;
-      border-radius: 12px;
-      padding: 4px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 4px;
-      margin-bottom: 12px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      background: #fff; border-radius: 12px; padding: 4px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;
+      margin-bottom: 11px; border: 1px solid var(--border);
     }
     .period-tab {
       border: none; background: transparent; padding: 8px 4px;
       border-radius: 9px; font-size: 0.78rem; font-weight: 700;
       color: var(--text-sec); cursor: pointer; font-family: inherit;
     }
-    .period-tab.active { background: var(--navy); color: #fff; }
+    .period-tab.active {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+    }
 
     .date-strip {
       display: flex; align-items: center; justify-content: space-between;
-      gap: 6px; margin-bottom: 12px; font-size: 0.82rem; font-weight: 700;
+      gap: 6px; margin-bottom: 11px; font-size: 0.82rem; font-weight: 700; color: var(--blue-dark);
     }
-    .date-chips { display: flex; align-items: center; gap: 4px; }
-    .date-arrow {
-      border: none; background: transparent; font-size: 1rem; font-weight: 800;
-      padding: 4px 8px; cursor: pointer; color: var(--text);
-    }
-    .day-chip {
-      border: none; background: transparent; padding: 5px 9px; border-radius: 8px;
-      font-size: 0.78rem; font-weight: 700; color: var(--text-sec); cursor: pointer;
-    }
-    .day-chip.active { background: var(--navy); color: #fff; }
+    .date-chips { display: flex; align-items: center; gap: 3px; }
+    .date-arrow { border: none; background: #fff; border-radius: 8px; font-size: 1rem; font-weight: 800; padding: 4px 9px; cursor: pointer; color: var(--blue-dark); border: 1px solid var(--border); }
+    .day-chip { border: none; background: transparent; padding: 5px 9px; border-radius: 8px; font-size: 0.78rem; font-weight: 700; color: var(--text-sec); cursor: pointer; }
+    .day-chip.active { background: var(--blue); color: #fff; }
 
     .balance-summary {
       background: #fff;
-      border-radius: 14px;
+      border-radius: 15px;
       padding: 14px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      align-items: center;
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--blue);
+      box-shadow: 0 4px 14px rgba(30, 58, 138, 0.07);
       margin-bottom: 12px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     }
-    .bal-profit-lbl { font-size: 0.78rem; color: var(--text-sec); font-weight: 600; }
-    .bal-profit-val { font-size: 1.45rem; font-weight: 800; color: var(--text); margin-top: 2px; }
+    .balance-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center;
+    }
+    .bal-profit-lbl { font-size: 0.76rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; }
+    .bal-profit-val { font-size: 1.45rem; font-weight: 800; color: var(--blue-deep); margin-top: 2px; }
     .bal-right { border-left: 1px solid var(--border); padding-left: 12px; display: flex; flex-direction: column; gap: 8px; }
     .bal-mini-row { display: flex; align-items: center; gap: 8px; }
     .bal-mini-ico {
@@ -275,38 +291,36 @@
     .bal-mini-ico.g { background: var(--green-soft); color: var(--green); }
     .bal-mini-ico.r { background: var(--red-soft); color: var(--red); }
 
-    .search-pill {
-      position: relative;
-      margin-bottom: 12px;
+    .ratio-bar {
+      height: 7px; border-radius: 999px; background: #e2e8f0;
+      overflow: hidden; display: flex; margin-top: 12px;
     }
+    .ratio-sales { background: linear-gradient(90deg, #10b981, #059669); transition: width 0.3s ease; }
+    .ratio-exp { background: linear-gradient(90deg, #f87171, #dc2626); transition: width 0.3s ease; }
+
+    .search-pill { position: relative; margin-bottom: 11px; }
     .search-pill input {
-      background: #fff; border: 1px solid var(--border); border-radius: 12px;
+      background: #fff; border: 1.5px solid var(--border); border-radius: 12px;
       padding: 10px 12px 10px 36px; font-size: 0.88rem;
     }
-    .search-pill::before {
-      content: "🔍"; position: absolute; left: 11px; top: 50%; transform: translateY(-50%); font-size: 0.85rem;
-    }
+    .search-pill::before { content: "🔍"; position: absolute; left: 11px; top: 50%; transform: translateY(-50%); font-size: 0.85rem; }
 
     .tx-row {
-      background: #fff;
-      border-radius: 12px;
-      padding: 11px 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-      cursor: pointer;
+      background: #fff; border-radius: 12px; padding: 11px 12px;
+      display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+      border: 1px solid var(--border); border-left: 4px solid var(--green);
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04); cursor: pointer;
     }
-    .tx-row:active { background: #f8fafc; }
+    .tx-row.is-exp { border-left-color: var(--red); }
+    .tx-row:active { background: var(--blue-soft); }
     .tx-ico {
-      width: 34px; height: 34px; border-radius: 9px; display: flex;
+      width: 35px; height: 35px; border-radius: 10px; display: flex;
       align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
     }
     .tx-ico.sale { background: var(--green-soft); color: var(--green); }
     .tx-ico.exp { background: var(--red-soft); color: var(--red); }
     .tx-mid { flex: 1; min-width: 0; }
-    .tx-title { font-size: 0.86rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tx-title { font-size: 0.85rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .tx-sub { font-size: 0.72rem; color: var(--text-sec); }
     .tx-amt { text-align: right; flex-shrink: 0; }
     .tx-amt strong { display: block; font-size: 0.9rem; }
@@ -314,130 +328,108 @@
     .tx-amt strong.exp { color: var(--red); }
     .tx-amt small { font-size: 0.68rem; color: var(--text-sec); }
 
-    /* BOTONES FLOTANTES NUEVA VENTA / NUEVO GASTO */
+    /* BOTONES FLOTANTES EN BALANCE */
     .floating-dual-cta {
-      position: fixed;
-      left: 12px; right: 12px;
+      position: fixed; left: 12px; right: 12px;
       bottom: calc(var(--nav-h) + 10px + env(safe-area-inset-bottom));
-      z-index: 98;
-      max-width: 696px;
-      margin: 0 auto;
-      display: none;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      z-index: 98; max-width: 696px; margin: 0 auto;
+      display: none; grid-template-columns: 1fr 1fr; gap: 10px;
     }
     .floating-dual-cta.show { display: grid; }
-    .floating-dual-cta .btn {
-      padding: 12px 10px;
-      border-radius: 999px;
-      font-size: 0.84rem;
-      letter-spacing: 0.02em;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
-    }
+    .floating-dual-cta .btn { padding: 12px 10px; border-radius: 999px; font-size: 0.84rem; }
 
-    /* ====== PANTALLA 5: NUEVA VENTA (IGUAL A FOTO DERECHA) ====== */
-    .cat-pills {
-      display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 10px; scrollbar-width: none;
+    /* ====== DEUDAS PROGRESS ====== */
+    .progress-track { height: 6px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin: 7px 0; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #2563eb, #10b981); border-radius: 999px; }
+
+    /* ====== INVENTARIO MINI KPIs ====== */
+    .inv-kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
+    .inv-kpi {
+      background: #fff; border: 1px solid var(--border); border-radius: 10px;
+      padding: 8px 6px; text-align: center;
     }
+    .inv-kpi small { display: block; font-size: 0.62rem; font-weight: 700; color: var(--text-sec); text-transform: uppercase; }
+    .inv-kpi strong { font-size: 0.88rem; color: var(--blue-dark); }
+
+    /* ====== PANTALLA 5: VENDER (3 COLUMNAS EN AZUL) ====== */
+    .cat-pills { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 10px; scrollbar-width: none; }
     .cat-pills::-webkit-scrollbar { display: none; }
     .cat-pill {
-      background: #fff; border: 1px solid var(--border); color: var(--text-sec);
-      border-radius: 8px; padding: 6px 12px; font-size: 0.76rem; font-weight: 700;
+      background: #fff; border: 1.5px solid var(--border); color: var(--text-sec);
+      border-radius: 999px; padding: 6px 12px; font-size: 0.76rem; font-weight: 700;
       white-space: nowrap; cursor: pointer;
     }
-    .cat-pill.active { background: var(--yellow); color: var(--navy-dark); border-color: var(--yellow); }
-
-    .sell-grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
+    .cat-pill.active {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff; border-color: transparent;
+      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
     }
+
+    .sell-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
     @media (min-width: 600px) { .sell-grid-3 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
     .sell-tile {
-      background: #fff;
-      border-radius: 12px;
-      padding: 8px;
+      background: #fff; border-radius: 12px; padding: 8px;
       border: 1.5px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 6px;
-      cursor: pointer;
-      position: relative;
-      min-width: 0;
-      text-align: left;
+      display: flex; flex-direction: column; justify-content: space-between;
+      gap: 6px; cursor: pointer; position: relative; min-width: 0; text-align: left;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
     }
     .sell-tile:active { transform: scale(0.96); }
     .sell-tile.new-prod {
-      border: 1.5px dashed #94a3b8;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 126px;
-      color: var(--navy);
-      font-weight: 800;
-      font-size: 0.72rem;
+      border: 1.5px dashed #3b82f6; background: var(--blue-soft);
+      align-items: center; justify-content: center; text-align: center;
+      min-height: 128px; color: var(--blue-dark); font-weight: 800; font-size: 0.72rem;
     }
-    .sell-tile.in-cart { border-color: var(--green-btn); background: #f0fdf4; }
+    .sell-tile.in-cart { border-color: var(--blue); background: #eff6ff; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.16); }
 
     .sell-thumb {
-      height: 58px;
-      border-radius: 8px;
-      background: #f1f5f9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      position: relative;
+      height: 58px; border-radius: 9px;
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; position: relative;
     }
-    .stock-tag-yellow {
+    .stock-tag-blue {
       position: absolute; bottom: 4px; right: 4px;
-      background: var(--yellow); color: var(--navy-dark);
-      font-size: 0.65rem; font-weight: 800; padding: 1px 5px; border-radius: 5px;
+      background: var(--blue-dark); color: #fff;
+      font-size: 0.64rem; font-weight: 800; padding: 1px 5px; border-radius: 5px;
     }
     .plus-circle {
       position: absolute; top: 4px; right: 4px;
       width: 22px; height: 22px; border-radius: 50%;
-      background: #fff; border: 1px solid var(--border);
+      background: var(--blue); color: #fff;
       display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 0.85rem; color: var(--navy);
+      font-weight: 800; font-size: 0.85rem; box-shadow: 0 2px 5px rgba(37,99,235,0.3);
     }
-    .sell-price { font-size: 0.8rem; font-weight: 800; color: var(--text); }
+    .sell-price { font-size: 0.8rem; font-weight: 800; color: var(--blue-dark); }
     .sell-name {
-      font-size: 0.73rem; font-weight: 600; color: var(--text); line-height: 1.2;
+      font-size: 0.73rem; font-weight: 700; color: var(--text); line-height: 1.2;
       display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
-    .sell-stock-txt { font-size: 0.65rem; color: var(--text-sec); }
+    .sell-stock-txt { font-size: 0.65rem; color: var(--green); font-weight: 600; }
     .sell-stock-txt.zero { color: var(--red); font-weight: 700; }
 
-    /* BARRA INFERIOR CANASTA (IGUAL A FOTO DERECHA) */
+    /* BARRA CANASTA EN AZUL */
     .basket-bar {
-      position: fixed;
-      left: 0; right: 0;
-      bottom: calc(var(--nav-h) + env(safe-area-inset-bottom));
-      z-index: 98;
-      max-width: 720px;
-      margin: 0 auto;
-      background: #fff;
-      border-top: 1px solid var(--border);
-      padding: 10px 14px;
-      display: none;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 -4px 14px rgba(0,0,0,0.08);
-      cursor: pointer;
+      position: fixed; left: 10px; right: 10px;
+      bottom: calc(var(--nav-h) + 8px + env(safe-area-inset-bottom));
+      z-index: 98; max-width: 700px; margin: 0 auto;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: #fff; border-radius: 14px; padding: 10px 14px;
+      display: none; justify-content: space-between; align-items: center;
+      box-shadow: 0 10px 24px rgba(30, 58, 138, 0.35); cursor: pointer;
     }
     .basket-bar.show { display: flex; }
 
-    /* ====== BOTTOM NAV OSCURA ESTILO FOTO ====== */
+    /* ====== BOTTOM NAV AZUL PROFUNDO CON ACTIVO AZUL BRILLANTE ====== */
     .bottom-nav {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 120;
       height: calc(var(--nav-h) + env(safe-area-inset-bottom));
       padding-bottom: env(safe-area-inset-bottom);
-      background: var(--navy);
+      background: linear-gradient(180deg, #0f172a 0%, #0b1120 100%);
+      border-top: 1px solid rgba(56, 189, 248, 0.16);
       display: grid; grid-template-columns: repeat(5, 1fr);
-      box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.25);
+      box-shadow: 0 -4px 18px rgba(15, 23, 42, 0.25);
     }
     .nav-btn {
       border: none; background: transparent;
@@ -447,29 +439,32 @@
     }
     .nav-ico-wrap {
       width: 34px; height: 28px; border-radius: 999px;
-      display: flex; align-items: center; justify-content: center; font-size: 1.08rem;
-      transition: all 0.15s ease;
+      display: flex; align-items: center; justify-content: center; font-size: 1.06rem;
+      transition: all 0.18s ease;
     }
-    .nav-btn.active { color: var(--yellow); }
+    .nav-btn.active { color: #38bdf8; }
     .nav-btn.active .nav-ico-wrap {
-      background: var(--yellow); color: var(--navy-dark);
-      width: 36px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, #38bdf8, #2563eb);
+      color: #fff;
+      width: 38px; height: 32px; border-radius: 50%;
+      box-shadow: 0 3px 10px rgba(56, 189, 248, 0.4);
     }
 
-    /* ====== STEPPER & MODALES ====== */
+    /* ====== MODALES Y TOASTS ====== */
     .qty-stepper {
-      display: inline-flex; align-items: center; background: var(--surface-soft);
-      border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+      display: inline-flex; align-items: center; background: var(--blue-soft);
+      border: 1px solid #bfdbfe; border-radius: 8px; overflow: hidden;
     }
     .qty-stepper button {
       border: none; background: transparent; width: 28px; height: 28px;
-      font-weight: 800; font-size: 0.95rem; cursor: pointer; color: var(--text);
+      font-weight: 800; font-size: 0.95rem; cursor: pointer; color: var(--blue-dark);
     }
     .qty-stepper span { min-width: 24px; text-align: center; font-size: 0.82rem; font-weight: 700; }
 
     .empty-box {
-      text-align: center; padding: 22px 12px; border: 1.5px dashed #cbd5e1;
-      border-radius: 12px; color: var(--text-sec); font-size: 0.84rem; background: #fff;
+      text-align: center; padding: 24px 14px; border: 1.5px dashed #93c5fd;
+      border-radius: 14px; color: var(--text-sec); font-size: 0.85rem;
+      background: linear-gradient(180deg, #ffffff, #f8faff);
     }
 
     #toastContainer {
@@ -481,11 +476,9 @@
       pointer-events: auto; background: rgba(15, 23, 42, 0.95); color: #fff;
       padding: 10px 12px; border-radius: 10px; box-shadow: 0 12px 28px rgba(0,0,0,0.25);
       display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 600;
+      border: 1px solid rgba(56, 189, 248, 0.25);
     }
-    .toast-icon {
-      width: 22px; height: 22px; border-radius: 6px; display: flex;
-      align-items: center; justify-content: center; flex-shrink: 0;
-    }
+    .toast-icon { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .toast.success .toast-icon { background: rgba(16,185,129,0.25); color: #34d399; }
     .toast.error .toast-icon { background: rgba(239,68,68,0.25); color: #f87171; }
     .toast.warning .toast-icon { background: rgba(245,158,11,0.25); color: #fbbf24; }
@@ -505,25 +498,26 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     }
     @media (min-width: 600px) { .modal { border-radius: 16px; padding: 18px; } }
-    .modal-title { margin: 0 0 12px 0; font-size: 1rem; font-weight: 800; display: flex; justify-content: space-between; align-items: center; }
+    .modal-title {
+      margin: 0 0 12px 0; font-size: 1rem; font-weight: 800; color: var(--blue-deep);
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    }
 
     /* ====== TICKET TÉRMICO CON MARCA DE AGUA DIAZCELL ====== */
-    .ticket-stage {
-      background: #e2e8f0; border-radius: 10px; padding: 12px 6px;
-      display: flex; justify-content: center; overflow-x: auto;
-    }
+    .ticket-stage { background: #dbeafe; border-radius: 10px; padding: 12px 6px; display: flex; justify-content: center; overflow-x: auto; }
     .ticket {
       position: relative; overflow: hidden; width: var(--ticket-width);
       background: #fff; color: #000; font-family: "Courier New", Courier, monospace;
       font-size: 12px; line-height: 1.26; padding: 12px 8px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.14); word-wrap: break-word;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.16); word-wrap: break-word;
     }
     .ticket.w80 { font-size: 13px; }
     .ticket-watermark {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%) rotate(-32deg);
       font-family: Arial, Helvetica, sans-serif; font-size: 27px; font-weight: 900;
-      letter-spacing: 3px; color: rgba(15, 23, 42, 0.09); white-space: nowrap;
+      letter-spacing: 3px; color: rgba(37, 99, 235, 0.11); white-space: nowrap;
       pointer-events: none; user-select: none; z-index: 0; text-transform: uppercase;
     }
     .ticket.w80 .ticket-watermark { font-size: 38px; letter-spacing: 5px; }
@@ -555,8 +549,8 @@
 <div id="toastContainer" class="no-print"></div>
 <datalist id="catDatalist"></datalist>
 
-<!-- HEADER AMARILLO -->
-<header class="top-yellow no-print">
+<!-- HEADER AZUL -->
+<header class="top-blue no-print">
   <div class="top-row">
     <button class="circle-btn" onclick="openSettings()" title="Menú y Configuración">☰</button>
     <div class="store-head" onclick="openSettings()">
@@ -570,39 +564,46 @@
   </div>
 </header>
 
-<!-- CONTENEDOR PRINCIPAL -->
 <main class="sheet-container">
 
   <!-- ==================== 1. INICIO ==================== -->
   <section id="view-home" class="view-section">
     <div class="hero-banner">
-      <div>
-        <strong style="font-size:0.95rem; display:block;">Taller y Accesorios DIAZCELL</strong>
-        <span style="font-size:0.76rem; color:var(--text-sec);">Factura reparaciones, controla tu caja e imprime por Bluetooth.</span>
-        <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
-          <button class="btn btn-navy btn-sm btn-pill" onclick="switchTab('sell')">NUEVA VENTA</button>
-          <button class="btn btn-yellow btn-sm btn-pill" id="installAppBtn" style="display:none;" onclick="handleInstallClick()">📲 INSTALAR APP</button>
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px;">
+        <div>
+          <strong style="font-size:1rem; display:block;">Centro de Control DIAZCELL</strong>
+          <span style="font-size:0.76rem; color:#dbeafe;">Reparaciones, accesorios, caja y Bluetooth POS.</span>
+          <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
+            <button class="btn btn-green btn-sm btn-pill" onclick="switchTab('sell')">🛍️ NUEVA VENTA</button>
+            <button class="btn btn-sky btn-sm btn-pill" id="installAppBtn" style="display:none;" onclick="handleInstallClick()">📲 INSTALAR APP</button>
+          </div>
         </div>
+        <div style="font-size:2.2rem;">📱</div>
       </div>
-      <div style="font-size:2.4rem;">📱</div>
+
+      <div class="hero-mini-stats">
+        <div class="hero-stat"><small>Ventas Hoy</small><strong id="homeTodaySales">C$ 0.00</strong></div>
+        <div class="hero-stat"><small>En Inventario</small><strong id="homeInvCount">0 prod.</strong></div>
+        <div class="hero-stat"><small>Por Cobrar</small><strong id="homeDebtTotal">C$ 0.00</strong></div>
+      </div>
     </div>
 
-    <div style="font-size:0.86rem; font-weight:800; margin-bottom:8px;">Gestiona tu negocio</div>
+    <div style="font-size:0.84rem; font-weight:800; color:var(--blue-deep); margin-bottom:8px;">Gestiona tu negocio</div>
     <div class="grid-4" style="margin-bottom:14px;">
       <div class="quick-action-tile" onclick="switchTab('balance')">
-        <div class="quick-action-ico">📊</div>
-        <div class="quick-action-lbl">Estadísticas</div>
+        <div class="quick-action-ico ico-b">📊</div>
+        <div class="quick-action-lbl">Balance</div>
       </div>
       <div class="quick-action-tile" onclick="switchTab('debts')">
-        <div class="quick-action-ico">👥</div>
-        <div class="quick-action-lbl">Clientes/Fiado</div>
+        <div class="quick-action-ico ico-p">💳</div>
+        <div class="quick-action-lbl">Deudas</div>
       </div>
       <div class="quick-action-tile" onclick="switchTab('inventory')">
-        <div class="quick-action-ico">📦</div>
+        <div class="quick-action-ico ico-t">📦</div>
         <div class="quick-action-lbl">Inventario</div>
       </div>
       <div class="quick-action-tile" onclick="openSettings()">
-        <div class="quick-action-ico">⚙️</div>
+        <div class="quick-action-ico ico-a">⚙️</div>
         <div class="quick-action-lbl">Configurar</div>
       </div>
     </div>
@@ -610,32 +611,32 @@
     <div class="feature-row" onclick="openCheckoutModal()">
       <div class="feature-ico" style="background:#dbeafe;">🖨️</div>
       <div style="flex:1;">
-        <strong style="font-size:0.88rem; display:block;">Facturación e Impresora Bluetooth</strong>
-        <span style="font-size:0.74rem; color:var(--text-sec);" id="homeBtText">Abre la caja para cobrar o imprimir último ticket</span>
+        <strong style="font-size:0.88rem; display:block;">Caja e Impresora Térmica Bluetooth</strong>
+        <span style="font-size:0.74rem; color:var(--text-sec);">Abre la factura actual, conecta Bluetooth o imprime en PDF</span>
       </div>
-      <span>›</span>
+      <span style="color:var(--blue); font-weight:800;">›</span>
     </div>
 
     <div class="feature-row" onclick="openExpenseModal()">
       <div class="feature-ico" style="background:#fee2e2;">💸</div>
       <div style="flex:1;">
         <strong style="font-size:0.88rem; display:block;">Registrar un Gasto o Compra</strong>
-        <span style="font-size:0.74rem; color:var(--text-sec);">Anota compra de repuestos, pantallas o pagos del local</span>
+        <span style="font-size:0.74rem; color:var(--text-sec);">Compra de pantallas, repuestos, alquiler o servicios</span>
       </div>
-      <span>›</span>
+      <span style="color:var(--blue); font-weight:800;">›</span>
     </div>
 
     <div class="feature-row" onclick="exportBackup()">
       <div class="feature-ico" style="background:#dcfce7;">💾</div>
       <div style="flex:1;">
         <strong style="font-size:0.88rem; display:block;">Guardar Respaldo de Datos</strong>
-        <span style="font-size:0.74rem; color:var(--text-sec);">Descarga una copia de tus ventas, deudas e inventario</span>
+        <span style="font-size:0.74rem; color:var(--text-sec);">Exporta una copia segura de tus ventas, inventario y deudas</span>
       </div>
-      <span>›</span>
+      <span style="color:var(--blue); font-weight:800;">›</span>
     </div>
   </section>
 
-  <!-- ==================== 2. BALANCE (PANTALLA PRINCIPAL) ==================== -->
+  <!-- ==================== 2. BALANCE ==================== -->
   <section id="view-balance" class="view-section active">
     <div class="period-tabs">
       <button class="period-tab active" data-p="daily" onclick="setPeriod('daily', this)">Diario</button>
@@ -646,7 +647,7 @@
 
     <div class="date-strip">
       <div id="balDateLabel">📅 Hoy</div>
-      <div class="date-chips" id="dateChips">
+      <div class="date-chips">
         <button class="date-arrow" onclick="shiftDate(-1)">‹</button>
         <button class="day-chip" id="chipPrev" onclick="shiftDate(-1)">--</button>
         <button class="day-chip active" id="chipCurr">--</button>
@@ -656,25 +657,31 @@
     </div>
 
     <div class="balance-summary">
-      <div>
-        <div class="bal-profit-lbl">Utilidad total</div>
-        <div class="bal-profit-val" id="balProfit">C$ 0.00</div>
+      <div class="balance-grid">
+        <div>
+          <div class="bal-profit-lbl">Utilidad total</div>
+          <div class="bal-profit-val" id="balProfit">C$ 0.00</div>
+        </div>
+        <div class="bal-right">
+          <div class="bal-mini-row">
+            <div class="bal-mini-ico g">💵</div>
+            <div>
+              <div style="font-size:0.7rem; color:var(--text-sec);">Ventas totales</div>
+              <strong style="font-size:0.9rem; color:var(--green);" id="balSales">C$ 0.00</strong>
+            </div>
+          </div>
+          <div class="bal-mini-row">
+            <div class="bal-mini-ico r">🧾</div>
+            <div>
+              <div style="font-size:0.7rem; color:var(--text-sec);">Gastos totales</div>
+              <strong style="font-size:0.9rem; color:var(--red);" id="balExpenses">C$ 0.00</strong>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="bal-right">
-        <div class="bal-mini-row">
-          <div class="bal-mini-ico g">💵</div>
-          <div>
-            <div style="font-size:0.7rem; color:var(--text-sec);">Ventas totales</div>
-            <strong style="font-size:0.9rem; color:var(--green);" id="balSales">C$ 0.00</strong>
-          </div>
-        </div>
-        <div class="bal-mini-row">
-          <div class="bal-mini-ico r">🧾</div>
-          <div>
-            <div style="font-size:0.7rem; color:var(--text-sec);">Gastos totales</div>
-            <strong style="font-size:0.9rem; color:var(--red);" id="balExpenses">C$ 0.00</strong>
-          </div>
-        </div>
+      <div class="ratio-bar">
+        <div class="ratio-sales" id="ratioSalesBar" style="width:100%;"></div>
+        <div class="ratio-exp" id="ratioExpBar" style="width:0%;"></div>
       </div>
     </div>
 
@@ -682,8 +689,8 @@
       <input type="search" id="balSearch" placeholder="Buscar concepto, cliente o # factura..." oninput="renderBalance()" />
     </div>
 
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:0.8rem; font-weight:700; color:var(--text-sec);">
-      <span id="balGroupLabel">Movimientos</span>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:0.78rem; font-weight:700; color:var(--blue-dark);">
+      <span id="balGroupLabel">Movimientos del periodo</span>
       <span id="balGroupTotal">C$ 0.00</span>
     </div>
 
@@ -693,17 +700,25 @@
   <!-- ==================== 3. DEUDAS Y ABONOS ==================== -->
   <section id="view-debts" class="view-section">
     <div class="balance-summary">
-      <div>
-        <div class="bal-profit-lbl">Por Cobrar (Clientes)</div>
-        <div class="bal-profit-val" style="color:var(--green);" id="debtReceivable">C$ 0.00</div>
-      </div>
-      <div class="bal-right">
+      <div class="balance-grid">
         <div>
-          <div style="font-size:0.7rem; color:var(--text-sec);">Por Pagar (Proveedores)</div>
-          <strong style="font-size:1.05rem; color:var(--red);" id="debtPayable">C$ 0.00</strong>
+          <div class="bal-profit-lbl">Por Cobrar</div>
+          <div class="bal-profit-val" style="color:var(--green);" id="debtReceivable">C$ 0.00</div>
         </div>
-        <button class="btn btn-navy btn-sm" onclick="openDebtModal()">➕ Nueva Deuda</button>
+        <div class="bal-right">
+          <div>
+            <div style="font-size:0.7rem; color:var(--text-sec);">Por Pagar</div>
+            <strong style="font-size:1.05rem; color:var(--red);" id="debtPayable">C$ 0.00</strong>
+          </div>
+          <button class="btn btn-blue btn-sm" onclick="openDebtModal()">➕ Nueva Deuda</button>
+        </div>
       </div>
+    </div>
+
+    <div class="period-tabs" style="grid-template-columns: repeat(3, 1fr); margin-bottom:10px;">
+      <button class="period-tab active" onclick="setDebtFilter('all', this)">Todas</button>
+      <button class="period-tab" onclick="setDebtFilter('receivable', this)">Por Cobrar</button>
+      <button class="period-tab" onclick="setDebtFilter('payable', this)">Por Pagar</button>
     </div>
 
     <div class="search-pill">
@@ -713,24 +728,34 @@
     <div id="debtsList"></div>
   </section>
 
-  <!-- ==================== 4. INVENTARIO (EN BLANCO) ==================== -->
+  <!-- ==================== 4. INVENTARIO (LIMPIO) ==================== -->
   <section id="view-inventory" class="view-section">
+    <div class="inv-kpi-row">
+      <div class="inv-kpi"><small>Productos</small><strong id="invKpiProd">0</strong></div>
+      <div class="inv-kpi"><small>Unidades</small><strong id="invKpiUnits">0</strong></div>
+      <div class="inv-kpi"><small>Valor</small><strong id="invKpiVal" style="color:var(--green);">C$ 0</strong></div>
+      <div class="inv-kpi"><small>Stock Bajo</small><strong id="invKpiLow" style="color:var(--amber);">0</strong></div>
+    </div>
+
     <div class="card">
       <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px;">
-        <strong style="font-size:0.95rem;">📦 Mi Inventario</strong>
+        <strong style="font-size:0.95rem; color:var(--blue-deep);">📦 Mi Inventario</strong>
         <div style="display:flex; gap:6px;">
           <button class="btn btn-outline btn-sm" onclick="openCategoriesModal()">🏷️ Categorías</button>
-          <button class="btn btn-green btn-sm" onclick="openProductModal()">➕ Producto</button>
+          <button class="btn btn-blue btn-sm" onclick="openProductModal()">➕ Producto</button>
         </div>
       </div>
 
       <div class="grid-2" style="margin-bottom:8px;">
-        <input type="search" id="invSearch" placeholder="🔍 Buscar..." oninput="renderInventory()" />
+        <input type="search" id="invSearch" placeholder="🔍 Buscar producto o SKU..." oninput="renderInventory()" />
         <select id="invCatFilter" onchange="renderInventory()"></select>
       </div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.78rem; color:var(--text-sec);">
-        <span>Total productos: <strong id="invCountLbl">0</strong></span>
+        <label class="switch-wrap">
+          <input type="checkbox" id="invLowOnly" onchange="renderInventory()" />
+          <span>Solo stock bajo</span>
+        </label>
         <div style="display:flex; gap:6px;">
           <button class="btn btn-outline btn-sm" onclick="document.getElementById('importFile').click()">📥 Importar</button>
           <input type="file" id="importFile" accept=".json" style="display:none;" onchange="importBackup(event)" />
@@ -741,67 +766,61 @@
     <div id="inventoryList"></div>
   </section>
 
-  <!-- ==================== 5. NUEVA VENTA / SHOP (IGUAL A FOTO DERECHA) ==================== -->
+  <!-- ==================== 5. VENDER ==================== -->
   <section id="view-sell" class="view-section">
     <div style="display:flex; gap:8px; margin-bottom:8px;">
       <div class="search-pill" style="flex:1; margin-bottom:0;">
         <input type="search" id="sellSearch" placeholder="Busca por nombre o código" oninput="renderSellGrid()" />
       </div>
-      <button class="btn btn-outline btn-sm" onclick="openManualModal()" title="Cobrar servicio o artículo sin guardarlo en inventario">✏️ Manual</button>
+      <button class="btn btn-blue btn-sm" onclick="openManualModal()">✏️ Manual</button>
     </div>
 
     <div class="cat-pills" id="sellCatPills"></div>
-
     <div class="sell-grid-3" id="sellGrid"></div>
   </section>
 
 </main>
 
-<!-- BOTONES FLOTANTES EN BALANCE (NUEVA VENTA / NUEVO GASTO) -->
+<!-- BOTONES FLOTANTES EN BALANCE -->
 <div class="floating-dual-cta no-print" id="floatingDualCta">
-  <button class="btn btn-green" onclick="switchTab('sell')">NUEVA VENTA</button>
-  <button class="btn btn-red" onclick="openExpenseModal()">NUEVO GASTO</button>
+  <button class="btn btn-green" onclick="switchTab('sell')">➕ NUEVA VENTA</button>
+  <button class="btn btn-red" onclick="openExpenseModal()">➖ NUEVO GASTO</button>
 </div>
 
-<!-- BARRA CANASTA EN NUEVA VENTA -->
+<!-- BARRA CANASTA EN VENDER -->
 <div class="basket-bar no-print" id="basketBar" onclick="openCheckoutModal()">
   <div style="display:flex; align-items:center; gap:10px;">
     <div style="position:relative; font-size:1.3rem;">
       🧺
-      <span id="basketCount" style="position:absolute; top:-4px; right:-8px; background:var(--red); color:#fff; font-size:0.65rem; font-weight:800; min-width:16px; height:16px; border-radius:999px; display:flex; align-items:center; justify-content:center; padding:0 4px;">0</span>
+      <span id="basketCount" style="position:absolute; top:-4px; right:-8px; background:#ef4444; color:#fff; font-size:0.65rem; font-weight:800; min-width:16px; height:16px; border-radius:999px; display:flex; align-items:center; justify-content:center; padding:0 4px;">0</span>
     </div>
-    <span style="font-size:0.86rem; font-weight:700; color:var(--green-btn);">Canasta / Cobrar ›</span>
+    <span style="font-size:0.86rem; font-weight:700;">Ver Canasta y Cobrar ›</span>
   </div>
-  <strong style="font-size:1rem;" id="basketTotal">C$ 0.00</strong>
+  <strong style="font-size:1.05rem;" id="basketTotal">C$ 0.00</strong>
 </div>
 
-<!-- BOTTOM NAV OSCURA (IGUAL A LA FOTO) -->
+<!-- BOTTOM NAV OSCURA CON ACTIVO AZUL -->
 <nav class="bottom-nav no-print">
   <button class="nav-btn" id="nav-home" onclick="switchTab('home')">
-    <div class="nav-ico-wrap">🏪</div>
-    <span>Inicio</span>
+    <div class="nav-ico-wrap">🏪</div><span>Inicio</span>
   </button>
   <button class="nav-btn active" id="nav-balance" onclick="switchTab('balance')">
-    <div class="nav-ico-wrap">🧾</div>
-    <span>Balance</span>
+    <div class="nav-ico-wrap">🧾</div><span>Balance</span>
   </button>
   <button class="nav-btn" id="nav-debts" onclick="switchTab('debts')">
-    <div class="nav-ico-wrap">💳</div>
-    <span>Deudas</span>
+    <div class="nav-ico-wrap">💳</div><span>Deudas</span>
   </button>
   <button class="nav-btn" id="nav-inventory" onclick="switchTab('inventory')">
-    <div class="nav-ico-wrap">📦</div>
-    <span>Inventario</span>
+    <div class="nav-ico-wrap">📦</div><span>Inventario</span>
   </button>
   <button class="nav-btn" id="nav-sell" onclick="switchTab('sell')">
-    <div class="nav-ico-wrap">🛍️</div>
-    <span>Vender</span>
+    <div class="nav-ico-wrap">🛍️</div><span>Vender</span>
   </button>
 </nav>
 
 <!-- ==================== MODALES ==================== -->
 
-<!-- MODAL COBRAR Y FACTURAR (CANASTA + REPARACIÓN + IMPRESIÓN) -->
+<!-- MODAL COBRAR -->
 <div class="modal-backdrop" id="checkoutModal">
   <div class="modal">
     <div class="modal-title">
@@ -831,17 +850,11 @@
     </div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-      <label class="switch-wrap">
-        <input type="checkbox" id="includeDevice" onchange="toggleDeviceFields()" />
-        <span>📱 Datos de Celular en Reparación</span>
-      </label>
-      <label class="switch-wrap">
-        <input type="checkbox" id="applyTax" onchange="renderTicket()" />
-        <span>IVA (<span id="taxPctLabel">15</span>%)</span>
-      </label>
+      <label class="switch-wrap"><input type="checkbox" id="includeDevice" onchange="toggleDeviceFields()" /><span>📱 Celular en Reparación</span></label>
+      <label class="switch-wrap"><input type="checkbox" id="applyTax" onchange="renderTicket()" /><span>IVA (<span id="taxPctLabel">15</span>%)</span></label>
     </div>
 
-    <div id="deviceFields" style="display:none; background:var(--surface-soft); padding:10px; border-radius:10px; margin-bottom:10px;">
+    <div id="deviceFields" style="display:none; background:var(--blue-soft); border:1px solid #bfdbfe; padding:10px; border-radius:10px; margin-bottom:10px;">
       <div class="grid-3">
         <div class="field"><label>Modelo</label><input type="text" id="devModel" placeholder="Ej: A54" oninput="renderTicket()" /></div>
         <div class="field"><label>IMEI / SN</label><input type="text" id="devImei" placeholder="Opcional" oninput="renderTicket()" /></div>
@@ -850,17 +863,17 @@
       <div class="field" style="margin-top:6px;"><label>Observaciones</label><input type="text" id="devNotes" placeholder="Estado de ingreso" oninput="renderTicket()" /></div>
     </div>
 
-    <div style="background:var(--navy-dark); color:#fff; padding:10px 12px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+    <div style="background:linear-gradient(135deg, #0f172a, #1e3a8a); color:#fff; padding:10px 12px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
       <div>
-        <div style="font-size:0.72rem; color:#cbd5e1;" id="chkChangeLbl">Total a cobrar</div>
+        <div style="font-size:0.72rem; color:#bae6fd;" id="chkChangeLbl">Total a cobrar</div>
         <strong style="font-size:1.2rem;" id="chkTotalLbl">C$ 0.00</strong>
       </div>
-      <button class="btn btn-yellow btn-sm" onclick="openTicketModal()">👁️ Ver Factura</button>
+      <button class="btn btn-sky btn-sm" onclick="openTicketModal()">👁️ Ver Factura</button>
     </div>
 
     <div class="grid-2">
-      <button class="btn btn-navy" onclick="printWebBluetooth()">🔵 Bluetooth BLE</button>
-      <button class="btn btn-yellow" id="btnRawbt" onclick="printRawBT()">📱 RawBT</button>
+      <button class="btn btn-blue" onclick="printWebBluetooth()">🔵 Bluetooth BLE</button>
+      <button class="btn btn-sky" id="btnRawbt" onclick="printRawBT()">📱 RawBT</button>
       <button class="btn btn-outline" onclick="printSystem()">🖨️ Imprimir / PDF</button>
       <button class="btn btn-green" onclick="sendWhatsApp()">💬 WhatsApp</button>
     </div>
@@ -868,7 +881,7 @@
   </div>
 </div>
 
-<!-- MODAL VISTA PREVIA TICKET (CON MARCA DE AGUA DIAZCELL) -->
+<!-- MODAL TICKET -->
 <div class="modal-backdrop" id="ticketModal">
   <div class="modal">
     <div class="modal-title no-print">
@@ -885,15 +898,16 @@
       <div id="ticketPreview" class="ticket"></div>
     </div>
     <div class="grid-2 no-print" style="margin-top:12px;">
-      <button class="btn btn-navy" onclick="printWebBluetooth()">🔵 Bluetooth BLE</button>
-      <button class="btn btn-yellow" id="btnRawbtModal" onclick="printRawBT()">📱 RawBT</button>
+      <button class="btn btn-blue" onclick="printWebBluetooth()">🔵 Bluetooth BLE</button>
+      <button class="btn btn-sky" id="btnRawbtModal" onclick="printRawBT()">📱 RawBT</button>
       <button class="btn btn-outline" onclick="printSystem()">🖨️ Imprimir / PDF</button>
       <button class="btn btn-outline" onclick="closeTicketModal()">Cerrar</button>
     </div>
+    <button class="btn btn-danger-soft btn-block no-print" id="voidSavedBtn" style="display:none; margin-top:8px;" onclick="voidCurrentSavedSale()">🗑️ Anular Venta y Devolver Stock</button>
   </div>
 </div>
 
-<!-- MODAL ÍTEM MANUAL -->
+<!-- MODAL MANUAL -->
 <div class="modal-backdrop" id="manualModal">
   <div class="modal">
     <div class="modal-title"><span>✏️ Agregar Servicio / Ítem Manual</span><button class="btn btn-outline btn-sm" onclick="closeManualModal()">✕</button></div>
@@ -902,11 +916,11 @@
       <div class="field"><label>Cantidad</label><input type="number" id="manQty" value="1" min="1" /></div>
       <div class="field"><label>Precio (<span class="curr-label">C$</span>)</label><input type="number" id="manPrice" placeholder="0.00" min="0" step="0.01" /></div>
     </div>
-    <button class="btn btn-green btn-block" style="margin-top:12px;" onclick="addManualItem()">Agregar a Canasta</button>
+    <button class="btn btn-blue btn-block" style="margin-top:12px;" onclick="addManualItem()">Agregar a Canasta</button>
   </div>
 </div>
 
-<!-- MODAL NUEVO GASTO -->
+<!-- MODAL GASTO -->
 <div class="modal-backdrop" id="expenseModal">
   <div class="modal">
     <div class="modal-title"><span>🔴 Nuevo Gasto</span><button class="btn btn-outline btn-sm" onclick="closeExpenseModal()">✕</button></div>
@@ -922,17 +936,14 @@
   </div>
 </div>
 
-<!-- MODAL NUEVA DEUDA -->
+<!-- MODAL DEUDA -->
 <div class="modal-backdrop" id="debtModal">
   <div class="modal">
     <div class="modal-title"><span>💳 Registrar Deuda / Fiado</span><button class="btn btn-outline btn-sm" onclick="closeDebtModal()">✕</button></div>
     <div class="grid-2" style="margin-bottom:8px;">
       <div class="field">
         <label>Tipo</label>
-        <select id="debtType">
-          <option value="receivable">Me deben (Por cobrar)</option>
-          <option value="payable">Debo (Por pagar)</option>
-        </select>
+        <select id="debtType"><option value="receivable">Me deben (Por cobrar)</option><option value="payable">Debo (Por pagar)</option></select>
       </div>
       <div class="field"><label>Cliente / Persona</label><input type="text" id="debtPerson" placeholder="Nombre" /></div>
     </div>
@@ -941,11 +952,11 @@
       <div class="field"><label>Monto Total (<span class="curr-label">C$</span>)</label><input type="number" id="debtTotal" placeholder="0.00" min="0" step="0.01" /></div>
       <div class="field"><label>Abono Inicial (<span class="curr-label">C$</span>)</label><input type="number" id="debtPaid" placeholder="0.00" min="0" step="0.01" /></div>
     </div>
-    <button class="btn btn-navy btn-block" style="margin-top:14px;" onclick="saveDebt()">Guardar Deuda</button>
+    <button class="btn btn-blue btn-block" style="margin-top:14px;" onclick="saveDebt()">Guardar Deuda</button>
   </div>
 </div>
 
-<!-- MODAL ABONO A DEUDA -->
+<!-- MODAL ABONO -->
 <div class="modal-backdrop" id="abonoModal">
   <div class="modal">
     <div class="modal-title"><span>💵 Registrar Abono</span><button class="btn btn-outline btn-sm" onclick="closeAbonoModal()">✕</button></div>
@@ -956,7 +967,7 @@
   </div>
 </div>
 
-<!-- MODAL PRODUCTO INVENTARIO -->
+<!-- MODAL PRODUCTO -->
 <div class="modal-backdrop" id="productModal">
   <div class="modal">
     <div class="modal-title"><span id="prodModalTitle">➕ Nuevo Producto</span><button class="btn btn-outline btn-sm" onclick="closeProductModal()">✕</button></div>
@@ -979,7 +990,7 @@
       <div class="field"><label>Disponibles (Stock)</label><input type="number" id="prodStock" value="5" min="0" /></div>
       <div class="field"><label>Alerta Stock Bajo</label><input type="number" id="prodMinStock" value="2" min="0" /></div>
     </div>
-    <button class="btn btn-green btn-block" style="margin-top:14px;" onclick="saveProduct()">Guardar Producto</button>
+    <button class="btn btn-blue btn-block" style="margin-top:14px;" onclick="saveProduct()">Guardar Producto</button>
   </div>
 </div>
 
@@ -989,7 +1000,7 @@
     <div class="modal-title"><span>🏷️ Categorías</span><button class="btn btn-outline btn-sm" onclick="closeCategoriesModal()">✕</button></div>
     <div style="display:flex; gap:8px; margin-bottom:10px;">
       <input type="text" id="newCatName" placeholder="Escribe el nombre de tu categoría..." />
-      <button class="btn btn-navy" onclick="addCategory()">Agregar</button>
+      <button class="btn btn-blue" onclick="addCategory()">Agregar</button>
     </div>
     <div id="categoriesList" style="max-height:42vh; overflow-y:auto;"></div>
   </div>
@@ -1015,7 +1026,7 @@
     <div style="margin-top:10px;">
       <label class="switch-wrap"><input type="checkbox" id="cfgStripAccents" /><span>Quitar tildes/ñ al imprimir Bluetooth</span></label>
     </div>
-    <button class="btn btn-navy btn-block" style="margin-top:14px;" onclick="saveSettings()">Guardar Cambios</button>
+    <button class="btn btn-blue btn-block" style="margin-top:14px;" onclick="saveSettings()">Guardar Cambios</button>
   </div>
 </div>
 
@@ -1036,7 +1047,7 @@
   <div class="modal">
     <div class="modal-title"><span id="installModalTitle">📲 Instalar App</span><button class="btn btn-outline btn-sm" onclick="closeInstallModal()">✕</button></div>
     <div id="installModalBody" style="font-size:0.86rem; line-height:1.5; margin-bottom:12px;"></div>
-    <button class="btn btn-navy btn-block" onclick="closeInstallModal()">Entendido</button>
+    <button class="btn btn-blue btn-block" onclick="closeInstallModal()">Entendido</button>
   </div>
 </div>
 
@@ -1050,10 +1061,12 @@
     try {
       const c = document.createElement("canvas"); c.width = 180; c.height = 180;
       const ctx = c.getContext("2d");
-      ctx.fillStyle = "#facc15"; ctx.fillRect(0, 0, 180, 180);
-      ctx.fillStyle = "#1b263b"; ctx.beginPath(); ctx.roundRect(45, 25, 90, 130, 16); ctx.fill();
-      ctx.fillStyle = "#ffffff"; ctx.font = "bold 22px sans-serif"; ctx.textAlign = "center";
-      ctx.fillText("DIAZ", 90, 88); ctx.fillText("CELL", 90, 114);
+      const g = ctx.createLinearGradient(0, 0, 180, 180);
+      g.addColorStop(0, "#0f172a"); g.addColorStop(0.5, "#1d4ed8"); g.addColorStop(1, "#0284c7");
+      ctx.fillStyle = g; ctx.fillRect(0, 0, 180, 180);
+      ctx.fillStyle = "rgba(255,255,255,0.16)"; ctx.beginPath(); ctx.roundRect(42, 24, 96, 132, 18); ctx.fill();
+      ctx.fillStyle = "#ffffff"; ctx.font = "bold 24px sans-serif"; ctx.textAlign = "center";
+      ctx.fillText("DIAZ", 90, 86); ctx.fillText("CELL", 90, 114);
       const l = document.getElementById("appleTouchIcon");
       if (l) l.href = c.toDataURL("image/png");
     } catch (e) {}
@@ -1117,7 +1130,6 @@
   let expenses = JSON.parse(localStorage.getItem("cel_pos_expenses")) || [];
   let debts = JSON.parse(localStorage.getItem("cel_pos_debts")) || [];
 
-  // Limpieza automática única de muestras anteriores
   if (!localStorage.getItem("cel_pos_v4_clean_slate")) {
     const oldIds = new Set(["c1","c2","c3","c4","c5","c6","c7","c8","c9"]);
     const oldCats = new Set(["Reparaciones","Pantallas","Baterías","Pines y Repuestos","Vidrios Templados","Fundas y Cases","Cargadores y Cables","Audífonos"]);
@@ -1132,10 +1144,12 @@
   let items = [];
   let activeTab = "balance";
   let activePeriod = "daily";
+  let debtFilter = "all";
   let selectedDate = new Date();
   let activeSellCat = "Todas";
   let currentInvNum = parseInt(localStorage.getItem("cel_pos_last_num") || "0", 10) + 1;
   let stockDeducted = false;
+  let viewingSavedSaleIdx = null;
   let bleChar = null, bleDev = null;
 
   window.addEventListener("DOMContentLoaded", () => {
@@ -1149,6 +1163,7 @@
     applyPaperWidthCSS(config.paperWidth);
     refreshCategorySelectors();
     switchTab("balance");
+    renderHomeStats();
     renderBalance();
     renderTicket();
     updateBellBadge();
@@ -1174,11 +1189,21 @@
     document.getElementById("floatingDualCta").classList.toggle("show", tab === "balance");
     updateBasketBar();
 
+    if (tab === "home") renderHomeStats();
     if (tab === "balance") renderBalance();
     if (tab === "debts") renderDebts();
     if (tab === "inventory") renderInventory();
     if (tab === "sell") renderSellGrid();
     window.scrollTo({ top: 0, behavior: "instant" });
+  }
+
+  function renderHomeStats() {
+    const today = dateKey(new Date());
+    const todaySales = history.filter(h => h.dayKey === today).reduce((s, h) => s + (h.totals ? h.totals.total : 0), 0);
+    const totalDebt = debts.filter(d => d.type === "receivable").reduce((s, d) => s + Math.max(0, d.total - d.paid), 0);
+    document.getElementById("homeTodaySales").textContent = formatMoney(todaySales);
+    document.getElementById("homeInvCount").textContent = `${catalog.length} prod.`;
+    document.getElementById("homeDebtTotal").textContent = formatMoney(totalDebt);
   }
 
   function escapeHtml(s) {
@@ -1198,16 +1223,13 @@
   function showNotifications() {
     const low = catalog.filter(p => p.trackStock && p.stock <= p.minStock);
     if (low.length === 0) showToast("Todo tu inventario está al día", "success");
-    else {
-      showToast(`Tienes ${low.length} producto(s) con stock bajo`, "warning");
-      switchTab("inventory");
-    }
+    else { showToast(`Tienes ${low.length} producto(s) con stock bajo`, "warning"); switchTab("inventory"); }
   }
 
-  // ====== BALANCE (DIARIO / SEMANAL / MENSUAL / ANUAL) ======
+  // ====== BALANCE ======
   function setPeriod(p, btn) {
     activePeriod = p;
-    document.querySelectorAll(".period-tab").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".period-tab").forEach(b => { if (b.dataset.p) b.classList.remove("active"); });
     btn.classList.add("active");
     renderBalance();
   }
@@ -1226,7 +1248,6 @@
     if (activePeriod === "daily") return dayStr === dateKey(selectedDate);
     if (activePeriod === "monthly") return dayStr.slice(0, 7) === dateKey(selectedDate).slice(0, 7);
     if (activePeriod === "yearly") return dayStr.slice(0, 4) === dateKey(selectedDate).slice(0, 4);
-    // Semanal
     const start = new Date(selectedDate); start.setDate(start.getDate() - start.getDay()); start.setHours(0,0,0,0);
     const end = new Date(start); end.setDate(start.getDate() + 6); end.setHours(23,59,59,999);
     return d >= start && d <= end;
@@ -1241,7 +1262,6 @@
     document.getElementById("balDateLabel").textContent = "📅 " + selectedDate.toLocaleDateString("es-NI", { day: "2-digit", month: "short", year: "numeric" });
 
     const q = (document.getElementById("balSearch").value || "").trim().toLowerCase();
-
     const pSales = history.filter(h => matchPeriod(h.dayKey));
     const pExps = expenses.filter(e => matchPeriod(e.dayKey));
 
@@ -1254,14 +1274,22 @@
     document.getElementById("balExpenses").textContent = formatMoney(totalExps);
     document.getElementById("balGroupTotal").textContent = formatMoney(profit);
 
-    // Combinar transacciones ordenadas
+    const sumBoth = totalSales + totalExps;
+    if (sumBoth === 0) {
+      document.getElementById("ratioSalesBar").style.width = "100%";
+      document.getElementById("ratioExpBar").style.width = "0%";
+    } else {
+      document.getElementById("ratioSalesBar").style.width = ((totalSales / sumBoth) * 100) + "%";
+      document.getElementById("ratioExpBar").style.width = ((totalExps / sumBoth) * 100) + "%";
+    }
+
     let txs = [
-      ...pSales.map((h, i) => ({
+      ...pSales.map(h => ({
         kind: "sale", ts: h.ts || 0, idx: history.indexOf(h),
         title: `#${h.number} • ${h.clientName}${h.devModel ? " (" + h.devModel + ")" : ""}`,
         sub: h.date, method: h.payMethod, amount: h.totals.total
       })),
-      ...pExps.map((e) => ({
+      ...pExps.map(e => ({
         kind: "exp", ts: e.ts || 0, idx: expenses.indexOf(e),
         title: e.concept, sub: e.date, method: e.method, amount: e.amount
       }))
@@ -1271,45 +1299,28 @@
 
     const list = document.getElementById("balanceList");
     if (txs.length === 0) {
-      list.innerHTML = `<div class="empty-box">No hay ventas ni gastos en este periodo.<br>Toca <strong>NUEVA VENTA</strong> o <strong>NUEVO GASTO</strong> abajo.</div>`;
+      list.innerHTML = `<div class="empty-box">No hay movimientos en este periodo.<br>Toca <strong>➕ NUEVA VENTA</strong> o <strong>➖ NUEVO GASTO</strong> abajo.</div>`;
       return;
     }
 
-    list.innerHTML = txs.map(t => {
-      if (t.kind === "sale") {
-        return `
-          <div class="tx-row" onclick="openSavedSale(${t.idx})">
-            <div class="tx-ico sale">💵</div>
-            <div class="tx-mid">
-              <div class="tx-title">${escapeHtml(t.title)}</div>
-              <div class="tx-sub">${escapeHtml(t.sub)}</div>
-            </div>
-            <div class="tx-amt">
-              <strong class="sale">+ ${formatMoney(t.amount)}</strong>
-              <small>${escapeHtml(t.method)}</small>
-            </div>
-          </div>
-        `;
-      }
-      return `
-        <div class="tx-row" onclick="confirmDeleteExpense(${t.idx})">
-          <div class="tx-ico exp">🧾</div>
-          <div class="tx-mid">
-            <div class="tx-title">${escapeHtml(t.title)}</div>
-            <div class="tx-sub">${escapeHtml(t.sub)} (toca para borrar)</div>
-          </div>
-          <div class="tx-amt">
-            <strong class="exp">- ${formatMoney(t.amount)}</strong>
-            <small>${escapeHtml(t.method)}</small>
-          </div>
-        </div>
-      `;
-    }).join("");
+    list.innerHTML = txs.map(t => t.kind === "sale" ? `
+      <div class="tx-row" onclick="openSavedSale(${t.idx})">
+        <div class="tx-ico sale">💵</div>
+        <div class="tx-mid"><div class="tx-title">${escapeHtml(t.title)}</div><div class="tx-sub">${escapeHtml(t.sub)}</div></div>
+        <div class="tx-amt"><strong class="sale">+ ${formatMoney(t.amount)}</strong><small>${escapeHtml(t.method)}</small></div>
+      </div>
+    ` : `
+      <div class="tx-row is-exp" onclick="confirmDeleteExpense(${t.idx})">
+        <div class="tx-ico exp">🧾</div>
+        <div class="tx-mid"><div class="tx-title">${escapeHtml(t.title)}</div><div class="tx-sub">${escapeHtml(t.sub)} (toca para borrar)</div></div>
+        <div class="tx-amt"><strong class="exp">- ${formatMoney(t.amount)}</strong><small>${escapeHtml(t.method)}</small></div>
+      </div>
+    `).join("");
   }
 
   function openSavedSale(idx) {
-    const h = history[idx];
-    if (!h) return;
+    const h = history[idx]; if (!h) return;
+    viewingSavedSaleIdx = idx;
     items = h.items.map(i => ({ ...i }));
     currentInvNum = parseInt(h.number, 10) || currentInvNum;
     document.getElementById("clientName").value = h.clientName;
@@ -1326,17 +1337,43 @@
     toggleDeviceFields();
     stockDeducted = true;
     updateHeaders();
+    document.getElementById("voidSavedBtn").style.display = "block";
     openTicketModal();
+  }
+
+  function voidCurrentSavedSale() {
+    if (viewingSavedSaleIdx === null) return;
+    const h = history[viewingSavedSaleIdx];
+    showConfirm({
+      title: `Anular Factura #${h.number}`,
+      message: "Se eliminará del balance y los productos volverán al inventario.",
+      confirmText: "Anular y devolver stock",
+      onConfirm: () => {
+        h.items.forEach(item => {
+          if (item.catalogId) {
+            const p = catalog.find(x => x.id === item.catalogId);
+            if (p && p.trackStock) p.stock += item.qty;
+          }
+        });
+        history.splice(viewingSavedSaleIdx, 1);
+        localStorage.setItem("cel_pos_history", JSON.stringify(history));
+        saveCatalog();
+        items = [];
+        currentInvNum = parseInt(localStorage.getItem("cel_pos_last_num") || "0", 10) + 1;
+        updateHeaders();
+        closeTicketModal();
+        renderBalance();
+        showToast("Venta anulada y stock restaurado", "success");
+      }
+    });
   }
 
   // ====== GASTOS ======
   function openExpenseModal() {
-    document.getElementById("expConcept").value = "";
-    document.getElementById("expAmount").value = "";
+    document.getElementById("expConcept").value = ""; document.getElementById("expAmount").value = "";
     document.getElementById("expenseModal").classList.add("open");
   }
   function closeExpenseModal() { document.getElementById("expenseModal").classList.remove("open"); }
-
   function saveExpense() {
     const concept = document.getElementById("expConcept").value.trim();
     const amount = parseFloat(document.getElementById("expAmount").value) || 0;
@@ -1348,35 +1385,32 @@
       concept, amount, method: document.getElementById("expMethod").value
     });
     localStorage.setItem("cel_pos_expenses", JSON.stringify(expenses));
-    closeExpenseModal();
-    renderBalance();
+    closeExpenseModal(); renderBalance();
     showToast("Gasto registrado", "success");
   }
-
   function confirmDeleteExpense(idx) {
     showConfirm({
-      title: "Eliminar Gasto",
-      message: `¿Borrar "${expenses[idx].concept}"?`,
-      confirmText: "Borrar",
+      title: "Eliminar Gasto", message: `¿Borrar "${expenses[idx].concept}"?`, confirmText: "Borrar",
       onConfirm: () => {
-        expenses.splice(idx, 1);
-        localStorage.setItem("cel_pos_expenses", JSON.stringify(expenses));
-        renderBalance();
-        showToast("Gasto eliminado", "info");
+        expenses.splice(idx, 1); localStorage.setItem("cel_pos_expenses", JSON.stringify(expenses));
+        renderBalance(); showToast("Gasto eliminado", "info");
       }
     });
   }
 
   // ====== DEUDAS Y ABONOS ======
+  function setDebtFilter(f, btn) {
+    debtFilter = f;
+    btn.parentElement.querySelectorAll(".period-tab").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderDebts();
+  }
   function openDebtModal() {
-    document.getElementById("debtPerson").value = "";
-    document.getElementById("debtConcept").value = "";
-    document.getElementById("debtTotal").value = "";
-    document.getElementById("debtPaid").value = "";
+    document.getElementById("debtPerson").value = ""; document.getElementById("debtConcept").value = "";
+    document.getElementById("debtTotal").value = ""; document.getElementById("debtPaid").value = "";
     document.getElementById("debtModal").classList.add("open");
   }
   function closeDebtModal() { document.getElementById("debtModal").classList.remove("open"); }
-
   function saveDebt() {
     const person = document.getElementById("debtPerson").value.trim();
     const concept = document.getElementById("debtConcept").value.trim();
@@ -1389,10 +1423,8 @@
       date: new Date().toLocaleDateString("es-NI")
     });
     localStorage.setItem("cel_pos_debts", JSON.stringify(debts));
-    closeDebtModal(); renderDebts();
-    showToast("Deuda registrada", "success");
+    closeDebtModal(); renderDebts(); showToast("Deuda registrada", "success");
   }
-
   function renderDebts() {
     const rec = debts.filter(d => d.type === "receivable").reduce((s, d) => s + Math.max(0, d.total - d.paid), 0);
     const pay = debts.filter(d => d.type === "payable").reduce((s, d) => s + Math.max(0, d.total - d.paid), 0);
@@ -1400,20 +1432,21 @@
     document.getElementById("debtPayable").textContent = formatMoney(pay);
 
     const q = (document.getElementById("debtSearch").value || "").trim().toLowerCase();
-    const filtered = debts.filter(d => !q || d.person.toLowerCase().includes(q) || d.concept.toLowerCase().includes(q));
+    const filtered = debts.filter(d =>
+      (debtFilter === "all" || d.type === debtFilter) &&
+      (!q || d.person.toLowerCase().includes(q) || d.concept.toLowerCase().includes(q))
+    );
     const list = document.getElementById("debtsList");
-
     if (filtered.length === 0) {
-      list.innerHTML = `<div class="empty-box">No tienes deudas o fiados registrados.</div>`;
+      list.innerHTML = `<div class="empty-box">No tienes registros en esta sección.<br>Toca <strong>➕ Nueva Deuda</strong> para anotar fiados o abonos.</div>`;
       return;
     }
-
     list.innerHTML = filtered.map(d => {
       const rem = Math.max(0, d.total - d.paid);
       const pct = d.total > 0 ? Math.round((d.paid / d.total) * 100) : 100;
       const isRec = d.type === "receivable";
       return `
-        <div class="card" style="padding:11px; margin-bottom:8px;">
+        <div class="card" style="padding:11px; margin-bottom:8px; border-left:4px solid ${isRec ? "var(--green)" : "var(--red)"};">
           <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <div>
               <strong style="font-size:0.88rem;">${escapeHtml(d.person)}</strong>
@@ -1421,7 +1454,8 @@
             </div>
             <strong style="color:${isRec ? "var(--green)" : "var(--red)"}; font-size:0.92rem;">${formatMoney(rem)}</strong>
           </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+          <div class="progress-track"><div class="progress-fill" style="width:${pct}%;"></div></div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
             <small style="color:var(--text-sec);">${isRec ? "Por cobrar" : "Por pagar"} • Total: ${formatMoney(d.total)}</small>
             <div style="display:flex; gap:6px;">
               ${rem > 0 ? `<button class="btn btn-green btn-sm" onclick="openAbonoModal('${d.id}')">💵 Abonar</button>` : `<span style="font-size:0.75rem; color:var(--green); font-weight:700;">✓ Pagado</span>`}
@@ -1432,17 +1466,14 @@
       `;
     }).join("");
   }
-
   function openAbonoModal(id) {
-    const d = debts.find(x => x.id === id);
-    if (!d) return;
+    const d = debts.find(x => x.id === id); if (!d) return;
     document.getElementById("abonoDebtId").value = id;
     document.getElementById("abonoInfo").textContent = `${d.person} — Resta: ${formatMoney(Math.max(0, d.total - d.paid))}`;
     document.getElementById("abonoAmount").value = "";
     document.getElementById("abonoModal").classList.add("open");
   }
   function closeAbonoModal() { document.getElementById("abonoModal").classList.remove("open"); }
-
   function confirmAbono() {
     const id = document.getElementById("abonoDebtId").value;
     const amt = parseFloat(document.getElementById("abonoAmount").value) || 0;
@@ -1451,8 +1482,6 @@
     const applied = Math.min(amt, Math.max(0, d.total - d.paid));
     d.paid += applied;
     localStorage.setItem("cel_pos_debts", JSON.stringify(debts));
-
-    // Registrar abono en Balance si es por cobrar
     if (d.type === "receivable") {
       const now = new Date();
       const pct = Math.round((d.paid / d.total) * 100);
@@ -1465,36 +1494,28 @@
       });
       localStorage.setItem("cel_pos_history", JSON.stringify(history));
     }
-    closeAbonoModal(); renderDebts();
-    showToast("Abono registrado", "success");
+    closeAbonoModal(); renderDebts(); showToast("Abono registrado", "success");
   }
-
   function deleteDebt(id) {
     showConfirm({
-      title: "Eliminar Deuda", message: "¿Eliminar este registro?",
-      confirmText: "Eliminar", onConfirm: () => {
-        debts = debts.filter(x => x.id !== id);
-        localStorage.setItem("cel_pos_debts", JSON.stringify(debts));
-        renderDebts();
-      }
+      title: "Eliminar Deuda", message: "¿Eliminar este registro?", confirmText: "Eliminar",
+      onConfirm: () => { debts = debts.filter(x => x.id !== id); localStorage.setItem("cel_pos_debts", JSON.stringify(debts)); renderDebts(); }
     });
   }
 
-  // ====== CATEGORÍAS E INVENTARIO (100% LIMPIO) ======
+  // ====== CATEGORÍAS E INVENTARIO ======
   function saveCategories() {
     localStorage.setItem("cel_pos_categories", JSON.stringify(categories));
     refreshCategorySelectors(); renderInventory(); renderSellGrid();
   }
-
   function refreshCategorySelectors() {
     const opts = categories.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
     document.getElementById("catDatalist").innerHTML = opts;
     document.getElementById("invCatFilter").innerHTML = `<option value="Todas">Todas</option>` + opts;
 
     const pills = document.getElementById("sellCatPills");
-    if (categories.length === 0) {
-      pills.style.display = "none"; pills.innerHTML = "";
-    } else {
+    if (categories.length === 0) { pills.style.display = "none"; pills.innerHTML = ""; }
+    else {
       pills.style.display = "flex";
       pills.innerHTML = ["Todas", ...categories].map(c => `
         <button class="cat-pill ${activeSellCat === c ? "active" : ""}" onclick="setSellCat('${escapeHtml(c).replace(/'/g, "\\'")}')">${escapeHtml(c)}</button>
@@ -1502,49 +1523,44 @@
     }
   }
   function setSellCat(c) { activeSellCat = c; refreshCategorySelectors(); renderSellGrid(); }
-
   function openCategoriesModal() { document.getElementById("newCatName").value = ""; renderCategoriesList(); document.getElementById("categoriesModal").classList.add("open"); }
   function closeCategoriesModal() { document.getElementById("categoriesModal").classList.remove("open"); }
-
   function renderCategoriesList() {
     const el = document.getElementById("categoriesList");
-    if (categories.length === 0) {
-      el.innerHTML = `<div class="empty-box">No tienes categorías. Escribe arriba el nombre que desees.</div>`;
-      return;
-    }
+    if (categories.length === 0) { el.innerHTML = `<div class="empty-box">No tienes categorías. Escribe arriba el nombre que desees.</div>`; return; }
     el.innerHTML = categories.map((c, i) => `
-      <div class="tx-row" style="cursor:default;">
+      <div class="tx-row" style="cursor:default; border-left-color:var(--blue);">
         <div class="tx-mid"><div class="tx-title">${escapeHtml(c)}</div></div>
         <button class="btn btn-danger-soft btn-sm" onclick="deleteCategory(${i})">🗑️ Borrar</button>
       </div>
     `).join("");
   }
-
   function addCategory() {
     const inp = document.getElementById("newCatName");
     const name = inp.value.trim();
     if (!name) return showToast("Escribe el nombre", "warning");
     if (categories.some(c => c.toLowerCase() === name.toLowerCase())) return showToast("Ya existe", "warning");
     categories.push(name); inp.value = "";
-    saveCategories(); renderCategoriesList();
-    showToast("Categoría agregada", "success");
+    saveCategories(); renderCategoriesList(); showToast("Categoría agregada", "success");
   }
-
   function deleteCategory(i) {
-    const name = categories[i];
-    categories.splice(i, 1);
+    const name = categories[i]; categories.splice(i, 1);
     if (activeSellCat === name) activeSellCat = "Todas";
-    saveCategories(); renderCategoriesList();
-    showToast("Categoría borrada", "info");
+    saveCategories(); renderCategoriesList(); showToast("Categoría borrada", "info");
   }
-
   function saveCatalog() {
     localStorage.setItem("cel_pos_catalog", JSON.stringify(catalog));
     updateBellBadge(); renderInventory(); renderSellGrid();
   }
-
   function renderInventory() {
-    document.getElementById("invCountLbl").textContent = catalog.length;
+    const units = catalog.reduce((s, p) => s + (p.trackStock ? p.stock : 0), 0);
+    const val = catalog.reduce((s, p) => s + (p.trackStock ? p.stock * p.price : 0), 0);
+    const low = catalog.filter(p => p.trackStock && p.stock <= p.minStock).length;
+    document.getElementById("invKpiProd").textContent = catalog.length;
+    document.getElementById("invKpiUnits").textContent = units;
+    document.getElementById("invKpiVal").textContent = formatMoney(val);
+    document.getElementById("invKpiLow").textContent = low;
+
     const list = document.getElementById("inventoryList");
     if (catalog.length === 0) {
       list.innerHTML = `<div class="empty-box">Tu inventario está vacío.<br>Toca <strong>🏷️ Categorías</strong> para crear tus categorías o <strong>➕ Producto</strong> para agregar mercancía.</div>`;
@@ -1552,53 +1568,53 @@
     }
     const q = (document.getElementById("invSearch").value || "").trim().toLowerCase();
     const cat = document.getElementById("invCatFilter").value || "Todas";
-    const filtered = catalog.filter(p => (cat === "Todas" || p.category === cat) && (!q || p.name.toLowerCase().includes(q) || (p.sku || "").toLowerCase().includes(q)));
+    const lowOnly = document.getElementById("invLowOnly").checked;
+    const filtered = catalog.filter(p =>
+      (cat === "Todas" || p.category === cat) &&
+      (!q || p.name.toLowerCase().includes(q) || (p.sku || "").toLowerCase().includes(q)) &&
+      (!lowOnly || (p.trackStock && p.stock <= p.minStock))
+    );
+    if (filtered.length === 0) { list.innerHTML = `<div class="empty-box">Sin coincidencias.</div>`; return; }
 
-    if (filtered.length === 0) {
-      list.innerHTML = `<div class="empty-box">Sin coincidencias.</div>`;
-      return;
-    }
-
-    list.innerHTML = filtered.map(p => `
-      <div class="card" style="padding:10px; margin-bottom:8px;">
-        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
-          <div>
-            <strong style="font-size:0.88rem;">${escapeHtml(p.name)}</strong>
-            <div style="font-size:0.72rem; color:var(--text-sec);">${escapeHtml(p.category || "Sin categoría")} • Venta: <strong>${formatMoney(p.price)}</strong></div>
-          </div>
-          <span style="font-size:0.72rem; font-weight:800; padding:3px 7px; border-radius:6px; background:${!p.trackStock ? "#e0e7ff" : p.stock <= 0 ? "var(--red-soft)" : "var(--green-soft)"}; color:${!p.trackStock ? "#3730a3" : p.stock <= 0 ? "var(--red)" : "var(--green)"};">
-            ${p.trackStock ? `${p.stock} disp.` : "Servicio"}
-          </span>
-        </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
-          ${p.trackStock ? `
-            <div class="qty-stepper">
-              <button onclick="adjustStock('${p.id}', -1)">−</button>
-              <span>${p.stock}</span>
-              <button onclick="adjustStock('${p.id}', 1)">+</button>
+    list.innerHTML = filtered.map(p => {
+      const margin = p.price - (p.cost || 0);
+      return `
+        <div class="card" style="padding:10px; margin-bottom:8px; border-left:4px solid ${!p.trackStock ? "#6366f1" : p.stock <= 0 ? "var(--red)" : p.stock <= p.minStock ? "var(--amber)" : "var(--blue)"};">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
+            <div>
+              <strong style="font-size:0.88rem;">${escapeHtml(p.name)}</strong>
+              <div style="font-size:0.72rem; color:var(--text-sec);">${escapeHtml(p.category || "Sin categoría")} • Venta: <strong style="color:var(--blue-dark);">${formatMoney(p.price)}</strong> • Gan: <strong style="color:var(--green);">${formatMoney(margin)}</strong></div>
             </div>
-          ` : `<small style="color:var(--text-sec);">Sin límite</small>`}
-          <div style="display:flex; gap:6px;">
-            <button class="btn btn-outline btn-sm" onclick="openProductModal('${p.id}')">✏️</button>
-            <button class="btn btn-danger-soft btn-sm" onclick="deleteProduct('${p.id}')">🗑️</button>
+            <span style="font-size:0.72rem; font-weight:800; padding:3px 7px; border-radius:6px; background:${!p.trackStock ? "#e0e7ff" : p.stock <= 0 ? "var(--red-soft)" : p.stock <= p.minStock ? "var(--amber-soft)" : "var(--green-soft)"}; color:${!p.trackStock ? "#3730a3" : p.stock <= 0 ? "var(--red)" : p.stock <= p.minStock ? "var(--amber)" : "var(--green)"};">
+              ${p.trackStock ? `${p.stock} disp.` : "Servicio"}
+            </span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+            ${p.trackStock ? `
+              <div class="qty-stepper">
+                <button onclick="adjustStock('${p.id}', -1)">−</button>
+                <span>${p.stock}</span>
+                <button onclick="adjustStock('${p.id}', 1)">+</button>
+              </div>
+            ` : `<small style="color:var(--text-sec);">Sin límite</small>`}
+            <div style="display:flex; gap:6px;">
+              <button class="btn btn-outline btn-sm" onclick="openProductModal('${p.id}')">✏️</button>
+              <button class="btn btn-danger-soft btn-sm" onclick="deleteProduct('${p.id}')">🗑️</button>
+            </div>
           </div>
         </div>
-      </div>
-    `).join("");
+      `;
+    }).join("");
   }
-
   function adjustStock(id, d) {
     const p = catalog.find(x => x.id === id);
     if (!p || !p.trackStock) return;
-    p.stock = Math.max(0, p.stock + d);
-    saveCatalog();
+    p.stock = Math.max(0, p.stock + d); saveCatalog();
   }
-
   function openProductModal(id = null) {
     document.getElementById("prodEditId").value = id || "";
     if (id) {
-      const p = catalog.find(x => x.id === id);
-      if (!p) return;
+      const p = catalog.find(x => x.id === id); if (!p) return;
       document.getElementById("prodModalTitle").textContent = "✏️ Editar Producto";
       document.getElementById("prodCategory").value = p.category || "";
       document.getElementById("prodTrackStock").checked = p.trackStock;
@@ -1624,57 +1640,44 @@
   }
   function closeProductModal() { document.getElementById("productModal").classList.remove("open"); }
   function toggleProdStockFields() { document.getElementById("prodStockFields").style.display = document.getElementById("prodTrackStock").checked ? "grid" : "none"; }
-
   function saveProduct() {
     const editId = document.getElementById("prodEditId").value;
     const name = document.getElementById("prodName").value.trim();
     if (!name) return showToast("Escribe el nombre del producto", "warning");
-
     const catName = document.getElementById("prodCategory").value.trim();
     if (catName && !categories.some(c => c.toLowerCase() === catName.toLowerCase())) {
-      categories.push(catName);
-      localStorage.setItem("cel_pos_categories", JSON.stringify(categories));
-      refreshCategorySelectors();
+      categories.push(catName); localStorage.setItem("cel_pos_categories", JSON.stringify(categories)); refreshCategorySelectors();
     }
-
     const data = {
       id: editId || "p_" + Date.now(), category: catName,
-      trackStock: document.getElementById("prodTrackStock").checked,
-      name, sku: document.getElementById("prodSku").value.trim(),
+      trackStock: document.getElementById("prodTrackStock").checked, name,
+      sku: document.getElementById("prodSku").value.trim(),
       cost: parseFloat(document.getElementById("prodCost").value) || 0,
       price: parseFloat(document.getElementById("prodPrice").value) || 0,
       stock: parseInt(document.getElementById("prodStock").value, 10) || 0,
       minStock: parseInt(document.getElementById("prodMinStock").value, 10) || 0
     };
-    if (editId) {
-      const idx = catalog.findIndex(x => x.id === editId);
-      if (idx !== -1) catalog[idx] = data;
-    } else {
-      catalog.unshift(data);
-    }
-    saveCatalog(); closeProductModal();
-    showToast("Producto guardado", "success");
+    if (editId) { const idx = catalog.findIndex(x => x.id === editId); if (idx !== -1) catalog[idx] = data; }
+    else catalog.unshift(data);
+    saveCatalog(); closeProductModal(); showToast("Producto guardado", "success");
   }
-
   function deleteProduct(id) {
     showConfirm({
-      title: "Eliminar producto", message: "¿Eliminar del inventario?",
-      confirmText: "Eliminar", onConfirm: () => { catalog = catalog.filter(x => x.id !== id); saveCatalog(); }
+      title: "Eliminar producto", message: "¿Eliminar del inventario?", confirmText: "Eliminar",
+      onConfirm: () => { catalog = catalog.filter(x => x.id !== id); saveCatalog(); }
     });
   }
 
-  // ====== NUEVA VENTA (GRID 3 COLUMNAS COMO FOTO DERECHA) ======
+  // ====== VENDER ======
   function renderSellGrid() {
     const q = (document.getElementById("sellSearch").value || "").trim().toLowerCase();
     const filtered = catalog.filter(p => (activeSellCat === "Todas" || p.category === activeSellCat) && (!q || p.name.toLowerCase().includes(q) || (p.sku || "").toLowerCase().includes(q)));
 
     let html = `
       <div class="sell-tile new-prod" onclick="openProductModal()">
-        <div style="font-size:1.5rem;">⊕</div>
-        <div>NUEVO PRODUCTO</div>
+        <div style="font-size:1.5rem;">⊕</div><div>NUEVO PRODUCTO</div>
       </div>
     `;
-
     html += filtered.map(p => {
       const inCart = items.find(i => i.catalogId === p.id);
       const zero = p.trackStock && p.stock <= 0;
@@ -1684,7 +1687,7 @@
           <div class="sell-thumb">
             <span>${ico}</span>
             <span class="plus-circle">${inCart ? inCart.qty : "+"}</span>
-            ${p.trackStock ? `<span class="stock-tag-yellow">${p.stock}</span>` : ""}
+            ${p.trackStock ? `<span class="stock-tag-blue">${p.stock}</span>` : ""}
           </div>
           <div>
             <div class="sell-price">${formatMoney(p.price)}</div>
@@ -1694,65 +1697,9 @@
         </div>
       `;
     }).join("");
-
     document.getElementById("sellGrid").innerHTML = html;
     updateBasketBar();
   }
-
   function addToCart(id) {
-    const p = catalog.find(x => x.id === id);
-    if (!p) return;
-    const ex = items.find(i => i.catalogId === id);
-    if (p.trackStock && p.stock <= 0) showToast(`"${p.name}" está en 0`, "warning");
-    if (ex) ex.qty += 1;
-    else items.push({ catalogId: p.id, desc: p.name, qty: 1, price: p.price });
-    renderSellGrid(); renderTicket(); updateBasketBar();
-  }
-
-  function openManualModal() {
-    document.getElementById("manDesc").value = "";
-    document.getElementById("manQty").value = 1;
-    document.getElementById("manPrice").value = "";
-    document.getElementById("manualModal").classList.add("open");
-  }
-  function closeManualModal() { document.getElementById("manualModal").classList.remove("open"); }
-
-  function addManualItem() {
-    const desc = document.getElementById("manDesc").value.trim();
-    const qty = Math.max(1, parseInt(document.getElementById("manQty").value, 10) || 1);
-    const price = parseFloat(document.getElementById("manPrice").value) || 0;
-    if (!desc) return showToast("Escribe la descripción", "warning");
-    items.push({ catalogId: null, desc, qty, price });
-    closeManualModal(); renderSellGrid(); renderTicket(); updateBasketBar();
-    showToast("Agregado a canasta", "success");
-  }
-
-  function updateBasketBar() {
-    const count = items.reduce((s, i) => s + i.qty, 0);
-    const bar = document.getElementById("basketBar");
-    document.getElementById("basketCount").textContent = count;
-    document.getElementById("basketTotal").textContent = formatMoney(getTotals().total);
-    bar.classList.toggle("show", activeTab === "sell" && count > 0);
-  }
-
-  // ====== COBRO Y FACTURACIÓN ======
-  function openCheckoutModal() {
-    stockDeducted = false;
-    renderCheckoutItems();
-    renderTicket();
-    document.getElementById("checkoutModal").classList.add("open");
-  }
-  function closeCheckoutModal() { document.getElementById("checkoutModal").classList.remove("open"); }
-  function toggleDeviceFields() {
-    document.getElementById("deviceFields").style.display = document.getElementById("includeDevice").checked ? "block" : "none";
-    renderTicket();
-  }
-
-  function renderCheckoutItems() {
-    const el = document.getElementById("checkoutItemsList");
-    if (items.length === 0) {
-      el.innerHTML = `<div class="empty-box" style="padding:12px;">Canasta vacía. <button class="btn btn-navy btn-sm" onclick="closeCheckoutModal(); openManualModal();">+ Ítem Manual</button></div>`;
-      return;
-    }
-    el.innerHTML = items.map((i, idx) => `
-      <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; padding:6px 0; border-bottom:1px
+    const p = catalog.find(x => x.id === id); if (!p) return;
+    const ex
