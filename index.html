@@ -2,37 +2,65 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Facturación - Reparación y Accesorios de Celulares</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>POS Premium — Taller y Accesorios</title>
   <style>
     :root {
-      --primary: #0f62fe;
-      --primary-dark: #0043ce;
-      --bg: #f4f6f9;
-      --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --border: #d1d5db;
-      --success: #16a34a;
-      --warning: #d97706;
-      --danger: #dc2626;
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --text: #0f172a;
+      --text-secondary: #475569;
+      --muted: #94a3b8;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-soft: #eff6ff;
+      --accent: #4f46e5;
+      --success: #10b981;
+      --success-dark: #059669;
+      --warning: #f59e0b;
+      --warning-dark: #d97706;
+      --danger: #ef4444;
+      --danger-soft: #fef2f2;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 8px 24px -4px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+      --shadow-lg: 0 20px 40px -10px rgba(15, 23, 42, 0.18);
       --ticket-width: 58mm;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.4;
+      line-height: 1.45;
+      padding-bottom: 40px;
     }
 
+    /* ====== HEADER PREMIUM ====== */
     header {
-      background: #111827;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
       color: #fff;
       padding: 12px 16px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -40,9 +68,36 @@
       gap: 10px;
     }
 
-    header h1 {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+      flex-shrink: 0;
+    }
+
+    .brand-text h1 {
       margin: 0;
-      font-size: 1.1rem;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 0.72rem;
+      color: #94a3b8;
+      font-weight: 500;
     }
 
     .header-actions {
@@ -51,158 +106,420 @@
       flex-wrap: wrap;
     }
 
+    /* ====== CONTENEDOR PRINCIPAL ====== */
     .container {
-      max-width: 1200px;
-      margin: 16px auto;
-      padding: 0 12px;
+      max-width: 1240px;
+      margin: 18px auto;
+      padding: 0 14px;
       display: grid;
-      grid-template-columns: 1.3fr 0.9fr;
-      gap: 16px;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 18px;
       align-items: start;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 920px) {
       .container {
         grid-template-columns: 1fr;
+        margin-top: 14px;
       }
     }
 
+    /* ====== TARJETAS ====== */
     .card {
-      background: var(--card);
-      border-radius: 10px;
-      padding: 16px;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
       margin-bottom: 16px;
+      transition: box-shadow 0.2s ease;
     }
 
-    .card h2 {
-      margin: 0 0 12px 0;
-      font-size: 1rem;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 8px;
+    .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
       gap: 10px;
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
+    .card-title {
+      margin: 0;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
+
+    .badge-num {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    /* ====== GRILLAS Y FORMULARIOS ====== */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
 
     @media (max-width: 600px) {
       .grid-2, .grid-3 { grid-template-columns: 1fr; }
     }
 
+    .field { margin-bottom: 2px; }
+
     label {
       display: block;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      margin-bottom: 4px;
-      color: #374151;
+      margin-bottom: 5px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     input, select, textarea {
       width: 100%;
-      padding: 8px 10px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 0.92rem;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.94rem;
       font-family: inherit;
-      background: #fff;
+      background: var(--surface-soft);
+      color: var(--text);
+      transition: all 0.18s ease;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: var(--muted);
     }
 
     input:focus, select:focus, textarea:focus {
       outline: none;
+      background: #fff;
       border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(15, 98, 254, 0.15);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
     }
 
+    .input-error {
+      border-color: var(--danger) !important;
+      background: var(--danger-soft) !important;
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.14) !important;
+      animation: shake 0.35s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-3px); }
+    }
+
+    /* ====== BOTONES ====== */
     .btn {
       border: none;
-      border-radius: 6px;
-      padding: 9px 14px;
-      font-size: 0.9rem;
+      border-radius: var(--radius-sm);
+      padding: 10px 15px;
+      font-size: 0.88rem;
       font-weight: 600;
+      font-family: inherit;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      transition: opacity 0.15s;
+      gap: 7px;
+      transition: transform 0.12s ease, box-shadow 0.15s ease, background 0.15s ease;
+      user-select: none;
     }
 
-    .btn:hover { opacity: 0.92; }
-    .btn-primary { background: var(--primary); color: #fff; }
-    .btn-success { background: var(--success); color: #fff; }
-    .btn-warning { background: var(--warning); color: #fff; }
-    .btn-danger { background: var(--danger); color: #fff; }
-    .btn-dark { background: #374151; color: #fff; }
+    .btn:active { transform: scale(0.97); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+    .btn-primary:hover { box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35); }
+
+    .btn-success {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+    }
+
+    .btn-warning {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+    }
+
+    .btn-danger {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+    .btn-danger:hover { background: #fecaca; }
+
+    .btn-danger-solid {
+      background: #ef4444;
+      color: #fff;
+    }
+
+    .btn-dark {
+      background: #1e293b;
+      color: #fff;
+    }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(8px);
+    }
+    .btn-glass:hover { background: rgba(255, 255, 255, 0.2); }
+
     .btn-outline {
       background: #fff;
       color: var(--text);
-      border: 1px solid var(--border);
+      border: 1.5px solid var(--border);
     }
-    .btn-sm { padding: 5px 9px; font-size: 0.8rem; }
+    .btn-outline:hover { background: var(--surface-soft); }
 
-    .quick-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 12px;
-    }
+    .btn-sm { padding: 7px 11px; font-size: 0.8rem; border-radius: 8px; }
+    .btn-block { width: 100%; padding: 12px 16px; font-size: 0.92rem; }
 
-    .pill {
-      background: #eef2ff;
-      color: #1e40af;
-      border: 1px solid #c7d2fe;
-      border-radius: 999px;
-      padding: 4px 10px;
-      font-size: 0.78rem;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .pill:hover { background: #dbeafe; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 8px;
-      font-size: 0.88rem;
-    }
-
-    th, td {
-      padding: 8px 6px;
-      border-bottom: 1px solid #e5e7eb;
-      text-align: left;
-    }
-
-    th { background: #f9fafb; font-size: 0.8rem; color: var(--muted); }
-
-    .text-right { text-align: right; }
-    .text-center { text-align: center; }
-
-    .checkbox-row {
+    /* ====== SWITCH TOGGLE PREMIUM ====== */
+    .switch-wrap {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin: 8px 0;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      user-select: none;
     }
-    .checkbox-row input { width: auto; }
-    .checkbox-row label { margin: 0; cursor: pointer; }
 
-    /* Vista previa del ticket térmico */
+    .switch-wrap input {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 40px;
+      height: 22px;
+      background: #cbd5e1;
+      border-radius: 999px;
+      position: relative;
+      padding: 0;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .switch-wrap input::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      top: 2px;
+      left: 2px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .switch-wrap input:checked {
+      background: var(--primary);
+      box-shadow: none;
+    }
+
+    .switch-wrap input:checked::after {
+      transform: translateX(18px);
+    }
+
+    /* ====== PÍLDORAS RÁPIDAS ====== */
+    .quick-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .pill {
+      background: var(--surface-soft);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pill:hover {
+      background: var(--primary-soft);
+      border-color: #93c5fd;
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+    .pill:active { transform: scale(0.96); }
+
+    /* ====== LISTA DE ÍTEMS PREMIUM (TARJETAS EN MÓVIL Y PC) ====== */
+    .items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .empty-items {
+      text-align: center;
+      padding: 24px 12px;
+      border: 1.5px dashed var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--muted);
+      font-size: 0.88rem;
+      background: var(--surface-soft);
+    }
+
+    .item-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      align-items: center;
+      animation: fadeInUp 0.2s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .item-info strong {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+
+    .item-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 6px;
+      margin-top: 3px;
+      text-transform: uppercase;
+    }
+    .tag-rep { background: #e0e7ff; color: #3730a3; }
+    .tag-acc { background: #dcfce7; color: #166534; }
+
+    .item-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .qty-stepper {
+      display: inline-flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .qty-stepper button {
+      border: none;
+      background: transparent;
+      width: 28px;
+      height: 30px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+    }
+    .qty-stepper button:hover { background: var(--bg); }
+
+    .qty-stepper span {
+      min-width: 26px;
+      text-align: center;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .inline-price {
+      width: 88px;
+      padding: 5px 8px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      text-align: right;
+      background: #fff;
+    }
+
+    .item-sub {
+      min-width: 78px;
+      text-align: right;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+
+    /* ====== RESUMEN RÁPIDO DE TOTALES ====== */
+    .summary-bar {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .summary-bar span { font-size: 0.85rem; color: #cbd5e1; }
+    .summary-bar strong { font-size: 1.25rem; letter-spacing: -0.02em; }
+
+    /* ====== TICKET TÉRMICO REALISTA ====== */
+    .preview-card {
+      position: sticky;
+      top: 76px;
+    }
+
+    @media (max-width: 920px) {
+      .preview-card { position: static; }
+    }
+
     .preview-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    .ticket-stage {
+      width: 100%;
+      background: #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 18px 10px;
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+      box-shadow: inset 0 2px 6px rgba(15, 23, 42, 0.08);
     }
 
     .ticket {
@@ -211,104 +528,203 @@
       color: #000;
       font-family: "Courier New", Courier, monospace;
       font-size: 12px;
-      line-height: 1.25;
-      padding: 10px 8px;
-      border: 1px dashed #9ca3af;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      line-height: 1.28;
+      padding: 14px 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.14);
       word-wrap: break-word;
+      position: relative;
     }
 
-    .ticket.w80 {
-      font-size: 13px;
-    }
+    .ticket.w80 { font-size: 13px; }
 
     .t-center { text-align: center; }
     .t-right { text-align: right; }
     .t-bold { font-weight: bold; }
-    .t-lg { font-size: 1.2em; }
-    .t-hr {
-      border-top: 1px dashed #000;
-      margin: 6px 0;
-    }
-    .t-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 6px;
-    }
-    .t-item-desc {
-      font-weight: bold;
-      margin-top: 3px;
-    }
-    .t-small {
-      font-size: 0.85em;
-    }
+    .t-lg { font-size: 1.18em; }
+    .t-hr { border-top: 1px dashed #000; margin: 6px 0; }
+    .t-row { display: flex; justify-content: space-between; gap: 6px; }
+    .t-item-desc { font-weight: bold; margin-top: 3px; }
+    .t-small { font-size: 0.85em; }
 
     .print-actions {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 8px;
+      gap: 9px;
       width: 100%;
-      margin-top: 14px;
+      margin-top: 16px;
     }
 
     .bt-status {
-      font-size: 0.82rem;
-      padding: 8px;
-      border-radius: 6px;
-      background: #f3f4f6;
-      margin-top: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      margin-top: 10px;
       width: 100%;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--muted);
+      display: inline-block;
+    }
+    .dot.connected { background: var(--success); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25); }
+    .dot.error { background: var(--danger); }
+
+    /* ====== TOAST NOTIFICATIONS PREMIUM ====== */
+    #toastContainer {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 360px;
+      width: calc(100% - 32px);
+      pointer-events: none;
+    }
+
+    @media (max-width: 600px) {
+      #toastContainer {
+        top: 12px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+      }
+    }
+
+    .toast {
+      pointer-events: auto;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #fff;
+      padding: 12px 14px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      animation: toastIn 0.28s cubic-bezier(0.21, 1.02, 0.73, 1);
+      cursor: pointer;
+    }
+
+    .toast.out {
+      animation: toastOut 0.22s ease forwards;
+    }
+
+    .toast-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.95rem;
+    }
+
+    .toast.success .toast-icon { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .toast.error .toast-icon { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+    .toast.warning .toast-icon { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .toast.info .toast-icon { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(-14px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes toastOut {
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to { opacity: 0; transform: translateY(-10px) scale(0.95); }
+    }
+
+    /* ====== MODALES PREMIUM ====== */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.55);
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
       display: none;
       align-items: center;
       justify-content: center;
       padding: 16px;
-      z-index: 1000;
-    }
-    .modal-backdrop.open { display: flex; }
-    .modal {
-      background: #fff;
-      border-radius: 10px;
-      max-width: 550px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 18px;
+      z-index: 1500;
     }
 
-    /* ESTILOS DE IMPRESIÓN PARA IMPRESORA TÉRMICA */
+    .modal-backdrop.open {
+      display: flex;
+      animation: fadeBg 0.18s ease;
+    }
+
+    @keyframes fadeBg {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 16px;
+      max-width: 540px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 20px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      animation: modalScale 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-sm { max-width: 400px; }
+
+    @keyframes modalScale {
+      from { opacity: 0; transform: scale(0.94); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-title {
+      margin: 0 0 14px 0;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .history-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface-soft);
+    }
+
+    /* ====== IMPRESIÓN TÉRMICA LIMPIA ====== */
     @media print {
-      @page {
-        margin: 0;
-        size: auto;
-      }
-      body {
-        background: #fff;
-        margin: 0;
-        padding: 0;
-      }
-      header, .no-print, .form-column, .print-actions, .bt-status, .modal-backdrop {
+      @page { margin: 0; size: auto; }
+      body { background: #fff; margin: 0; padding: 0; }
+      header, .no-print, .form-column, .print-actions, .bt-status, .modal-backdrop, #toastContainer {
         display: none !important;
       }
-      .container {
-        display: block;
-        margin: 0;
-        padding: 0;
-        max-width: none;
-      }
-      .card.preview-card {
-        box-shadow: none;
-        padding: 0;
-        margin: 0;
-        border: none;
-      }
-      .preview-card h2 { display: none; }
+      .container { display: block; margin: 0; padding: 0; max-width: none; }
+      .card.preview-card { box-shadow: none; padding: 0; margin: 0; border: none; position: static; }
+      .preview-card .card-header { display: none; }
+      .ticket-stage { background: #fff; padding: 0; box-shadow: none; display: block; }
       .ticket {
         border: none;
         box-shadow: none;
@@ -321,29 +737,47 @@
 </head>
 <body>
 
+<div id="toastContainer" class="no-print"></div>
+
 <header class="no-print">
-  <h1>📱 Facturación - Taller de Celulares y Accesorios</h1>
-  <div class="header-actions">
-    <button class="btn btn-outline btn-sm" onclick="openSettings()">⚙️ Configurar Negocio</button>
-    <button class="btn btn-outline btn-sm" onclick="openHistory()">📋 Historial</button>
-    <button class="btn btn-primary btn-sm" onclick="newInvoice()">➕ Nueva Factura</button>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <rect x="7" y="2" width="10" height="20" rx="2" ry="2"></rect>
+          <line x1="12" y1="18" x2="12.01" y2="18"></line>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1 id="headerBizName">TECNO-CEL POS</h1>
+        <span>Reparaciones & Accesorios</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-glass btn-sm" onclick="openSettings()">⚙️ Negocio</button>
+      <button class="btn btn-glass btn-sm" onclick="openHistory()">📋 Historial</button>
+      <button class="btn btn-primary btn-sm" onclick="confirmNewInvoice()">➕ Nueva</button>
+    </div>
   </div>
 </header>
 
 <div class="container">
-  <!-- COLUMNA IZQUIERDA: FORMULARIO -->
+  <!-- COLUMNA IZQUIERDA -->
   <div class="form-column">
+
+    <!-- DATOS DE FACTURA Y CLIENTE -->
     <div class="card">
-      <h2>
-        <span>Datos de la Factura y Cliente</span>
-        <span style="font-size:0.85rem; color:var(--primary);" id="invoiceNumberBadge">Factura #0001</span>
-      </h2>
+      <div class="card-header">
+        <h2 class="card-title">🧾 Factura y Cliente</h2>
+        <span class="badge-num" id="invoiceNumberBadge">#0001</span>
+      </div>
+
       <div class="grid-3">
-        <div>
+        <div class="field">
           <label>N° Factura</label>
           <input type="text" id="invNumber" oninput="renderTicket()" />
         </div>
-        <div>
+        <div class="field">
           <label>Método de Pago</label>
           <select id="payMethod" onchange="renderTicket()">
             <option value="Efectivo">Efectivo</option>
@@ -352,165 +786,172 @@
             <option value="Mixto">Mixto / Crédito</option>
           </select>
         </div>
-        <div>
-          <label>Atendido por / Técnico</label>
-          <input type="text" id="technician" placeholder="Ej: Carlos M." oninput="renderTicket()" />
+        <div class="field">
+          <label>Atendido por</label>
+          <input type="text" id="technician" placeholder="Nombre del técnico" oninput="renderTicket()" />
         </div>
       </div>
 
-      <div class="grid-3" style="margin-top:10px;">
-        <div>
-          <label>Nombre del Cliente</label>
+      <div class="grid-3" style="margin-top:12px;">
+        <div class="field">
+          <label>Cliente</label>
           <input type="text" id="clientName" placeholder="Consumidor Final" oninput="renderTicket()" />
         </div>
-        <div>
-          <label>Teléfono / WhatsApp</label>
+        <div class="field">
+          <label>WhatsApp / Teléfono</label>
           <input type="tel" id="clientPhone" placeholder="8888-8888" oninput="renderTicket()" />
         </div>
-        <div>
-          <label>RUC / Cédula (Opcional)</label>
+        <div class="field">
+          <label>RUC / Cédula</label>
           <input type="text" id="clientId" placeholder="Opcional" oninput="renderTicket()" />
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN REPARACIÓN / EQUIPO -->
+    <!-- DATOS DEL EQUIPO -->
     <div class="card">
-      <h2>
-        <span>Datos del Celular (Reparación)</span>
-        <div class="checkbox-row" style="margin:0;">
+      <div class="card-header">
+        <h2 class="card-title">📱 Equipo en Reparación</h2>
+        <label class="switch-wrap">
           <input type="checkbox" id="includeDevice" checked onchange="toggleDeviceSection()" />
-          <label for="includeDevice" style="font-size:0.82rem;">Incluir en factura</label>
-        </div>
-      </h2>
+          <span>Incluir</span>
+        </label>
+      </div>
+
       <div id="deviceFields">
         <div class="grid-3">
-          <div>
+          <div class="field">
             <label>Marca y Modelo</label>
-            <input type="text" id="devModel" placeholder="Ej: Samsung A54 / iPhone 13" oninput="renderTicket()" />
+            <input type="text" id="devModel" placeholder="Ej: iPhone 13 / A54" oninput="renderTicket()" />
           </div>
-          <div>
+          <div class="field">
             <label>IMEI / Serie</label>
-            <input type="text" id="devImei" placeholder="Últimos 4-6 dígitos o IMEI" oninput="renderTicket()" />
+            <input type="text" id="devImei" placeholder="Últimos dígitos o IMEI" oninput="renderTicket()" />
           </div>
-          <div>
+          <div class="field">
             <label>Garantía (Días)</label>
             <input type="number" id="warrantyDays" value="30" min="0" oninput="renderTicket()" />
           </div>
         </div>
-        <div style="margin-top:8px;">
-          <label>Observaciones / Estado de ingreso</label>
+        <div class="field" style="margin-top:12px;">
+          <label>Estado de Ingreso / Notas</label>
           <input type="text" id="devNotes" placeholder="Ej: Ingresa apagado / Sin bandeja SIM / Con chip" oninput="renderTicket()" />
         </div>
       </div>
     </div>
 
-    <!-- AGREGAR PRODUCTOS Y SERVICIOS -->
+    <!-- DETALLE DE PRODUCTOS Y SERVICIOS -->
     <div class="card">
-      <h2>Detalle de Reparaciones y Accesorios</h2>
+      <div class="card-header">
+        <h2 class="card-title">🛠️ Servicios y Accesorios</h2>
+      </div>
 
-      <label style="margin-bottom:6px;">Accesos rápidos (clic para agregar):</label>
+      <label style="margin-bottom:8px;">Agregado rápido (puedes editar el precio abajo):</label>
       <div class="quick-pills">
-        <button type="button" class="pill" onclick="quickAdd('Reparación', 'Cambio de Pantalla', 1500)">+ Pantalla</button>
-        <button type="button" class="pill" onclick="quickAdd('Reparación', 'Cambio Pin de Carga', 450)">+ Pin de Carga</button>
-        <button type="button" class="pill" onclick="quickAdd('Reparación', 'Cambio de Batería', 650)">+ Batería</button>
-        <button type="button" class="pill" onclick="quickAdd('Reparación', 'Mantenimiento / Limpieza', 350)">+ Mantenimiento</button>
-        <button type="button" class="pill" onclick="quickAdd('Accesorio', 'Vidrio Templado 9D', 150)">+ Vidrio Templado</button>
-        <button type="button" class="pill" onclick="quickAdd('Accesorio', 'Funda / Case Protector', 250)">+ Funda / Case</button>
-        <button type="button" class="pill" onclick="quickAdd('Accesorio', 'Cargador Carga Rápida', 380)">+ Cargador</button>
-        <button type="button" class="pill" onclick="quickAdd('Accesorio', 'Cable USB Tipo-C', 180)">+ Cable USB</button>
+        <button type="button" class="pill" onclick="quickAdd('Reparación', 'Cambio de Pantalla', 1500)">📱 + Pantalla</button>
+        <button type="button" class="pill" onclick="quickAdd('Reparación', 'Cambio Pin de Carga', 450)">⚡ + Pin Carga</button>
+        <button type="button" class="pill" onclick="quickAdd('Reparación', 'Cambio de Batería', 650)">🔋 + Batería</button>
+        <button type="button" class="pill" onclick="quickAdd('Reparación', 'Mantenimiento General', 350)">🧹 + Limpieza</button>
+        <button type="button" class="pill" onclick="quickAdd('Accesorio', 'Vidrio Templado 9D', 150)">🛡️ + Vidrio</button>
+        <button type="button" class="pill" onclick="quickAdd('Accesorio', 'Funda / Case Protector', 250)">📲 + Funda</button>
+        <button type="button" class="pill" onclick="quickAdd('Accesorio', 'Cargador Carga Rápida', 380)">🔌 + Cargador</button>
+        <button type="button" class="pill" onclick="quickAdd('Accesorio', 'Cable USB Tipo-C', 180)">➰ + Cable</button>
       </div>
 
       <div class="grid-3" style="align-items:end;">
-        <div>
+        <div class="field">
           <label>Tipo</label>
           <select id="itemType">
             <option value="Reparación">Reparación</option>
             <option value="Accesorio">Accesorio</option>
           </select>
         </div>
-        <div>
+        <div class="field">
           <label>Descripción</label>
-          <input type="text" id="itemDesc" placeholder="Ej: Pantalla iPhone 11 Original" />
+          <input type="text" id="itemDesc" placeholder="Ej: Pantalla Samsung A32" />
         </div>
         <div class="grid-2">
-          <div>
+          <div class="field">
             <label>Cant.</label>
             <input type="number" id="itemQty" value="1" min="1" />
           </div>
-          <div>
-            <label>Precio Unit.</label>
-            <input type="number" id="itemPrice" value="0" min="0" step="0.01" />
+          <div class="field">
+            <label>Precio (<span class="curr-label">C$</span>)</label>
+            <input type="number" id="itemPrice" placeholder="0.00" min="0" step="0.01" />
           </div>
         </div>
       </div>
-      <div style="margin-top:10px; text-align:right;">
-        <button type="button" class="btn btn-primary" onclick="addItem()">➕ Agregar a Factura</button>
+
+      <div style="margin-top:12px;">
+        <button type="button" class="btn btn-primary btn-block" onclick="addItem()">
+          ➕ Agregar a la Factura
+        </button>
       </div>
 
-      <table id="itemsTable">
-        <thead>
-          <tr>
-            <th>Descripción</th>
-            <th class="text-center">Cant</th>
-            <th class="text-right">P. Unit</th>
-            <th class="text-right">Subtotal</th>
-            <th class="text-center">Quitar</th>
-          </tr>
-        </thead>
-        <tbody id="itemsBody"></tbody>
-      </table>
+      <div id="itemsList" class="items-list"></div>
 
-      <div class="grid-3" style="margin-top:14px; padding-top:10px; border-top:1px solid #eee;">
-        <div>
+      <div class="grid-3" style="margin-top:16px; padding-top:14px; border-top:1px solid var(--border);">
+        <div class="field">
           <label>Descuento (<span class="curr-label">C$</span>)</label>
-          <input type="number" id="discount" value="0" min="0" step="0.01" oninput="renderTicket()" />
+          <input type="number" id="discount" placeholder="0.00" min="0" step="0.01" oninput="renderTicket()" />
         </div>
-        <div>
-          <label>Pago Recibido (<span class="curr-label">C$</span>)</label>
-          <input type="number" id="amountPaid" value="0" min="0" step="0.01" oninput="renderTicket()" />
+        <div class="field">
+          <label>Efectivo Recibido (<span class="curr-label">C$</span>)</label>
+          <input type="number" id="amountPaid" placeholder="0.00" min="0" step="0.01" oninput="renderTicket()" />
         </div>
-        <div class="checkbox-row" style="padding-top:22px;">
-          <input type="checkbox" id="applyTax" onchange="renderTicket()" />
-          <label for="applyTax">Aplicar IVA (<span id="taxPctLabel">15</span>%)</label>
+        <div class="field" style="display:flex; align-items:flex-end; padding-bottom:8px;">
+          <label class="switch-wrap">
+            <input type="checkbox" id="applyTax" onchange="renderTicket()" />
+            <span>Aplicar IVA (<span id="taxPctLabel">15</span>%)</span>
+          </label>
         </div>
+      </div>
+
+      <div class="summary-bar">
+        <span>TOTAL A COBRAR</span>
+        <strong id="liveTotalBanner">C$ 0.00</strong>
       </div>
     </div>
   </div>
 
   <!-- COLUMNA DERECHA: VISTA PREVIA E IMPRESIÓN -->
   <div class="card preview-card">
-    <h2 class="no-print">
-      <span>Vista Previa Ticket Térmico</span>
-      <select id="paperWidthSelect" style="width:auto; padding:4px 8px; font-size:0.82rem;" onchange="changePaperWidth(this.value)">
+    <div class="card-header no-print">
+      <h2 class="card-title">🖨️ Vista Previa Ticket</h2>
+      <select id="paperWidthSelect" style="width:auto; padding:6px 10px; font-size:0.82rem;" onchange="changePaperWidth(this.value)">
         <option value="58mm">58mm (32 col)</option>
         <option value="80mm">80mm (48 col)</option>
       </select>
-    </h2>
+    </div>
 
     <div class="preview-wrapper">
-      <div id="ticketPreview" class="ticket"></div>
+      <div class="ticket-stage">
+        <div id="ticketPreview" class="ticket"></div>
+      </div>
 
       <div class="print-actions no-print">
-        <button class="btn btn-primary" onclick="printWebBluetooth()">
+        <button class="btn btn-primary btn-block" onclick="printWebBluetooth()">
           🔵 Imprimir Bluetooth Directo (BLE)
         </button>
-        <button class="btn btn-warning" onclick="printRawBT()">
-          📱 Imprimir con RawBT (Android Bluetooth Clásico)
+        <button class="btn btn-warning btn-block" onclick="printRawBT()">
+          📱 Imprimir con RawBT (Android)
         </button>
-        <button class="btn btn-dark" onclick="printSystem()">
-          🖨️ Imprimir Normal / Servicio Impresión / PDF
+        <button class="btn btn-dark btn-block" onclick="printSystem()">
+          🖨️ Imprimir Sistema / Guardar PDF
         </button>
-        <button class="btn btn-success" onclick="sendWhatsApp()">
-          💬 Enviar Comprobante por WhatsApp
-        </button>
-        <button class="btn btn-outline" onclick="saveCurrentInvoice()">
-          💾 Guardar Factura en Historial
-        </button>
+        <div class="grid-2">
+          <button class="btn btn-success" onclick="sendWhatsApp()">
+            💬 WhatsApp
+          </button>
+          <button class="btn btn-outline" onclick="saveCurrentInvoice()">
+            💾 Guardar
+          </button>
+        </div>
       </div>
 
       <div id="btStatus" class="bt-status no-print">
-        Estado Bluetooth: No conectado.
+        <span class="dot" id="btDot"></span>
+        <span id="btStatusText">Bluetooth listo para conectar</span>
       </div>
     </div>
   </div>
@@ -519,52 +960,54 @@
 <!-- MODAL CONFIGURACIÓN -->
 <div class="modal-backdrop" id="settingsModal">
   <div class="modal">
-    <h2 style="margin-top:0;">⚙️ Configuración del Negocio</h2>
+    <h2 class="modal-title">⚙️ Configuración del Negocio</h2>
     <div class="grid-2">
-      <div>
+      <div class="field">
         <label>Nombre del Negocio</label>
         <input type="text" id="cfgName" />
       </div>
-      <div>
+      <div class="field">
         <label>RUC / Identificación</label>
         <input type="text" id="cfgRuc" />
       </div>
-      <div>
+      <div class="field">
         <label>Teléfono del Taller</label>
         <input type="text" id="cfgPhone" />
       </div>
-      <div>
-        <label>Símbolo de Moneda</label>
+      <div class="field">
+        <label>Moneda</label>
         <select id="cfgCurrency">
           <option value="C$">C$ (Córdobas)</option>
           <option value="$">$ (Dólares)</option>
         </select>
       </div>
-      <div>
-        <label>Porcentaje de IVA (%)</label>
+      <div class="field">
+        <label>IVA (%)</label>
         <input type="number" id="cfgTax" value="15" min="0" />
       </div>
-      <div>
-        <label>Ancho Impresora Térmica</label>
+      <div class="field">
+        <label>Ancho de Papel</label>
         <select id="cfgWidth">
-          <option value="58mm">58 mm (Portátil pequeña)</option>
-          <option value="80mm">80 mm (Escritorio POS)</option>
+          <option value="58mm">58 mm (Portátil)</option>
+          <option value="80mm">80 mm (Escritorio)</option>
         </select>
       </div>
     </div>
-    <div style="margin-top:10px;">
+    <div class="field" style="margin-top:12px;">
       <label>Dirección del Local</label>
       <input type="text" id="cfgAddress" />
     </div>
-    <div style="margin-top:10px;">
-      <label>Mensaje de Garantía / Pie de Ticket</label>
+    <div class="field" style="margin-top:12px;">
+      <label>Política de Garantía (Pie de Ticket)</label>
       <textarea id="cfgFooter" rows="3"></textarea>
     </div>
-    <div class="checkbox-row" style="margin-top:10px;">
-      <input type="checkbox" id="cfgStripAccents" />
-      <label for="cfgStripAccents">Quitar tildes/ñ al imprimir en Bluetooth (activar si tu impresora imprime símbolos raros)</label>
+    <div style="margin-top:12px;">
+      <label class="switch-wrap">
+        <input type="checkbox" id="cfgStripAccents" />
+        <span>Quitar tildes/ñ al imprimir por Bluetooth (modo compatible)</span>
+      </label>
     </div>
-    <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:14px;">
+    <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:18px;">
       <button class="btn btn-outline" onclick="closeSettings()">Cancelar</button>
       <button class="btn btn-primary" onclick="saveSettings()">Guardar Cambios</button>
     </div>
@@ -574,17 +1017,79 @@
 <!-- MODAL HISTORIAL -->
 <div class="modal-backdrop" id="historyModal">
   <div class="modal">
-    <h2 style="margin-top:0;">📋 Historial de Facturas Guardadas</h2>
+    <h2 class="modal-title">📋 Historial de Facturas</h2>
     <div id="historyList" style="max-height:55vh; overflow-y:auto;"></div>
-    <div style="display:flex; justify-content:space-between; margin-top:14px;">
-      <button class="btn btn-danger btn-sm" onclick="clearHistory()">🗑️ Borrar Historial</button>
-      <button class="btn btn-outline" onclick="closeHistory()">Cerrar</button>
+    <div style="display:flex; justify-content:space-between; margin-top:16px;">
+      <button class="btn btn-danger btn-sm" onclick="confirmClearHistory()">🗑️ Borrar Todo</button>
+      <button class="btn btn-outline btn-sm" onclick="closeHistory()">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE CONFIRMACIÓN PREMIUM (REEMPLAZA CONFIRM DE CHROME) -->
+<div class="modal-backdrop" id="confirmModal">
+  <div class="modal modal-sm">
+    <h2 class="modal-title" id="confirmTitle">Confirmar acción</h2>
+    <p id="confirmMessage" style="color:var(--text-secondary); font-size:0.92rem; margin:0 0 18px 0;"></p>
+    <div style="display:flex; justify-content:flex-end; gap:10px;">
+      <button class="btn btn-outline" onclick="closeConfirm()">Cancelar</button>
+      <button class="btn btn-primary" id="confirmOkBtn">Confirmar</button>
     </div>
   </div>
 </div>
 
 <script>
-  // ====== ESTADO Y CONFIGURACIÓN ======
+  // ====== SISTEMA DE NOTIFICACIONES TOAST ======
+  function showToast(message, type = "info") {
+    const container = document.getElementById("toastContainer");
+    const icons = {
+      success: "✓",
+      error: "!",
+      warning: "⚠",
+      info: "i"
+    };
+
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+    toast.innerHTML = `
+      <div class="toast-icon">${icons[type] || "i"}</div>
+      <div style="flex:1;">${escapeHtml(message)}</div>
+    `;
+
+    const dismiss = () => {
+      if (toast.classList.contains("out")) return;
+      toast.classList.add("out");
+      setTimeout(() => toast.remove(), 220);
+    };
+
+    toast.addEventListener("click", dismiss);
+    container.appendChild(toast);
+    setTimeout(dismiss, 3400);
+  }
+
+  // ====== MODAL DE CONFIRMACIÓN ======
+  let confirmCallback = null;
+  function showConfirm({ title, message, confirmText = "Confirmar", danger = false, onConfirm }) {
+    document.getElementById("confirmTitle").textContent = title;
+    document.getElementById("confirmMessage").textContent = message;
+    const btn = document.getElementById("confirmOkBtn");
+    btn.textContent = confirmText;
+    btn.className = danger ? "btn btn-danger-solid" : "btn btn-primary";
+    confirmCallback = onConfirm;
+    document.getElementById("confirmModal").classList.add("open");
+  }
+
+  function closeConfirm() {
+    document.getElementById("confirmModal").classList.remove("open");
+    confirmCallback = null;
+  }
+
+  document.getElementById("confirmOkBtn").addEventListener("click", () => {
+    if (confirmCallback) confirmCallback();
+    closeConfirm();
+  });
+
+  // ====== CONFIGURACIÓN Y ESTADO ======
   const DEFAULT_CONFIG = {
     name: "TECNO-CEL REPARACIONES",
     ruc: "J0310000000000",
@@ -602,14 +1107,14 @@
   let bleCharacteristic = null;
   let bleDevice = null;
 
-  // Inicialización
   window.addEventListener("DOMContentLoaded", () => {
     const lastNum = parseInt(localStorage.getItem("cel_pos_last_num") || "0", 10) + 1;
     document.getElementById("invNumber").value = String(lastNum).padStart(4, "0");
     document.getElementById("paperWidthSelect").value = config.paperWidth;
+    document.getElementById("headerBizName").textContent = config.name;
     applyPaperWidthCSS(config.paperWidth);
     updateCurrencyLabels();
-    renderItemsTable();
+    renderItemsList();
     renderTicket();
   });
 
@@ -630,6 +1135,7 @@
     localStorage.setItem("cel_pos_config", JSON.stringify(config));
     applyPaperWidthCSS(val);
     renderTicket();
+    showToast(`Vista ajustada a rollo de ${val}`, "info");
   }
 
   function toggleDeviceSection() {
@@ -638,7 +1144,7 @@
     renderTicket();
   }
 
-  // ====== ARTÍCULOS ======
+  // ====== GESTIÓN DE ARTÍCULOS ======
   function quickAdd(type, desc, price) {
     const existing = items.find(i => i.desc === desc && i.price === price);
     if (existing) {
@@ -646,55 +1152,88 @@
     } else {
       items.push({ type, desc, qty: 1, price });
     }
-    renderItemsTable();
+    renderItemsList();
     renderTicket();
+    showToast(`Agregado: ${desc}`, "success");
   }
 
   function addItem() {
     const type = document.getElementById("itemType").value;
-    const desc = document.getElementById("itemDesc").value.trim();
-    const qty = parseFloat(document.getElementById("itemQty").value) || 1;
-    const price = parseFloat(document.getElementById("itemPrice").value) || 0;
+    const descEl = document.getElementById("itemDesc");
+    const priceEl = document.getElementById("itemPrice");
+    const desc = descEl.value.trim();
+    const qty = Math.max(1, parseFloat(document.getElementById("itemQty").value) || 1);
+    const price = Math.max(0, parseFloat(priceEl.value) || 0);
 
     if (!desc) {
-      alert("Por favor escribe la descripción del servicio o accesorio.");
+      descEl.classList.remove("input-error");
+      void descEl.offsetWidth;
+      descEl.classList.add("input-error");
+      descEl.focus();
+      showToast("Escribe la descripción del servicio o accesorio", "warning");
+      setTimeout(() => descEl.classList.remove("input-error"), 1800);
       return;
     }
 
     items.push({ type, desc, qty, price });
-    document.getElementById("itemDesc").value = "";
+    descEl.value = "";
     document.getElementById("itemQty").value = 1;
-    document.getElementById("itemPrice").value = 0;
-    renderItemsTable();
+    priceEl.value = "";
+    renderItemsList();
+    renderTicket();
+    showToast(`Agregado: ${desc}`, "success");
+  }
+
+  function changeQty(idx, delta) {
+    items[idx].qty = Math.max(1, items[idx].qty + delta);
+    renderItemsList();
     renderTicket();
   }
 
-  function removeItem(index) {
-    items.splice(index, 1);
-    renderItemsTable();
+  function updateItemPrice(idx, val) {
+    const price = Math.max(0, parseFloat(val) || 0);
+    items[idx].price = price;
+    const subEl = document.getElementById(`itemSub-${idx}`);
+    if (subEl) subEl.textContent = formatMoney(items[idx].qty * price);
     renderTicket();
   }
 
-  function renderItemsTable() {
-    const tbody = document.getElementById("itemsBody");
+  function removeItem(idx) {
+    const removed = items.splice(idx, 1)[0];
+    renderItemsList();
+    renderTicket();
+    if (removed) showToast(`Quitado: ${removed.desc}`, "info");
+  }
+
+  function renderItemsList() {
+    const container = document.getElementById("itemsList");
     if (items.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="5" class="text-center" style="color:#9ca3af;">No hay servicios ni accesorios agregados.</td></tr>`;
+      container.innerHTML = `<div class="empty-items">Toca un botón rápido arriba o escribe un servicio/accesorio para comenzar la factura.</div>`;
       return;
     }
-    tbody.innerHTML = items.map((item, idx) => `
-      <tr>
-        <td><strong>${escapeHtml(item.desc)}</strong><br><small style="color:#6b7280">${escapeHtml(item.type)}</small></td>
-        <td class="text-center">${item.qty}</td>
-        <td class="text-right">${formatMoney(item.price)}</td>
-        <td class="text-right">${formatMoney(item.qty * item.price)}</td>
-        <td class="text-center">
-          <button class="btn btn-danger btn-sm" onclick="removeItem(${idx})">✕</button>
-        </td>
-      </tr>
+
+    container.innerHTML = items.map((item, idx) => `
+      <div class="item-row">
+        <div class="item-info">
+          <strong>${escapeHtml(item.desc)}</strong>
+          <span class="item-tag ${item.type === 'Reparación' ? 'tag-rep' : 'tag-acc'}">${escapeHtml(item.type)}</span>
+        </div>
+        <div class="item-controls">
+          <div class="qty-stepper">
+            <button type="button" onclick="changeQty(${idx}, -1)">−</button>
+            <span>${item.qty}</span>
+            <button type="button" onclick="changeQty(${idx}, 1)">+</button>
+          </div>
+          <input type="number" class="inline-price" value="${item.price}" min="0" step="0.01"
+            title="Editar precio unitario" oninput="updateItemPrice(${idx}, this.value)" />
+          <div class="item-sub" id="itemSub-${idx}">${formatMoney(item.qty * item.price)}</div>
+          <button type="button" class="btn btn-danger btn-sm" onclick="removeItem(${idx})">✕</button>
+        </div>
+      </div>
     `).join("");
   }
 
-  // ====== CÁLCULOS Y FORMATO ======
+  // ====== CÁLCULOS Y TICKET ======
   function getTotals() {
     const subtotal = items.reduce((sum, i) => sum + (i.qty * i.price), 0);
     const discount = Math.max(0, parseFloat(document.getElementById("discount").value) || 0);
@@ -733,15 +1272,15 @@
       devImei: document.getElementById("devImei").value.trim(),
       warrantyDays: document.getElementById("warrantyDays").value || "0",
       devNotes: document.getElementById("devNotes").value.trim(),
-      items: [...items],
+      items: items.map(i => ({ ...i })),
       totals: getTotals()
     };
   }
 
-  // ====== RENDER VISTA PREVIA HTML ======
   function renderTicket() {
     const d = getInvoiceData();
-    document.getElementById("invoiceNumberBadge").textContent = `Factura #${d.number}`;
+    document.getElementById("invoiceNumberBadge").textContent = `#${d.number}`;
+    document.getElementById("liveTotalBanner").textContent = formatMoney(d.totals.total);
 
     let html = `
       <div class="t-center t-bold t-lg">${escapeHtml(config.name)}</div>
@@ -810,16 +1349,14 @@
     document.getElementById("ticketPreview").innerHTML = html;
   }
 
-  // ====== GENERADOR DE COMANDOS ESC/POS PARA IMPRESORA TÉRMICA ======
+  // ====== GENERADOR ESC/POS ======
   function buildEscPosBytes() {
     const d = getInvoiceData();
     const cols = config.paperWidth === "80mm" ? 48 : 32;
     const sep = "-".repeat(cols);
     const bytes = [];
-
     const push = (...arr) => bytes.push(...arr);
 
-    // Mapa básico para caracteres en español en CP850
     const cp850Map = {
       "á": 0xA0, "é": 0x82, "í": 0xA1, "ó": 0xA2, "ú": 0xA3,
       "Á": 0xB5, "É": 0x90, "Í": 0xD6, "Ó": 0xE0, "Ú": 0xE9,
@@ -833,29 +1370,24 @@
     const textToBytes = (str) => {
       const out = [];
       for (const ch of String(str)) {
-        if (config.stripAccents && asciiMap[ch]) {
-          out.push(asciiMap[ch].charCodeAt(0));
-        } else if (!config.stripAccents && cp850Map[ch]) {
-          out.push(cp850Map[ch]);
-        } else {
+        if (config.stripAccents && asciiMap[ch]) out.push(asciiMap[ch].charCodeAt(0));
+        else if (!config.stripAccents && cp850Map[ch]) out.push(cp850Map[ch]);
+        else {
           const code = ch.charCodeAt(0);
-          out.push(code < 128 ? code : 63); // '?' si es emoji o carácter no soportado
+          out.push(code < 128 ? code : 63);
         }
       }
       return out;
     };
 
-    const writeLine = (str = "") => {
-      push(...textToBytes(str), 0x0A);
-    };
+    const writeLine = (str = "") => push(...textToBytes(str), 0x0A);
 
     const wrapAndWrite = (str = "") => {
       const words = String(str).split(" ");
       let line = "";
       for (const w of words) {
-        if ((line + " " + w).trim().length <= cols) {
-          line = (line + " " + w).trim();
-        } else {
+        if ((line + " " + w).trim().length <= cols) line = (line + " " + w).trim();
+        else {
           if (line) writeLine(line);
           line = w.length > cols ? w.slice(0, cols) : w;
         }
@@ -864,30 +1396,22 @@
     };
 
     const padBetween = (left, right) => {
-      const l = String(left);
-      const r = String(right);
+      const l = String(left), r = String(right);
       const space = Math.max(1, cols - l.length - r.length);
       return l + " ".repeat(space) + r;
     };
 
-    // Comandos ESC/POS
     const ESC = 0x1B, GS = 0x1D;
-    push(ESC, 0x40); // Inicializar
-    push(ESC, 0x74, 0x02); // Tabla de caracteres CP850
-
-    // Encabezado centrado
-    push(ESC, 0x61, 0x01); // Centrar
-    push(ESC, 0x45, 0x01); // Negrita ON
-    push(GS, 0x21, 0x01);  // Doble alto
+    push(ESC, 0x40, ESC, 0x74, 0x02);
+    push(ESC, 0x61, 0x01, ESC, 0x45, 0x01, GS, 0x21, 0x01);
     wrapAndWrite(config.name);
-    push(GS, 0x21, 0x00);  // Tamaño normal
-    push(ESC, 0x45, 0x00); // Negrita OFF
+    push(GS, 0x21, 0x00, ESC, 0x45, 0x00);
 
     if (config.ruc) writeLine("RUC: " + config.ruc);
     if (config.address) wrapAndWrite(config.address);
     if (config.phone) writeLine("Tel: " + config.phone);
 
-    push(ESC, 0x61, 0x00); // Izquierda
+    push(ESC, 0x61, 0x00);
     writeLine(sep);
     writeLine(padBetween("FACTURA:", "#" + d.number));
     writeLine(padBetween("FECHA:", d.date));
@@ -901,9 +1425,7 @@
 
     if (d.includeDevice && (d.devModel || d.devImei || d.devNotes)) {
       writeLine(sep);
-      push(ESC, 0x45, 0x01);
-      writeLine("EQUIPO EN REPARACION");
-      push(ESC, 0x45, 0x00);
+      push(ESC, 0x45, 0x01); writeLine("EQUIPO EN REPARACION"); push(ESC, 0x45, 0x00);
       if (d.devModel) wrapAndWrite("Modelo: " + d.devModel);
       if (d.devImei) writeLine("IMEI/SN: " + d.devImei);
       if (d.warrantyDays > 0) writeLine("Garantia: " + d.warrantyDays + " dias");
@@ -911,33 +1433,22 @@
     }
 
     writeLine(sep);
-    push(ESC, 0x45, 0x01);
-    writeLine(padBetween("DESCRIPCION", "TOTAL"));
-    push(ESC, 0x45, 0x00);
+    push(ESC, 0x45, 0x01); writeLine(padBetween("DESCRIPCION", "TOTAL")); push(ESC, 0x45, 0x00);
     writeLine(sep);
 
     d.items.forEach(item => {
       wrapAndWrite(item.desc);
-      writeLine(padBetween(
-        `  ${item.qty} x ${formatMoney(item.price)}`,
-        formatMoney(item.qty * item.price)
-      ));
+      writeLine(padBetween(`  ${item.qty} x ${formatMoney(item.price)}`, formatMoney(item.qty * item.price)));
     });
 
     writeLine(sep);
     writeLine(padBetween("SUBTOTAL:", formatMoney(d.totals.subtotal)));
-    if (d.totals.discount > 0) {
-      writeLine(padBetween("DESCUENTO:", "-" + formatMoney(d.totals.discount)));
-    }
-    if (d.totals.applyTax) {
-      writeLine(padBetween(`IVA (${config.taxPct}%):`, formatMoney(d.totals.tax)));
-    }
+    if (d.totals.discount > 0) writeLine(padBetween("DESCUENTO:", "-" + formatMoney(d.totals.discount)));
+    if (d.totals.applyTax) writeLine(padBetween(`IVA (${config.taxPct}%):`, formatMoney(d.totals.tax)));
 
-    push(ESC, 0x45, 0x01);
-    push(GS, 0x21, 0x01);
+    push(ESC, 0x45, 0x01, GS, 0x21, 0x01);
     writeLine(padBetween("TOTAL:", formatMoney(d.totals.total)));
-    push(GS, 0x21, 0x00);
-    push(ESC, 0x45, 0x00);
+    push(GS, 0x21, 0x00, ESC, 0x45, 0x00);
 
     if (d.totals.paid > 0) {
       writeLine(padBetween("RECIBIDO:", formatMoney(d.totals.paid)));
@@ -945,31 +1456,37 @@
     }
 
     writeLine(sep);
-    push(ESC, 0x61, 0x01); // Centrar
+    push(ESC, 0x61, 0x01);
     wrapAndWrite(config.footer);
     writeLine("");
-    push(ESC, 0x45, 0x01);
-    writeLine("!GRACIAS POR SU PREFERENCIA!");
-    push(ESC, 0x45, 0x00);
-    writeLine("");
-    writeLine("");
-    writeLine("");
-    push(GS, 0x56, 0x42, 0x00); // Corte parcial (si la impresora tiene cuchilla)
+    push(ESC, 0x45, 0x01); writeLine("!GRACIAS POR SU PREFERENCIA!"); push(ESC, 0x45, 0x00);
+    writeLine(""); writeLine(""); writeLine("");
+    push(GS, 0x56, 0x42, 0x00);
 
     return new Uint8Array(bytes);
   }
 
-  // ====== OPCIÓN 1: IMPRESIÓN WEB BLUETOOTH DIRECTA (BLE) ======
+  // ====== IMPRESIÓN ======
+  function setBtStatus(text, state = "") {
+    document.getElementById("btStatusText").textContent = text;
+    const dot = document.getElementById("btDot");
+    dot.className = "dot " + state;
+  }
+
   async function printWebBluetooth() {
-    const statusEl = document.getElementById("btStatus");
+    if (items.length === 0) {
+      showToast("Agrega al menos un servicio o producto antes de imprimir", "warning");
+      return;
+    }
     if (!navigator.bluetooth) {
-      alert("Tu navegador no soporta Web Bluetooth o el archivo no está en HTTPS/localhost.\n\nSi estás en Android usando un archivo local o una impresora Bluetooth clásica, usa el botón naranja 'Imprimir con RawBT' o 'Imprimir Normal'.");
+      showToast("Usa el botón naranja RawBT en Android o abre en Chrome compatible", "warning");
+      setBtStatus("Web Bluetooth no disponible en este navegador", "error");
       return;
     }
 
     try {
       if (!bleDevice || !bleDevice.gatt.connected || !bleCharacteristic) {
-        statusEl.textContent = "Buscando impresoras Bluetooth (BLE)...";
+        setBtStatus("Buscando impresora Bluetooth (BLE)...", "");
         bleDevice = await navigator.bluetooth.requestDevice({
           acceptAllDevices: true,
           optionalServices: [
@@ -981,7 +1498,7 @@
           ]
         });
 
-        statusEl.textContent = `Conectando a ${bleDevice.name || "Impresora"}...`;
+        setBtStatus(`Conectando a ${bleDevice.name || "Impresora"}...`, "");
         const server = await bleDevice.gatt.connect();
         const services = await server.getPrimaryServices();
 
@@ -998,13 +1515,13 @@
         }
 
         if (!bleCharacteristic) {
-          throw new Error("No se encontró un canal de escritura BLE compatible en esta impresora.");
+          throw new Error("Esta impresora usa Bluetooth Clásico. Usa el botón RawBT.");
         }
       }
 
-      statusEl.textContent = `Enviando datos a ${bleDevice.name || "Impresora"}...`;
+      setBtStatus(`Imprimiendo en ${bleDevice.name || "Impresora"}...`, "connected");
       const data = buildEscPosBytes();
-      const chunkSize = 20; // Seguro para la mayoría de chips BLE
+      const chunkSize = 20;
 
       for (let i = 0; i < data.length; i += chunkSize) {
         const chunk = data.slice(i, i + chunkSize);
@@ -1016,28 +1533,34 @@
         await new Promise(r => setTimeout(r, 25));
       }
 
-      statusEl.textContent = `✅ Impreso correctamente en ${bleDevice.name || "Impresora"}`;
+      setBtStatus(`Conectado a ${bleDevice.name || "Impresora"}`, "connected");
+      showToast("Ticket enviado a la impresora Bluetooth", "success");
       autoSaveCounter();
     } catch (err) {
-      console.error(err);
-      statusEl.textContent = "❌ Error BLE: " + err.message;
+      if (err.name === "NotFoundError") {
+        setBtStatus("Selección cancelada", "");
+        return;
+      }
+      setBtStatus("No conectado (" + err.message + ")", "error");
+      showToast(err.message, "error");
       bleCharacteristic = null;
     }
   }
 
-  // ====== OPCIÓN 2: RAWBT (ANDROID BLUETOOTH CLÁSICO) ======
   function printRawBT() {
+    if (items.length === 0) {
+      showToast("Agrega al menos un servicio o producto antes de imprimir", "warning");
+      return;
+    }
     const bytes = buildEscPosBytes();
     let binary = "";
-    for (let i = 0; i < bytes.length; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
+    for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
     const base64 = btoa(binary);
     autoSaveCounter();
+    showToast("Enviando ticket a RawBT...", "info");
     window.location.href = "rawbt:base64," + base64;
   }
 
-  // ====== OPCIÓN 3: IMPRESIÓN DEL SISTEMA (WINDOWS / ANDROID PRINT SERVICE) ======
   function printSystem() {
     autoSaveCounter();
     window.print();
@@ -1045,6 +1568,10 @@
 
   // ====== WHATSAPP ======
   function sendWhatsApp() {
+    if (items.length === 0) {
+      showToast("Agrega artículos antes de enviar por WhatsApp", "warning");
+      return;
+    }
     const d = getInvoiceData();
     let msg = `*${config.name}*\n`;
     msg += `Factura #${d.number} - ${d.date}\n`;
@@ -1058,9 +1585,7 @@
     });
     msg += `--------------------\n`;
     msg += `*TOTAL: ${formatMoney(d.totals.total)}*\n`;
-    if (d.includeDevice && d.warrantyDays > 0) {
-      msg += `Garantía: ${d.warrantyDays} días.\n`;
-    }
+    if (d.includeDevice && d.warrantyDays > 0) msg += `Garantía: ${d.warrantyDays} días.\n`;
     msg += `\n¡Gracias por su preferencia!`;
 
     const phone = d.clientPhone.replace(/\D/g, "");
@@ -1074,26 +1599,36 @@
   function autoSaveCounter() {
     const num = parseInt(document.getElementById("invNumber").value, 10);
     const last = parseInt(localStorage.getItem("cel_pos_last_num") || "0", 10);
-    if (!isNaN(num) && num > last) {
-      localStorage.setItem("cel_pos_last_num", String(num));
-    }
+    if (!isNaN(num) && num > last) localStorage.setItem("cel_pos_last_num", String(num));
   }
 
   function saveCurrentInvoice() {
     const d = getInvoiceData();
     if (d.items.length === 0) {
-      alert("Agrega al menos un servicio o accesorio antes de guardar.");
+      showToast("Agrega al menos un servicio o accesorio para guardar", "warning");
       return;
     }
     const history = JSON.parse(localStorage.getItem("cel_pos_history") || "[]");
     history.unshift(d);
     localStorage.setItem("cel_pos_history", JSON.stringify(history.slice(0, 100)));
     autoSaveCounter();
-    alert(`Factura #${d.number} guardada en el historial.`);
+    showToast(`Factura #${d.number} guardada en el historial`, "success");
   }
 
-  function newInvoice() {
-    if (items.length > 0 && !confirm("¿Iniciar una nueva factura? Se limpiarán los campos actuales.")) return;
+  function confirmNewInvoice() {
+    if (items.length === 0) {
+      resetInvoiceFields();
+      return;
+    }
+    showConfirm({
+      title: "Nueva Factura",
+      message: "¿Deseas limpiar los datos actuales para crear una factura nueva?",
+      confirmText: "Sí, crear nueva",
+      onConfirm: resetInvoiceFields
+    });
+  }
+
+  function resetInvoiceFields() {
     items = [];
     const nextNum = parseInt(localStorage.getItem("cel_pos_last_num") || "0", 10) + 1;
     document.getElementById("invNumber").value = String(nextNum).padStart(4, "0");
@@ -1103,10 +1638,11 @@
     document.getElementById("devModel").value = "";
     document.getElementById("devImei").value = "";
     document.getElementById("devNotes").value = "";
-    document.getElementById("discount").value = 0;
-    document.getElementById("amountPaid").value = 0;
-    renderItemsTable();
+    document.getElementById("discount").value = "";
+    document.getElementById("amountPaid").value = "";
+    renderItemsList();
     renderTicket();
+    showToast(`Listo para Factura #${String(nextNum).padStart(4, "0")}`, "info");
   }
 
   // ====== MODALES ======
@@ -1140,25 +1676,27 @@
       stripAccents: document.getElementById("cfgStripAccents").checked
     };
     localStorage.setItem("cel_pos_config", JSON.stringify(config));
+    document.getElementById("headerBizName").textContent = config.name;
     document.getElementById("paperWidthSelect").value = config.paperWidth;
     applyPaperWidthCSS(config.paperWidth);
     updateCurrencyLabels();
-    renderItemsTable();
+    renderItemsList();
     renderTicket();
     closeSettings();
+    showToast("Configuración guardada correctamente", "success");
   }
 
   function openHistory() {
     const history = JSON.parse(localStorage.getItem("cel_pos_history") || "[]");
     const container = document.getElementById("historyList");
     if (history.length === 0) {
-      container.innerHTML = `<p style="color:#6b7280;">No hay facturas guardadas aún.</p>`;
+      container.innerHTML = `<div class="empty-items">No hay facturas guardadas todavía.</div>`;
     } else {
       container.innerHTML = history.map((h, i) => `
-        <div style="border:1px solid #e5e7eb; border-radius:8px; padding:10px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+        <div class="history-item">
           <div>
             <strong>Factura #${escapeHtml(h.number)}</strong> — ${escapeHtml(h.clientName)}<br>
-            <small style="color:#6b7280;">${escapeHtml(h.date)} | ${h.items.length} ítems | Total: ${formatMoney(h.totals.total)}</small>
+            <small style="color:var(--text-secondary);">${escapeHtml(h.date)} • ${h.items.length} ítems • <strong>${formatMoney(h.totals.total)}</strong></small>
           </div>
           <button class="btn btn-primary btn-sm" onclick="loadFromHistory(${i})">Cargar</button>
         </div>
@@ -1182,25 +1720,33 @@
     document.getElementById("devImei").value = h.devImei || "";
     document.getElementById("warrantyDays").value = h.warrantyDays || 30;
     document.getElementById("devNotes").value = h.devNotes || "";
-    document.getElementById("discount").value = h.totals.discount || 0;
-    document.getElementById("amountPaid").value = h.totals.paid || 0;
+    document.getElementById("discount").value = h.totals.discount || "";
+    document.getElementById("amountPaid").value = h.totals.paid || "";
     document.getElementById("applyTax").checked = h.totals.applyTax;
-    items = [...h.items];
+    items = h.items.map(i => ({ ...i }));
     toggleDeviceSection();
-    renderItemsTable();
+    renderItemsList();
     renderTicket();
     closeHistory();
+    showToast(`Factura #${h.number} cargada`, "info");
   }
 
   function closeHistory() {
     document.getElementById("historyModal").classList.remove("open");
   }
 
-  function clearHistory() {
-    if (confirm("¿Seguro que deseas borrar todo el historial?")) {
-      localStorage.removeItem("cel_pos_history");
-      openHistory();
-    }
+  function confirmClearHistory() {
+    showConfirm({
+      title: "Borrar historial",
+      message: "¿Estás seguro de eliminar todas las facturas guardadas? Esta acción no se puede deshacer.",
+      confirmText: "Sí, borrar todo",
+      danger: true,
+      onConfirm: () => {
+        localStorage.removeItem("cel_pos_history");
+        openHistory();
+        showToast("Historial eliminado", "info");
+      }
+    });
   }
 </script>
 </body>
