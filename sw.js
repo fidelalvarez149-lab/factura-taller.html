@@ -1,4 +1,4 @@
-const CACHE_NAME = "taller-pos-v1";
+const CACHE_NAME = "taller-pos-v11";
 const ASSETS = ["./", "./index.html", "./manifest.json", "./icon.svg"];
 
 self.addEventListener("install", (event) => {
